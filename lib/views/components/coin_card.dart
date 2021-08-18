@@ -1,7 +1,8 @@
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/views/coin_details_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../coin_details_view.dart';
 
 class CoinCard extends StatelessWidget {
   final Coin coin;
@@ -12,8 +13,8 @@ class CoinCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CoinDetails(coin)))
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => CoinDetailsView(coin)))
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

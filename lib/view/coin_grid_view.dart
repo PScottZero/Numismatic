@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/views/components/coin_card.dart';
 import 'package:provider/provider.dart';
-
-import 'components/coin_card.dart';
 
 class CoinGridView extends StatelessWidget {
   @override

@@ -6,13 +6,11 @@ class Coin {
   String? mintMark;
   String? grade;
   List<String>? images;
-  String? reverse;
   String? notes;
-  int? minValue;
-  int? maxValue;
   int? denomination;
   CurrencySymbol? currencySymbol;
   String? composition;
+  double? manualValue;
 
   Coin(
     this.type, [
@@ -21,11 +19,10 @@ class Coin {
     this.grade,
     this.images,
     this.notes,
-    this.minValue,
-    this.maxValue,
     this.denomination,
     this.currencySymbol,
     this.composition,
+    this.manualValue,
   ]);
 
   Coin.fromJson(Map<String, dynamic> json)
@@ -36,11 +33,10 @@ class Coin {
         images =
             List.from(json['images'] ?? '[]').map((e) => e as String).toList(),
         notes = json['notes'],
-        minValue = json['minValue'],
-        maxValue = json['maxValue'],
         denomination = json['denomination'],
-        currencySymbol = json['currencySign'],
-        composition = json['composition'];
+        currencySymbol = fromString(json['currencySymbol'] ?? ''),
+        composition = json['composition'],
+        manualValue = json['manualValue'];
 
   Map<String, dynamic> toJson() => {
         'type': type,
@@ -48,12 +44,10 @@ class Coin {
         'mintMark': mintMark,
         'grade': grade,
         'images': images,
-        'reverse': reverse,
         'notes': notes,
-        'minValue': minValue,
-        'maxValue': maxValue,
         'denomination': denomination,
-        'currencySign': currencySymbol,
-        'composition': composition
+        'currencySymbol': currencySymbol,
+        'composition': composition,
+        'manualValue': manualValue
       };
 }

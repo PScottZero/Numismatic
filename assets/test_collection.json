@@ -3,26 +3,37 @@
     "type": "New Jersey Colonial",
     "year": "1787",
     "grade": "XF-40-BN",
+    "composition": "Copper",
+    "manualValue": 695.0,
     "images": ["nj-colonial-obv.jpg", "nj-colonial-rev.jpg"],
     "notes": "No plow sprig variety, Marris-39a"
   },
   {
     "type": "Liberty Head Three Cent",
     "year": "1865",
-    "grade": "MS-67",
+    "grade": "AG-03",
+    "composition": "Nickel",
+    "manualValue": 111.11,
     "images": ["three-cent.jpg"]
   },
   {
-    "type": "Morgan Silver Dollar",
+    "type": "Morgan Dollar",
     "year": "1878",
-    "grade": "MS-68",
+    "mintMark": "CC",
+    "grade": "AU-58",
+    "composition": "Silver",
+    "denomination": 1,
+    "currencySymbol": "$",
+    "manualValue": 123.45,
     "images": ["morgan.jpg"]
   },
   {
     "type": "Indian $10",
     "year": "1787",
-    "grade": "XF-40-BN",
+    "grade": "PR-70",
+    "composition": "Gold",
     "images": ["ten-dollars.jpg"],
+    "manualValue": 1000.00,
     "notes": "No plow sprig variety, Marris-39a"
   }
 ]
