@@ -1,104 +1,26 @@
 [
   {
     "type": "New Jersey Colonial",
-    "date": "1787",
+    "year": "1787",
     "grade": "XF-40-BN",
-    "images": ["nj-colonial.jpg"],
+    "images": ["nj-colonial-obv.jpg", "nj-colonial-rev.jpg"],
     "notes": "No plow sprig variety, Marris-39a"
   },
   {
     "type": "Liberty Head Three Cent",
-    "date": "1865",
+    "year": "1865",
     "grade": "MS-67",
     "images": ["three-cent.jpg"]
   },
   {
     "type": "Morgan Silver Dollar",
-    "date": "1878",
+    "year": "1878",
     "grade": "MS-68",
     "images": ["morgan.jpg"]
   },
   {
     "type": "Indian $10",
-    "date": "1787",
-    "grade": "XF-40-BN",
-    "images": ["ten-dollars.jpg"],
-    "notes": "No plow sprig variety, Marris-39a"
-  },
-  {
-    "type": "New Jersey Colonial",
-    "date": "1787",
-    "grade": "XF-40-BN",
-    "images": ["nj-colonial.jpg"],
-    "notes": "No plow sprig variety, Marris-39a"
-  },
-  {
-    "type": "Liberty Head Three Cent",
-    "date": "1865",
-    "grade": "MS-67",
-    "images": ["three-cent.jpg"]
-  },
-  {
-    "type": "Morgan Silver Dollar",
-    "date": "1878",
-    "grade": "MS-68",
-    "images": ["morgan.jpg"]
-  },
-  {
-    "type": "Indian $10",
-    "date": "1787",
-    "grade": "XF-40-BN",
-    "images": ["ten-dollars.jpg"],
-    "notes": "No plow sprig variety, Marris-39a"
-  },
-  {
-    "type": "New Jersey Colonial",
-    "date": "1787",
-    "grade": "XF-40-BN",
-    "images": ["nj-colonial.jpg"],
-    "notes": "No plow sprig variety, Marris-39a"
-  },
-  {
-    "type": "Liberty Head Three Cent",
-    "date": "1865",
-    "grade": "MS-67",
-    "images": ["three-cent.jpg"]
-  },
-  {
-    "type": "Morgan Silver Dollar",
-    "date": "1878",
-    "grade": "MS-68",
-    "images": ["morgan.jpg"]
-  },
-  {
-    "type": "Indian $10",
-    "date": "1787",
-    "grade": "XF-40-BN",
-    "images": ["ten-dollars.jpg"],
-    "notes": "No plow sprig variety, Marris-39a"
-  },
-  {
-    "type": "New Jersey Colonial",
-    "date": "1787",
-    "grade": "XF-40-BN",
-    "images": ["nj-colonial.jpg"],
-    "notes": "No plow sprig variety, Marris-39a"
-  },
-  {
-    "type": "Liberty Head Three Cent",
-    "date": "1865",
-    "grade": "MS-67",
-    "images": ["three-cent.jpg"]
-  },
-  {
-    "type": "Morgan Silver Dollar",
-    "date": "1878",
-    "grade": "MS-68",
-    "images": ["morgan.jpg"]
-  },
-  {
-    "type": "Indian $10",
-    "date": "1787",
+    "year": "1787",
     "grade": "XF-40-BN",
     "images": ["ten-dollars.jpg"],
     "notes": "No plow sprig variety, Marris-39a"

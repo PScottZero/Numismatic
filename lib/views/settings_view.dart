@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget {
-  var buttonStyle = ButtonStyle(
+  final buttonStyle = ButtonStyle(
     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
       RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -12,7 +12,7 @@ class SettingsView extends StatelessWidget {
     ),
   );
 
-  var textStyle = TextStyle(
+  final textStyle = TextStyle(
     fontSize: 20,
     color: Colors.white,
   );

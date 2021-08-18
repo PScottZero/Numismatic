@@ -2,7 +2,7 @@ import 'package:numismatic/model/currency_symbol.dart';
 
 class Coin {
   String type;
-  String? date;
+  String? year;
   String? mintMark;
   String? grade;
   List<String>? images;
@@ -16,7 +16,7 @@ class Coin {
 
   Coin(
     this.type, [
-    this.date,
+    this.year,
     this.mintMark,
     this.grade,
     this.images,
@@ -30,7 +30,7 @@ class Coin {
 
   Coin.fromJson(Map<String, dynamic> json)
       : type = json['type'],
-        date = json['date'],
+        year = json['year'],
         mintMark = json['mintMark'],
         grade = json['grade'],
         images =
@@ -44,7 +44,7 @@ class Coin {
 
   Map<String, dynamic> toJson() => {
         'type': type,
-        'date': date,
+        'year': year,
         'mintMark': mintMark,
         'grade': grade,
         'images': images,

@@ -4,16 +4,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/currency_symbol.dart';
 
+import 'components/detail.dart';
+
 class CoinDetails extends StatelessWidget {
   final Coin coin;
 
   CoinDetails(this.coin);
 
-  String get denomination {
+  String? get denomination {
     if (coin.currencySymbol == CurrencySymbol.CENT) {
       return '${coin.denomination}${coin.currencySymbol?.symbol}';
     }
-    return 'Not Specified';
+    return null;
   }
 
   @override
@@ -47,16 +49,10 @@ class CoinDetails extends StatelessWidget {
               height: 1.5,
             ),
           ),
-          SizedBox(height: 10),
-          Text('Denomination: $denomination'),
-          SizedBox(height: 10),
-          Text('Year: ${coin.date ?? 'Unknown'}'),
-          SizedBox(height: 10),
-          Text('Mint Mark: ${coin.mintMark ?? 'None'}'),
-          SizedBox(height: 10),
-          Text('Composition: ${coin.composition ?? 'Unknown'}'),
-          SizedBox(height: 10),
-          Text('Composition: ${coin.composition ?? 'Unknown'}')
+          Detail('Denomination', denomination),
+          Detail('Year', coin.year),
+          Detail('Mint Mark', coin.mintMark),
+          Detail('Composition', coin.composition),
         ],
       ),
     );
