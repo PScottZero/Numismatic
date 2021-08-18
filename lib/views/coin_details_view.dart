@@ -4,24 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/client/PCGSClient.dart';
 import 'package:numismatic/model/coin.dart';
+import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/currency_symbol.dart';
+import 'package:numismatic/views/components/delete_coin_dialog.dart';
 
 import 'components/detail.dart';
 
 class CoinDetailsView extends StatefulWidget {
+  final CoinCollectionModel model;
   final Coin coin;
 
-  const CoinDetailsView(this.coin, {Key? key}) : super(key: key);
+  const CoinDetailsView(this.model, this.coin, {Key? key}) : super(key: key);
 
   @override
-  _CoinDetailsViewState createState() => _CoinDetailsViewState(this.coin);
+  _CoinDetailsViewState createState() =>
+      _CoinDetailsViewState(this.model, this.coin);
 }
 
 class _CoinDetailsViewState extends State<CoinDetailsView> {
+  final CoinCollectionModel model;
   final Coin coin;
   int _coinValue = 0;
 
-  _CoinDetailsViewState(this.coin) {
+  _CoinDetailsViewState(this.model, this.coin) {
     PCGSClient.coinValue(coin).then(
       (value) => setState(() => _coinValue = value),
     );
@@ -75,11 +80,24 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
     return Colors.white;
   }
 
+  MaterialStateProperty<T> msp<T>(T property) {
+    return MaterialStateProperty.all<T>(property);
+  }
+
+  _showDeleteCoinDialog() async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return DeleteCoinDialog(model, coin);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
+        backgroundColor: Color(0xff00417a),
         title: Text(
           coin.type,
           style: GoogleFonts.comfortaa(color: Colors.white),
@@ -132,12 +150,36 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   coin.composition,
                   color: compositionColor,
                 ),
-                coin.manualValue != null
+                coin.value != null
                     ? Detail(
                         'Price',
-                        '\$${(coin.manualValue ?? 0).toStringAsFixed(2)}',
+                        '\$${(coin.value ?? 0).toStringAsFixed(2)}',
                       )
-                    : Detail('Value', _coinValue >= 0 ? '\$$_coinValue' : null)
+                    : Detail(
+                        'Value',
+                        _coinValue >= 0 ? '\$$_coinValue' : null,
+                      ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: msp(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    backgroundColor: msp(Colors.red),
+                    padding: msp(EdgeInsets.only(top: 12, bottom: 12)),
+                    textStyle: msp(GoogleFonts.comfortaa(fontSize: 24)),
+                  ),
+                  onPressed: () => _showDeleteCoinDialog(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.delete, size: 36),
+                      Text('Delete'),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

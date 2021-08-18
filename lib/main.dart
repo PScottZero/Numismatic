@@ -16,7 +16,7 @@ void main() {
 
 class NumismaticApp extends StatelessWidget {
   ThemeData buildCustomThemeData(ThemeData base) => base.copyWith(
-        primaryColor: Colors.cyan,
+        primaryColor: Color(0xff00417a),
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(

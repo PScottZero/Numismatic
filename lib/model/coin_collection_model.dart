@@ -32,4 +32,9 @@ class CoinCollectionModel extends ChangeNotifier {
     collection.add(coin);
     notifyListeners();
   }
+
+  deleteCoin(Coin coin) {
+    collection.remove(coin);
+    notifyListeners();
+  }
 }

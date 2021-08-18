@@ -10,7 +10,8 @@ class Coin {
   int? denomination;
   CurrencySymbol? currencySymbol;
   String? composition;
-  double? manualValue;
+  double? value; // null: no value, -1: PCGS provided value
+  double? mintage; // null: no mintage, -1: PCGS provided mintage
 
   Coin(
     this.type, [
@@ -22,7 +23,7 @@ class Coin {
     this.denomination,
     this.currencySymbol,
     this.composition,
-    this.manualValue,
+    this.value,
   ]);
 
   Coin.fromJson(Map<String, dynamic> json)
@@ -36,7 +37,7 @@ class Coin {
         denomination = json['denomination'],
         currencySymbol = fromString(json['currencySymbol'] ?? ''),
         composition = json['composition'],
-        manualValue = json['manualValue'];
+        value = json['value'];
 
   Map<String, dynamic> toJson() => {
         'type': type,
@@ -48,6 +49,6 @@ class Coin {
         'denomination': denomination,
         'currencySymbol': currencySymbol,
         'composition': composition,
-        'manualValue': manualValue
+        'value': value
       };
 }

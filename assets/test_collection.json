@@ -4,7 +4,7 @@
     "year": "1787",
     "grade": "XF-40-BN",
     "composition": "Copper",
-    "manualValue": 695.0,
+    "value": 695.0,
     "images": ["nj-colonial-obv.jpg", "nj-colonial-rev.jpg"],
     "notes": "No plow sprig variety, Marris-39a"
   },
@@ -13,7 +13,7 @@
     "year": "1865",
     "grade": "AG-03",
     "composition": "Nickel",
-    "manualValue": 111.11,
+    "value": 111.11,
     "images": ["three-cent.jpg"]
   },
   {
@@ -24,7 +24,7 @@
     "composition": "Silver",
     "denomination": 1,
     "currencySymbol": "$",
-    "manualValue": 123.45,
+    "value": 123.45,
     "images": ["morgan.jpg"]
   },
   {
@@ -33,7 +33,7 @@
     "grade": "PR-70",
     "composition": "Gold",
     "images": ["ten-dollars.jpg"],
-    "manualValue": 1000.00,
+    "value": 1000.00,
     "notes": "No plow sprig variety, Marris-39a"
   }
 ]

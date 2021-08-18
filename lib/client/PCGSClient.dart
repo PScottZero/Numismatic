@@ -7,18 +7,15 @@ class PCGSClient {
   static final pricesUrl = 'prices/detail';
 
   static Future<int> coinValue(Coin coin) async {
-    print(coin);
     final type = coinTypeFromString(coin.type);
     final typePath = _coinTypeToPath(coin.type);
     final typeIntPath = _coinTypeToInt[type];
     final gradePath = _gradePathFromString(coin.grade ?? '');
-    print(type);
     if (type != null) {
       var url =
           Uri.parse('$pcgsUrl/$pricesUrl/$typePath/$typeIntPath/$gradePath/');
-      print(url);
       var response = await http.get(url);
-      print(response.body);
+      print(response);
       return 100;
     } else {
       return -1;
