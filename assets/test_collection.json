@@ -24,7 +24,7 @@
     "composition": "Silver",
     "denomination": 1,
     "currencySymbol": "$",
-    "value": 123.45,
+    "value": -1.0,
     "images": ["morgan.jpg"]
   },
   {

@@ -1,25 +1,49 @@
+import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Detail extends StatelessWidget {
+class Detail extends StatefulWidget {
   final String name;
-  final String? value;
-  final String? altValue;
+  final Either<String?, Future<String?>?> value;
   final Color? color;
 
-  Detail(this.name, this.value, {this.altValue, this.color});
+  const Detail({
+    required this.name,
+    required this.value,
+    this.color,
+  });
 
-  String? get detailValue {
-    if (altValue != null) {
-      return altValue;
+  @override
+  _DetailState createState() => _DetailState(
+        name: name,
+        value: value,
+        color: color,
+      );
+}
+
+class _DetailState extends State<Detail> {
+  final String name;
+  final Either<String?, Future<String?>?> value;
+  final Color? color;
+  dynamic _detailValue;
+
+  _DetailState({
+    required this.name,
+    required this.value,
+    this.color,
+  }) {
+    if (value.isRight()) {
+      value.getOrElse(() => null)!.then(
+            (value) => setState(() => _detailValue = value),
+          );
     } else {
-      return value;
+      _detailValue = value.foldLeft(0, (previous, r) => r);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return value != null
+    return _detailValue != null
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,10 +58,10 @@ class Detail extends StatelessWidget {
                   children: [
                     color != null
                         ? TextSpan(
-                            text: detailValue,
+                            text: _detailValue,
                             style: TextStyle(color: this.color),
                           )
-                        : TextSpan(text: detailValue)
+                        : TextSpan(text: _detailValue)
                   ],
                 ),
               ),

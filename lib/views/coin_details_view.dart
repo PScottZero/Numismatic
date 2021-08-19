@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +8,6 @@ import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/currency_symbol.dart';
 import 'package:numismatic/views/components/delete_coin_dialog.dart';
-
 import 'components/detail.dart';
 
 class CoinDetailsView extends StatefulWidget {
@@ -24,15 +24,22 @@ class CoinDetailsView extends StatefulWidget {
 class _CoinDetailsViewState extends State<CoinDetailsView> {
   final CoinCollectionModel model;
   final Coin coin;
-  int? _coinValue;
 
-  _CoinDetailsViewState(this.model, this.coin) {
-    PCGSClient.coinValue(coin).then(
-      (value) => setState(() => _coinValue = value),
-    );
-    PCGSClient.coinValue(coin).then(
-      (value) => setState(() => print(value)),
-    );
+  _CoinDetailsViewState(this.model, this.coin);
+
+  Either<String?, Future<String?>?> resolveValue(
+    String? value,
+    Future<String?> Function(Coin) valueGetter,
+  ) {
+    if ((double.tryParse(value ?? '') ?? 0) < 0) {
+      return Right(
+        valueGetter(coin).then(
+          (value) => value,
+          onError: (error) => null,
+        ),
+      );
+    }
+    return Left(value);
   }
 
   String? get denomination {
@@ -152,21 +159,34 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                     height: 1.5,
                   ),
                 ),
-                Detail('Grade', coin.grade, color: gradeColor),
-                Detail('Year', coin.year),
-                Detail('Mint Mark', coin.mintMark),
-                Detail('Denomination', denomination),
                 Detail(
-                  'Composition',
-                  coin.composition,
+                  name: 'Grade',
+                  value: Left(coin.grade.toString()),
+                  color: gradeColor,
+                ),
+                Detail(
+                  name: 'Year',
+                  value: Left(coin.year.toString()),
+                ),
+                Detail(
+                  name: 'Mint Mark',
+                  value: Left(coin.mintMark.toString()),
+                ),
+                Detail(
+                  name: 'Denomination',
+                  value: Left(denomination.toString()),
+                ),
+                Detail(
+                  name: 'Composition',
+                  value: Left(coin.composition),
                   color: compositionColor,
                 ),
                 Detail(
-                  'Price',
-                  '\$${coin.value?.toStringAsFixed(2)}',
-                  altValue: _coinValue != null
-                      ? '\$${_coinValue?.toStringAsFixed(2)}'
-                      : null,
+                  name: 'Price',
+                  value: resolveValue(
+                    coin.value?.toStringAsFixed(2),
+                    PCGSClient.coinValue,
+                  ),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -178,13 +198,13 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                     ),
                     backgroundColor: msp(Colors.red),
                     padding: msp(EdgeInsets.only(top: 12, bottom: 12)),
-                    textStyle: msp(GoogleFonts.comfortaa(fontSize: 24)),
+                    textStyle: msp(GoogleFonts.comfortaa(fontSize: 20)),
                   ),
                   onPressed: () => _showDeleteCoinDialog(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.delete, size: 36),
+                      Icon(Icons.delete, size: 28),
                       Text('Delete'),
                     ],
                   ),
