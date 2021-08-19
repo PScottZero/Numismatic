@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:numismatic/client/NGCClient.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/currency_symbol.dart';
@@ -28,11 +27,6 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
 
   _CoinDetailsViewState(this.model, this.coin) {
     _coinValue = '\$${coin.value?.toStringAsFixed(2) ?? ''}';
-    if (usePCGS(coin.value)) {
-      PCGSClient.coinValue(coin).then(
-        (value) => setState(() => _coinValue = '\$$value'),
-      );
-    }
   }
 
   bool usePCGS(dynamic value) {

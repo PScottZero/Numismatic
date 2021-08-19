@@ -18,13 +18,13 @@
   },
   {
     "type": "Morgan Dollar",
-    "year": "1878",
+    "year": "1879",
     "mintMark": "CC",
     "grade": "AU-58",
     "composition": "Silver",
     "denomination": 1,
     "currencySymbol": "$",
-    "value": -1.0,
+    "value": 100,
     "images": ["morgan.jpg"]
   },
   {
