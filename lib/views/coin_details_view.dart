@@ -1,13 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:numismatic/client/PCGSClient.dart';
+import 'package:numismatic/client/NGCClient.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/currency_symbol.dart';
-import 'package:numismatic/views/components/delete_coin_dialog.dart';
+import 'components/delete_coin_dialog.dart';
 import 'components/detail.dart';
 
 class CoinDetailsView extends StatefulWidget {
@@ -25,21 +24,22 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   final CoinCollectionModel model;
   final Coin coin;
 
-  _CoinDetailsViewState(this.model, this.coin);
+  String? _coinValue;
 
-  Either<String?, Future<String?>?> resolveValue(
-    String? value,
-    Future<String?> Function(Coin) valueGetter,
-  ) {
-    if ((double.tryParse(value ?? '') ?? 0) < 0) {
-      return Right(
-        valueGetter(coin).then(
-          (value) => value,
-          onError: (error) => null,
-        ),
+  _CoinDetailsViewState(this.model, this.coin) {
+    _coinValue = '\$${coin.value?.toStringAsFixed(2) ?? ''}';
+    if (usePCGS(coin.value)) {
+      PCGSClient.coinValue(coin).then(
+        (value) => setState(() => _coinValue = '\$$value'),
       );
     }
-    return Left(value);
+  }
+
+  bool usePCGS(dynamic value) {
+    if ((double.tryParse(value?.toString() ?? '') ?? 0) < 0) {
+      return true;
+    }
+    return false;
   }
 
   String? get denomination {
@@ -161,32 +161,29 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                 ),
                 Detail(
                   name: 'Grade',
-                  value: Left(coin.grade.toString()),
+                  value: coin.grade,
                   color: gradeColor,
                 ),
                 Detail(
                   name: 'Year',
-                  value: Left(coin.year.toString()),
+                  value: coin.year,
                 ),
                 Detail(
                   name: 'Mint Mark',
-                  value: Left(coin.mintMark.toString()),
+                  value: coin.mintMark,
                 ),
                 Detail(
                   name: 'Denomination',
-                  value: Left(denomination.toString()),
+                  value: denomination,
                 ),
                 Detail(
                   name: 'Composition',
-                  value: Left(coin.composition),
+                  value: coin.composition,
                   color: compositionColor,
                 ),
                 Detail(
                   name: 'Price',
-                  value: resolveValue(
-                    coin.value?.toStringAsFixed(2),
-                    PCGSClient.coinValue,
-                  ),
+                  value: _coinValue,
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(

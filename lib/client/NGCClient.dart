@@ -3,20 +3,17 @@ import 'package:numismatic/model/coin_type.dart';
 import 'package:http/http.dart' as http;
 
 class PCGSClient {
-  static final String pcgsUrl = 'https://www.pcgs.com';
-  static final pricesUrl = 'prices/detail';
+  static final String ngcBaseUrl = 'https://www.ngccoin.com';
+  static final pricesUrl = 'price-guide/united-states/';
 
   static Future<String?> coinValue(Coin coin) async {
-    final type = coinTypeFromString(coin.type);
-    final typePath = _coinTypeToPath(coin.type);
-    final typeIntPath = _coinTypeToInt[type];
-    final gradePath = _gradePathFromString(coin.grade ?? '');
-    if (type != null) {
-      var url =
-          Uri.parse('$pcgsUrl/$pricesUrl/$typePath/$typeIntPath/$gradePath/');
+    final denomination = _denominationOf(coin);
+    final coinId = _coinIds[coin];
+    if (denomination != null) {
+      var url = Uri.parse('$ngcBaseUrl/$pricesUrl/$denomination/$coinId');
       var response = await http.get(url);
       var responseSplit = response.body.split('\n');
-      print(responseSplit);
+      print(responseSplit.length);
       return "100";
     } else {
       return null;
@@ -48,11 +45,20 @@ class PCGSClient {
     return '';
   }
 
+  static String? _denominationOf(Coin coin) {
+    switch (coinTypeFromString(coin.type)) {
+      case CoinType.morganDollar:
+        return 'dollars';
+      default:
+        return null;
+    }
+  }
+
   static String _coinTypeToPath(String type) =>
       type.toLowerCase().replaceAll(' ', '-');
 
-  static Map<CoinType, int> _coinTypeToInt = {
+  static Map<CoinType, int> _coinIds = {
     CoinType.flowingHairDollar: 736,
-    CoinType.morganDollar: 744
+    CoinType.morganDollar: 49
   };
 }

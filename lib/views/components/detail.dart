@@ -1,10 +1,9 @@
-import 'package:dartz/dartz.dart' show Either;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Detail extends StatefulWidget {
+class Detail extends StatelessWidget {
   final String name;
-  final Either<String?, Future<String?>?> value;
+  final String? value;
   final Color? color;
 
   const Detail({
@@ -14,36 +13,8 @@ class Detail extends StatefulWidget {
   });
 
   @override
-  _DetailState createState() => _DetailState(
-        name: name,
-        value: value,
-        color: color,
-      );
-}
-
-class _DetailState extends State<Detail> {
-  final String name;
-  final Either<String?, Future<String?>?> value;
-  final Color? color;
-  dynamic _detailValue;
-
-  _DetailState({
-    required this.name,
-    required this.value,
-    this.color,
-  }) {
-    if (value.isRight()) {
-      value.getOrElse(() => null)!.then(
-            (value) => setState(() => _detailValue = value),
-          );
-    } else {
-      _detailValue = value.foldLeft(0, (previous, r) => r);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return _detailValue != null
+    return value != null
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -58,10 +29,10 @@ class _DetailState extends State<Detail> {
                   children: [
                     color != null
                         ? TextSpan(
-                            text: _detailValue,
+                            text: value,
                             style: TextStyle(color: this.color),
                           )
-                        : TextSpan(text: _detailValue)
+                        : TextSpan(text: value)
                   ],
                 ),
               ),

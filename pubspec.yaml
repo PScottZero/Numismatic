@@ -18,7 +18,6 @@ dependencies:
   path_provider: ^2.0.2
   http: ^0.13.3
   flutter_launcher_icons: ^0.9.1
-  dartz: ^0.10.0
 
 dev_dependencies:
   flutter_test:
