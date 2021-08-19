@@ -16,13 +16,22 @@ class _AddCoinViewState extends State<AddCoinView> {
         backgroundColor: Color(0xff00417a),
         title: Text(
           'Add Coin',
-          style: GoogleFonts.comfortaa(color: Colors.white),
+          style: GoogleFonts.comfortaa(),
         ),
       ),
       body: ListView(
         padding: EdgeInsets.all(30),
         children: [
-          TextField(),
+          TextField(
+            style: TextStyle(
+              fontSize: 20,
+            ),
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ),
         ],
       ),
     );

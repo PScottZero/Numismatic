@@ -24,6 +24,7 @@ class CoinCard extends StatelessWidget {
           ),
         },
         child: Card(
+          elevation: 5,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -47,10 +48,7 @@ class CoinCard extends StatelessWidget {
                 child: Text(
                   coin.type,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                  ),
+                  style: TextStyle(fontSize: 14),
                 ),
               ),
             ],

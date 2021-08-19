@@ -17,7 +17,7 @@ class CoinGridView extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'Numismatic',
-              style: GoogleFonts.comfortaa(color: Colors.white),
+              style: GoogleFonts.comfortaa(),
             ),
           ),
           body: model.collection.length > 0

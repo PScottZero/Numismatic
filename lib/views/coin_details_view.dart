@@ -24,7 +24,7 @@ class CoinDetailsView extends StatefulWidget {
 class _CoinDetailsViewState extends State<CoinDetailsView> {
   final CoinCollectionModel model;
   final Coin coin;
-  int _coinValue = 0;
+  int? _coinValue;
 
   _CoinDetailsViewState(this.model, this.coin) {
     PCGSClient.coinValue(coin).then(
@@ -45,7 +45,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
     }
   }
 
-  Color get gradeColor {
+  Color? get gradeColor {
     final gradeSplit = (coin.grade ?? '').split('-');
     if (gradeSplit.length >= 2) {
       int gradeValue = int.tryParse(gradeSplit[1]) ?? 0;
@@ -59,10 +59,10 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
         return Colors.blue;
       }
     }
-    return Colors.white;
+    return null;
   }
 
-  Color get compositionColor {
+  Color? get compositionColor {
     if (coin.composition != null) {
       switch (coin.composition) {
         case 'Gold':
@@ -74,10 +74,10 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
         case 'Copper':
           return Colors.brown[400]!;
         default:
-          return Colors.white;
+          return null;
       }
     }
-    return Colors.white;
+    return null;
   }
 
   MaterialStateProperty<T> msp<T>(T property) {
@@ -100,7 +100,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
         backgroundColor: Color(0xff00417a),
         title: Text(
           coin.type,
-          style: GoogleFonts.comfortaa(color: Colors.white),
+          style: GoogleFonts.comfortaa(),
         ),
       ),
       body: ListView(
@@ -108,19 +108,30 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
           CarouselSlider(
             options: CarouselOptions(
               aspectRatio: 1,
-              viewportFraction: 0.88,
+              viewportFraction: 0.9,
               enableInfiniteScroll: false,
             ),
             items: (coin.images ?? []).map(
               (image) {
                 return Container(
                   padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    clipBehavior: Clip.antiAlias,
-                    child: Image(
-                      image: AssetImage(
-                        'assets/images/$image',
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x22000000),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      clipBehavior: Clip.antiAlias,
+                      child: Image(
+                        image: AssetImage(
+                          'assets/images/$image',
+                        ),
                       ),
                     ),
                   ),
@@ -150,15 +161,13 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   coin.composition,
                   color: compositionColor,
                 ),
-                coin.value != null
-                    ? Detail(
-                        'Price',
-                        '\$${(coin.value ?? 0).toStringAsFixed(2)}',
-                      )
-                    : Detail(
-                        'Value',
-                        _coinValue >= 0 ? '\$$_coinValue' : null,
-                      ),
+                Detail(
+                  'Price',
+                  '\$${coin.value?.toStringAsFixed(2)}',
+                  altValue: _coinValue != null
+                      ? '\$${_coinValue?.toStringAsFixed(2)}'
+                      : null,
+                ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(

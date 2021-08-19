@@ -4,9 +4,18 @@ import 'package:google_fonts/google_fonts.dart';
 class Detail extends StatelessWidget {
   final String name;
   final String? value;
-  final Color color;
+  final String? altValue;
+  final Color? color;
 
-  Detail(this.name, this.value, {this.color = Colors.white});
+  Detail(this.name, this.value, {this.altValue, this.color});
+
+  String? get detailValue {
+    if (altValue != null) {
+      return altValue;
+    } else {
+      return value;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,12 @@ class Detail extends StatelessWidget {
                     height: 1.5,
                   ),
                   children: [
-                    TextSpan(text: value, style: TextStyle(color: this.color))
+                    color != null
+                        ? TextSpan(
+                            text: detailValue,
+                            style: TextStyle(color: this.color),
+                          )
+                        : TextSpan(text: detailValue)
                   ],
                 ),
               ),
