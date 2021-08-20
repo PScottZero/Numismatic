@@ -2,74 +2,95 @@ package com.pscottzero.controller
 
 import com.pscottzero.model.CoinType
 import com.pscottzero.model.CoinValueRequest
-import it.skrape.core.htmlDocument
-import it.skrape.fetcher.HttpFetcher
-import it.skrape.fetcher.response
-import it.skrape.fetcher.skrape
+import com.pscottzero.model.ScraperResponse
+import com.pscottzero.service.CoinInfoService
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.ArraySchema
+import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.ExampleObject
+import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
+import io.swagger.v3.oas.annotations.responses.ApiResponses
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-@RestController
+@RestController()
+@RequestMapping("/coin")
 class CoinInfoController {
-    @GetMapping("/coin/types")
+    @Autowired
+    lateinit var coinInfoService: CoinInfoService
+
+    @GetMapping("/types")
     @CrossOrigin(origins = ["*"])
+    @Operation(summary = "Retrieve all valid coin types")
+    @ApiResponses(
+        value = [
+            ApiResponse(
+                responseCode = "200",
+                description = "Successfully retrieved coin types",
+                content = [
+                    Content(
+                        array = ArraySchema(
+                            schema = Schema(
+                                implementation = String::class
+                            )
+                        ),
+                        examples = [
+                            ExampleObject("[\"Peace Dollar\", \"Morgan Dollar\"]")
+                        ]
+                    )
+                ]
+            )
+        ]
+    )
     fun getCoinTypes(): ResponseEntity<List<String>> {
         return ResponseEntity.ok(CoinType.values().map { it.toString() })
     }
 
-    @PostMapping("/coin/value")
+    @PostMapping("/value")
     @CrossOrigin(origins = ["*"])
+    @Operation(summary = "Retrieve value of specified coin from Greysheet")
+    @ApiResponses(
+        value = [
+            ApiResponse(
+                responseCode = "200",
+                description = "Successfully retrieved coin value",
+                content = [
+                    Content(
+                        schema = Schema(
+                            implementation = ScraperResponse::class
+                        ),
+                        examples = [
+                            ExampleObject("{\"success\": true, \"payload\": \"\$123.45\"}")
+                        ]
+                    )
+                ]
+            ),
+            ApiResponse(
+                responseCode = "400",
+                description = "Bad request",
+                content = [
+                    Content(
+                        schema = Schema(
+                            implementation = ScraperResponse::class
+                        ),
+                        examples = [
+                            ExampleObject("{\"success\": false, \"errorMessage\": \"Error retrieving coin value\"}")
+                        ]
+                    )
+                ]
+            )
+        ]
+    )
     fun getCoinValue(
         @RequestBody coinValueRequest: CoinValueRequest
-    ): ResponseEntity<String> {
-        val coinType = CoinType.fromString(coinValueRequest.type)
-        if (coinType != null) {
-            val coinUrl = getCoinUrl(coinValueRequest)
-            val pricesMap = skrape(HttpFetcher) {
-                request { url = "https://www.greysheet.com/$coinUrl" }
-                response {
-                    htmlDocument {
-                        eachLink.filter {
-                            it.value.contains("grade=${coinGradeNumber(coinValueRequest.grade)}") &&
-                                    it.value.contains("cac=0")
-                        }
-                    }
-                }
-            }
-            if (pricesMap.isEmpty()) {
-                val mintMark = if (coinValueRequest.mintMark != null) "-${coinValueRequest.mintMark}" else ""
-                return ResponseEntity.badRequest().body("Invalid coin: ${coinValueRequest.year}${mintMark} ${coinValueRequest.type}")
-            }
-            val filtered = pricesMap.filter {
-                it.value.contains("grade=${coinGradeNumber(coinValueRequest.grade)}") &&
-                        it.value.contains("cac=0")
-            }
-            filtered.forEach {
-                if (it.key.contains("$")) {
-                    return ResponseEntity.ok(it.key.substring(5).replace(" ", ""))
-                }
-            }
-            return ResponseEntity.badRequest().body("Invalid grade: ${coinValueRequest.grade}")
+    ): ResponseEntity<ScraperResponse<String>> {
+        val value = coinInfoService.getCoinValue(coinValueRequest)
+        return if (value.success) {
+            ResponseEntity.ok(value)
+        } else {
+            ResponseEntity.badRequest().body(value)
         }
-        return ResponseEntity.badRequest().body("Invalid coin type: ${coinValueRequest.type}")
-    }
-
-    private fun getCoinUrl(coin: CoinValueRequest): String {
-        val coinPath = prefix(CoinType.fromString(coin.type)!!) + coin.type.lowercase().replace(" ", "-") + "s"
-        val links = skrape(HttpFetcher) {
-            request { url = "https://www.greysheet.com/coin-prices/series-landing/$coinPath" }
-            response { htmlDocument { eachLink } }
-        }
-        val mintMark = if (coin.mintMark != null) "-${coin.mintMark}" else ""
-        return links["${coin.year}${mintMark}"] ?: ""
-    }
-
-    private fun prefix(type: CoinType): String {
-        return if (type.withPrefix) "united-states-" else ""
-    }
-
-    private fun coinGradeNumber(grade: String): String {
-        val gradeSplit = grade.split("-")
-        return if (gradeSplit.size >= 2) grade.split("-")[1] else "0"
     }
 }

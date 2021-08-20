@@ -17,6 +17,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.google.code.gson:gson:2.8.7")
     implementation("org.springdoc:springdoc-openapi-ui:1.5.10")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.5.10")
     implementation("it.skrape:skrapeit:1.1.5")
     testImplementation(kotlin("test"))
 }
