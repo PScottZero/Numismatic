@@ -84,3 +84,7 @@ CoinType? coinTypeFromString(String type) {
   }
   return null;
 }
+
+bool validCoinType(String type) {
+  return coinTypeFromString(type) != null;
+}
