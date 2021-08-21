@@ -19,7 +19,6 @@ enum class CoinType(val withPrefix: Boolean) {
     // two and three cents
     TWO_CENT(false),
 
-
     // dollars
     MORGAN_DOLLAR(false);
 

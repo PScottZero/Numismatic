@@ -2,7 +2,7 @@ package com.pscottzero.model
 
 import io.swagger.v3.oas.annotations.media.Schema
 
-data class CoinValueRequest(
+data class CoinDataRequest(
     @Schema(example = "Morgan Dollar")
     val type: String,
     @Schema(example = "1878")
@@ -10,5 +10,5 @@ data class CoinValueRequest(
     @Schema(example = "CC")
     val mintMark: String?,
     @Schema(example = "MS-64")
-    val grade: String
+    val grade: String?
 )
