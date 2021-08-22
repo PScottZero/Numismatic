@@ -1,74 +1,114 @@
 package com.pscottzero.service
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.pscottzero.model.CoinData
 import com.pscottzero.model.CoinType
 import com.pscottzero.model.CoinDataRequest
-import com.pscottzero.model.ScraperResponse
+import com.pscottzero.util.Logger
 import it.skrape.core.htmlDocument
-import it.skrape.fetcher.BrowserFetcher
 import it.skrape.fetcher.HttpFetcher
 import it.skrape.fetcher.response
 import it.skrape.fetcher.skrape
+import it.skrape.selects.ElementNotFoundException
+import org.springframework.scheduling.annotation.EnableScheduling
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import java.lang.Exception
 
 @Service
-class CoinInfoService {
-    fun getRetailValue(coinValueRequest: CoinDataRequest): ScraperResponse<String> {
-        val coinType = CoinType.fromString(coinValueRequest.type)
-        if (coinType != null) {
-            val coinUrl = coinUrlFromLandingPage(coinValueRequest)
-            val pricesMap = skrape(BrowserFetcher) {
-                request { url = "https://www.greysheet.com/$coinUrl" }
-                response {
-                    htmlDocument {
-                        eachLink.filter {
-                            it.value.contains("grade=${coinGradeNumber(coinValueRequest.grade ?: "")}") &&
-                                    it.value.contains("cac=0")
+@EnableScheduling
+class CoinInfoService: Logger() {
+    private var coinDataMap: Map<String, Map<String, CoinData>>
+
+    private var coinPriceCache: MutableMap<CoinDataRequest, String> = mutableMapOf()
+
+    private val gson = Gson()
+
+    init {
+        coinDataMap = gson.fromJson(
+            javaClass.getResource("/coin-links-and-mintage.json")?.readText() ?: "{}",
+            object : TypeToken<Map<String, Map<String, CoinData>>>() {}.type
+        )
+    }
+
+    @Scheduled(fixedRate = 3600000, initialDelay = 3600000)
+    fun clearPriceCache() {
+        coinPriceCache.clear()
+        info("Cleared coin price cache")
+    }
+
+    fun getRetailPrice(priceRequest: CoinDataRequest): String {
+        if (coinPriceCache[priceRequest] != null) {
+            info("Found coin price in cache")
+            return coinPriceCache[priceRequest]!!
+        }
+        val priceUrl = getCoinData(priceRequest)?.link
+        if (priceUrl != null) {
+            return try {
+                skrape(HttpFetcher) {
+                    request { url = "https://www.greysheet.com/$priceUrl" }
+                    response {
+                        htmlDocument {
+                            try {
+                                findAll("div.panel-body") {
+                                    try {
+                                        val grades = findAll("p.entry-title").map { it.text }
+                                        val prices = findAll("button.button-cpg-value").map { it.text }
+                                        val priceIndex = grades.indexOf(priceRequest.grade.replace("-", ""))
+                                        if (priceIndex >= 0) {
+                                            val price = prices[priceIndex].replace("CPG: ", "").replace(" ", "")
+                                            coinPriceCache[priceRequest] = price
+                                            price
+                                        } else {
+                                            "Could not find grade ${priceRequest.grade}"
+                                        }
+                                    } catch (ex: ElementNotFoundException) {
+                                        "No price data available"
+                                    }
+                                }
+                            } catch (ex: ElementNotFoundException) {
+                                "No price data available"
+                            }
                         }
                     }
                 }
-            }
-            if (pricesMap.isEmpty()) {
-                val mintMark = if (coinValueRequest.mintMark != null) "-${coinValueRequest.mintMark}" else ""
-                return ScraperResponse.error("Invalid coin: ${coinValueRequest.year}${mintMark} ${coinValueRequest.type}")
-            }
-            pricesMap.forEach {
-                if (it.key.contains("$")) {
-                    return ScraperResponse.success(it.key.substring(5).replace(" ", ""))
-                }
-            }
-            return ScraperResponse.error("Invalid grade: ${coinValueRequest.grade}")
-        }
-        return ScraperResponse.error("Invalid coin type: ${coinValueRequest.type}")
-    }
-
-    private fun coinUrlFromLandingPage(coin: CoinDataRequest): String {
-        val coinPath = prefix(CoinType.fromString(coin.type)!!) + coin.type.lowercase().replace(" ", "-") + "s"
-        val links = skrape(HttpFetcher) {
-            request { url = "https://www.greysheet.com/coin-prices/series-landing/$coinPath" }
-            response { htmlDocument { eachLink } }
-        }
-        val mintMark = if (coin.mintMark != null) "-${coin.mintMark}" else ""
-        return links["${coin.year}${mintMark}"] ?: ""
-    }
-
-    private fun prefix(type: CoinType): String {
-        return if (type.withPrefix) "united-states-" else ""
-    }
-
-    private fun coinGradeNumber(grade: String): String {
-        val gradeSplit = grade.split("-")
-        return if (gradeSplit.size >= 2) grade.split("-")[1] else "0"
-    }
-
-    fun coinTypeLinks(): Map<String, String> {
-        val links = skrape(BrowserFetcher) {
-            request { url = "https://www.greysheet.com/coin-prices" }
-            response {
-                htmlDocument {
-                    eachLink
-                }
+            } catch (ex: Exception) {
+                "Error loading price data"
             }
         }
-        return links.filter { it.value.contains("/coin-prices/series-landing/") }
+        return "No price data available"
+    }
+
+    fun getMintage(mintageRequest: CoinDataRequest): String {
+        return getCoinData(mintageRequest)?.mintage ?: "Mintage not available"
+    }
+
+    private fun getCoinData(dataRequest: CoinDataRequest): CoinData? {
+        val type = CoinType.fromString(dataRequest.type)
+        if (type != null) {
+            val mintMark = if (dataRequest.mintMark != null) "-${dataRequest.mintMark}" else ""
+            val gradeSplit = dataRequest.grade.split("-")
+            val greensheetType = if (gradeSplit[0] == "PR") type.greensheetProof() else type.greensheetType()
+            val details = "${dataRequest.details ?: ""} ${if (gradeSplit.size >= 3) gradeSplit[2] else ""}".trim()
+            val variantNoComma = "${dataRequest.year}${mintMark} $details".trim()
+            val variantWithComma = "${dataRequest.year}${mintMark}, $details"
+            var coinData = try {
+                coinDataMap[greensheetType]?.filter {
+                    it.key.lowercase().contains(variantNoComma.lowercase())
+                }?.iterator()?.next()?.value
+            } catch (ex: NoSuchElementException) {
+                null
+            }
+            if (coinData == null) coinData = try {
+                coinDataMap[greensheetType]?.filter {
+                    it.key.lowercase().contains(variantWithComma.lowercase())
+                }?.iterator()?.next()?.value
+            } catch (ex: NoSuchElementException) {
+                null
+            }
+            return coinData
+        }
+        return null
     }
 }
