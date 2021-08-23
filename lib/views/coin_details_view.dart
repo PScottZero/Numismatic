@@ -26,7 +26,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   String? _coinValue;
 
   _CoinDetailsViewState(this.model, this.coin) {
-    _coinValue = '\$${coin.value?.toStringAsFixed(2) ?? ''}';
+    _coinValue = '\$${coin.retailPrice?.value?.toStringAsFixed(2) ?? ''}';
   }
 
   bool usePCGS(dynamic value) {

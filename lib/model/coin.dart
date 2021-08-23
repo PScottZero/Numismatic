@@ -1,5 +1,7 @@
 import 'package:numismatic/model/currency_symbol.dart';
 
+import 'multiple-source-property.dart';
+
 class Coin {
   String type;
   String? year;
@@ -10,8 +12,8 @@ class Coin {
   int? denomination;
   CurrencySymbol? currencySymbol;
   String? composition;
-  double? value; // null: no value, -1: PCGS provided value
-  double? mintage; // null: no mintage, -1: PCGS provided mintage
+  MultiSourceValue<double>? retailPrice;
+  MultiSourceValue<double>? mintage;
 
   Coin(
     this.type, [
@@ -23,7 +25,8 @@ class Coin {
     this.denomination,
     this.currencySymbol,
     this.composition,
-    this.value,
+    this.retailPrice,
+    this.mintage,
   ]);
 
   Coin.fromJson(Map<String, dynamic> json)
@@ -37,7 +40,7 @@ class Coin {
         denomination = json['denomination'],
         currencySymbol = fromString(json['currencySymbol'] ?? ''),
         composition = json['composition'],
-        value = json['value'];
+        retailPrice = json['value'];
 
   Map<String, dynamic> toJson() => {
         'type': type,
@@ -49,6 +52,6 @@ class Coin {
         'denomination': denomination,
         'currencySymbol': currencySymbol,
         'composition': composition,
-        'value': value
+        'value': retailPrice
       };
 }
