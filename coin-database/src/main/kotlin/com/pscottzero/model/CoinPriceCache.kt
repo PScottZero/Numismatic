@@ -15,7 +15,13 @@ class CoinPriceCache {
         priceCache[type]!![variant]!![grade] = price
     }
 
-    fun readAll() = priceCache
+    fun size(): Int {
+        return priceCache.toList().fold(0) { size, type ->
+            size + type.second.toList().fold(0) { size1, variant ->
+                size1 + variant.second.size
+            }
+        }
+    }
 
     fun clear() = priceCache.clear()
 }

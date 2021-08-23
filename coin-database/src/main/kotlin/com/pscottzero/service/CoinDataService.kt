@@ -2,7 +2,7 @@ package com.pscottzero.service
 
 import com.pscottzero.config.LocalCoinData
 import com.pscottzero.model.*
-import com.pscottzero.util.CoinVariantTranslator
+import com.pscottzero.util.RequestToVariants
 import com.pscottzero.util.Logger
 import it.skrape.core.htmlDocument
 import it.skrape.fetcher.HttpFetcher
@@ -10,45 +10,47 @@ import it.skrape.fetcher.response
 import it.skrape.fetcher.skrape
 import it.skrape.selects.ElementNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.context.event.ApplicationReadyEvent
-import org.springframework.boot.context.event.ApplicationStartedEvent
-import org.springframework.context.event.EventListener
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import java.lang.Exception
+import java.awt.image.BufferedImage
+import java.io.ByteArrayOutputStream
+import java.net.URL
+import javax.imageio.ImageIO
 
 @Service
+@EnableScheduling
 class CoinDataService: Logger() {
     @Autowired
     private lateinit var localCoinData: LocalCoinData
 
-    @Autowired
-    private lateinit var coinPriceCacheService: CoinPriceCacheService
+    private var coinPriceCache = CoinPriceCache()
 
-    @EventListener(ApplicationReadyEvent::class)
-    fun initCoinPrices() {
-        coinPriceCacheService.refreshCoinPrices()
-    }
+    @Scheduled(cron = "0 0 0 * * MON")
+    fun clearCache() = coinPriceCache.clear()
 
-    fun getRetailPrice(coinDataRequest: CoinDataRequest): String {
-        val greysheetType = CoinType.fromString(coinDataRequest.type)?.greysheetType() ?: ""
-        val greysheetVariants = CoinVariantTranslator.dataRequestToGreysheetVariants(coinDataRequest) ?: Pair("", "")
-        val grade = coinDataRequest.grade?.replace("-", "") ?: ""
+    fun getRetailPrice(priceRequest: PriceRequest): String {
+        val greysheetType = CoinType.fromString(priceRequest.type)?.greysheetType() ?: ""
+        val greysheetVariants = RequestToVariants.priceRequestToGreysheetVariants(priceRequest) ?: Pair("", "")
+        val grade = priceRequest.grade.replace("-", "")
         return getRetailPrice(greysheetType, greysheetVariants, grade)
     }
 
-    fun getRetailPrice(coin: GreysheetDataRequest): String {
-        return getRetailPrice(coin.type, Pair(coin.variant, ""), coin.grade ?: "")
+    fun getRetailPrice(greysheetPriceRequest: GreysheetPriceRequest): String {
+        return getRetailPrice(
+            greysheetPriceRequest.type,
+            Pair(greysheetPriceRequest.variant, ""),
+            greysheetPriceRequest.grade
+        )
     }
 
     private fun getRetailPrice(type: String, variants: Pair<String, String>, grade: String): String {
-        var price = coinPriceCacheService.coinPriceCache.read(type, variants, grade)
+        var price = coinPriceCache.read(type, variants, grade)
         if (price == null) price = try {
-            val priceUrl = localCoinData.getPriceUrl(type, variants)
-            if (priceUrl != null) {
+            val priceUrlPair = localCoinData.getPriceUrl(type, variants)
+            if (priceUrlPair.first != null) {
                 skrape(HttpFetcher) {
-                    request { url = "https://www.greysheet.com/$priceUrl" }
+                    request { url = "https://www.greysheet.com/${priceUrlPair.first}" }
                     response {
                         htmlDocument {
                             try {
@@ -58,7 +60,9 @@ class CoinDataService: Logger() {
                                         val prices = findAll("button.button-cpg-value").map { it.text }
                                         val priceIndex = grades.indexOf(grade.replace("-", ""))
                                         if (priceIndex >= 0) {
-                                            prices[priceIndex].replace("CPG: ", "").replace(" ", "")
+                                            val coinPrice = prices[priceIndex].replace("CPG: ", "").replace(" ", "")
+                                            coinPriceCache.write(type, priceUrlPair.second!!, grade, coinPrice)
+                                            coinPrice
                                         } else {
                                             "Could not find grade $grade"
                                         }
@@ -81,11 +85,29 @@ class CoinDataService: Logger() {
         return price ?: "Error loading price data"
     }
 
-    fun getMintage(mintageRequest: CoinDataRequest): String {
+    fun getMintage(mintageRequest: MintageRequest): String {
         return localCoinData.getMintage(mintageRequest) ?: "Mintage not available"
     }
 
-    fun getMintage(coin: GreysheetDataRequest): String {
-        return localCoinData.getMintage(coin) ?: "Mintage not available"
+    fun getMintage(greysheetMintageRequest: GreysheetMintageRequest): String {
+        return localCoinData.getMintage(greysheetMintageRequest) ?: "Mintage not available"
+    }
+
+    fun getPhoto(photogradeRequest: PCGSPhotogradeRequest, side: CoinSide): ByteArray {
+        val photogradeType = CoinType.fromString(photogradeRequest.type)?.photogradeType ?: photogradeRequest.type
+        val gradeSplit = photogradeRequest.grade.split("-")
+        val grade = if (gradeSplit.size >= 2) gradeSplit[1] else photogradeRequest.grade
+        return try {
+            val url = URL("https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}${side.sideChar}.jpg")
+            return bufferedImageToByteArray(ImageIO.read(url))
+        } catch (ex: Exception) {
+            ByteArray(0)
+        }
+    }
+
+    private fun bufferedImageToByteArray(image: BufferedImage): ByteArray {
+        val outputStream = ByteArrayOutputStream()
+        ImageIO.write(image, "jpg", outputStream)
+        return outputStream.toByteArray()
     }
 }

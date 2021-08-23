@@ -2,7 +2,6 @@ package com.pscottzero.service
 
 import com.google.gson.GsonBuilder
 import com.pscottzero.model.GreysheetData
-import com.pscottzero.model.CoinType
 import com.pscottzero.util.Logger
 import it.skrape.core.htmlDocument
 import it.skrape.fetcher.HttpFetcher
