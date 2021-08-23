@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Coin Data Endpoints</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+  <link href="/favicon.ico" rel="icon">
+  <style>
+    * {
+      margin: 0;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      color: white;
+    }
+
+    h2 {
+      position: absolute;
+      text-decoration: none;
+      bottom: 2rem;
+    }
+
+    object {
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+
+    .app-id {
+      position: relative;
+      float: left;
+      height: 100%;
+      width: 24rem;
+      font-family: 'Comfortaa', Arial, sans-serif;
+    }
+
+    .app-id-image {
+      float: top;
+      width: 100%;
+      height: 30%;
+      background: url("/nj-colonial.jpg") center;
+      background-size: cover;
+    }
+
+    .app-id-text {
+      float: bottom;
+      box-sizing: border-box;
+      padding: 2rem;
+      width: 100%;
+      height: 70%;
+      line-height: 1.5;
+      background: linear-gradient(135deg, #50cdd0, #291c64);
+    }
+
+    .swagger-ui {
+      float: right;
+      overflow: hidden;
+      width: calc(100% - 24rem);
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="app-id">
+  <div class="app-id-image"></div>
+  <div class="app-id-text">
+    <h1><a href="https://github.com/PScottZero/Numismatic">Numismatic Coin Collecting App:</a> Coin Database</h1>
+    <h2>By Paul Scott</h2>
+  </div>
+</div>
+<div class="swagger-ui">
+  <object type="text/html" data="/swagger-ui.html">
+  </object>
+</div>
+</body>
+</html>
