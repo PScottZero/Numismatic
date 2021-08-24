@@ -4,36 +4,46 @@
     "year": "1787",
     "grade": "XF-40-BN",
     "composition": "Copper",
-    "value": 695.0,
+    "retailPrice": {
+      "manualSource": "$695.00"
+    },
     "images": ["nj-colonial-obv.jpg", "nj-colonial-rev.jpg"],
     "notes": "No plow sprig variety, Marris-39a"
   },
   {
-    "type": "Liberty Head Three Cent",
-    "year": "1865",
-    "grade": "AG-03",
-    "composition": "Nickel",
-    "value": 111.11,
-    "images": ["three-cent.jpg"]
-  },
-  {
     "type": "Morgan Dollar",
-    "year": "1879",
+    "year": "1878",
     "mintMark": "CC",
-    "grade": "AU-58",
+    "grade": "XF-45",
     "composition": "Silver",
     "denomination": 1,
-    "currencySymbol": "$",
-    "value": 100.00,
-    "images": ["morgan.jpg"]
+    "currencySymbol": "DOLLAR",
+    "retailPrice": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/retailPrice"
+    },
+    "mintage": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/mintage"
+    }
   },
   {
-    "type": "Indian $10",
+    "type": "FugioCent",
     "year": "1787",
-    "grade": "PR-70",
-    "composition": "Gold",
-    "images": ["ten-dollars.jpg"],
-    "value": 1000.00,
-    "notes": "No plow sprig variety, Marris-39a"
+    "grade": "15",
+    "composition": "Copper",
+    "retailPrice": {
+      "manualSource": "$550.00"
+    }
+  },
+  {
+    "type": "Classic Head Half Cent",
+    "year": "1832",
+    "grade": "XF-45",
+    "composition": "Copper",
+    "retailPrice": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/retailPrice"
+    },
+    "mintage": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/mintage"
+    }
   }
 ]

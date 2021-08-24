@@ -1,10 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/currency_symbol.dart';
+import 'package:numismatic/model/mintage-request.dart';
+import 'package:numismatic/model/price-request.dart';
+import 'package:numismatic/views/components/coin-image-carousel.dart';
+import 'package:numismatic/views/components/multi-source-detail.dart';
 import 'components/delete_coin_dialog.dart';
 import 'components/detail.dart';
 
@@ -23,23 +26,12 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   final CoinCollectionModel model;
   final Coin coin;
 
-  String? _coinValue;
-
-  _CoinDetailsViewState(this.model, this.coin) {
-    _coinValue = '\$${coin.retailPrice?.value?.toStringAsFixed(2) ?? ''}';
-  }
-
-  bool usePCGS(dynamic value) {
-    if ((double.tryParse(value?.toString() ?? '') ?? 0) < 0) {
-      return true;
-    }
-    return false;
-  }
+  _CoinDetailsViewState(this.model, this.coin);
 
   String? get denomination {
     if (coin.currencySymbol == CurrencySymbol.CENT) {
       return '${coin.denomination}${coin.currencySymbol?.symbol}';
-    } else if (coin.currencySymbol != CurrencySymbol.UNKNOWN) {
+    } else if (coin.currencySymbol != null) {
       return '${coin.currencySymbol?.symbol}${coin.denomination}';
     } else {
       return null;
@@ -106,40 +98,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
       ),
       body: ListView(
         children: [
-          CarouselSlider(
-            options: CarouselOptions(
-              aspectRatio: 1,
-              viewportFraction: 0.9,
-              enableInfiniteScroll: false,
-            ),
-            items: (coin.images ?? []).map(
-              (image) {
-                return Container(
-                  padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x22000000),
-                          blurRadius: 10,
-                        ),
-                      ],
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      clipBehavior: Clip.antiAlias,
-                      child: Image(
-                        image: AssetImage(
-                          'assets/images/$image',
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ).toList(),
-          ),
+          CoinImageCarousel(coin),
           Container(
             padding: EdgeInsets.fromLTRB(30, 0, 30, 30),
             child: Column(
@@ -175,10 +134,14 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   value: coin.composition,
                   color: compositionColor,
                 ),
-                Detail(
-                  name: 'Price',
-                  value: _coinValue,
-                ),
+                MultiSourceDetail(
+                    name: 'Mintage',
+                    multiSourceValue: coin.mintage,
+                    request: MintageRequest.fromCoin(coin)),
+                MultiSourceDetail(
+                    name: 'Retail Price',
+                    multiSourceValue: coin.retailPrice,
+                    request: PriceRequest.fromCoin(coin)),
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(

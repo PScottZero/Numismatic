@@ -34,7 +34,7 @@ class CoinCard extends StatelessWidget {
             children: [
               Image(
                 image: AssetImage(
-                  'assets/images/${coin.images?[0] ?? 'coin.jpg'}',
+                  'assets/images/${coin.images?[0] ?? 'no-image.bmp'}',
                 ),
               ),
               Container(
