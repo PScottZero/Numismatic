@@ -17,6 +17,7 @@ class PriceRequest {
       coin.type,
       coin.year ?? "",
       mintMark: coin.mintMark,
+      details: coin.variation,
       grade: coin.grade,
     );
   }

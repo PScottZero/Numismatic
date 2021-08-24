@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/no-image.bmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/no-image.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/model/coin-database-request.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/model/mintage-request.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/model/mintage-request.g.dart" afterDir="false" />

@@ -34,6 +34,6 @@ flutter_icons:
 flutter:
   assets:
     - assets/images/
-    - test_collection.json
+    - assets/json/
 
   uses-material-design: true

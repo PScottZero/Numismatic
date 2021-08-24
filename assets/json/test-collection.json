@@ -1,0 +1,49 @@
+[
+  {
+    "type": "New Jersey Colonial",
+    "year": "1787",
+    "grade": "XF-40-BN",
+    "composition": "Copper",
+    "retailPrice": {
+      "manualSource": "$695.00"
+    },
+    "images": ["nj-colonial-obv.jpg", "nj-colonial-rev.jpg"],
+    "notes": "No plow sprig variety, Marris-39a"
+  },
+  {
+    "type": "Morgan Dollar",
+    "year": "1878",
+    "mintMark": "CC",
+    "grade": "XF-45",
+    "composition": "Silver",
+    "denomination": 1,
+    "currencySymbol": "DOLLAR",
+    "retailPrice": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/retailPrice"
+    },
+    "mintage": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/mintage"
+    }
+  },
+  {
+    "type": "FugioCent",
+    "year": "1787",
+    "grade": "15",
+    "composition": "Copper",
+    "retailPrice": {
+      "manualSource": "$550.00"
+    }
+  },
+  {
+    "type": "Classic Head Half Cent",
+    "year": "1832",
+    "grade": "XF-45",
+    "composition": "Copper",
+    "retailPrice": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/retailPrice"
+    },
+    "mintage": {
+      "urlSource": "http://numismatic-coin-info-service.us-east-2.elasticbeanstalk.com/coin/mintage"
+    }
+  }
+]

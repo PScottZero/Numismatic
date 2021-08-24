@@ -15,8 +15,10 @@ class Coin {
   int? denomination;
   CurrencySymbol? currencySymbol;
   String? composition;
+  String? variation;
   MultiSourceValue? retailPrice;
   MultiSourceValue? mintage;
+  DateTime? retailPriceLastUpdated;
 
   Coin(
     this.type, [
@@ -28,9 +30,45 @@ class Coin {
     this.denomination,
     this.currencySymbol,
     this.composition,
+    this.variation,
     this.retailPrice,
     this.mintage,
+    this.retailPriceLastUpdated,
   ]);
+
+  void setProperty(String property, String? value) {
+    switch (property) {
+      case 'year':
+        year = value;
+        break;
+      case 'mintmark':
+        mintMark = value;
+        break;
+      case 'variation':
+        variation = value;
+        break;
+      case 'grade':
+        grade = value;
+        break;
+      default:
+        break;
+    }
+  }
+
+  String get fullType {
+    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type ${variation ?? ""}'
+        .trim();
+  }
+
+  String? get fullDenomintation {
+    if (currencySymbol == CurrencySymbol.CENT) {
+      return '$denomination${currencySymbol?.symbol}';
+    } else if (currencySymbol != null) {
+      return '${currencySymbol?.symbol}$denomination';
+    } else {
+      return null;
+    }
+  }
 
   factory Coin.fromJson(Map<String, dynamic> json) => _$CoinFromJson(json);
 

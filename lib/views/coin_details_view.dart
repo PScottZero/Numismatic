@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
-import 'package:numismatic/model/currency_symbol.dart';
 import 'package:numismatic/model/mintage-request.dart';
 import 'package:numismatic/model/price-request.dart';
-import 'package:numismatic/views/components/coin-image-carousel.dart';
-import 'package:numismatic/views/components/multi-source-detail.dart';
+import 'package:numismatic/views/components/coin_image_carousel.dart';
+import 'package:numismatic/views/components/multi_source_detail.dart';
 import 'components/delete_coin_dialog.dart';
 import 'components/detail.dart';
 
@@ -27,16 +26,6 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   final Coin coin;
 
   _CoinDetailsViewState(this.model, this.coin);
-
-  String? get denomination {
-    if (coin.currencySymbol == CurrencySymbol.CENT) {
-      return '${coin.denomination}${coin.currencySymbol?.symbol}';
-    } else if (coin.currencySymbol != null) {
-      return '${coin.currencySymbol?.symbol}${coin.denomination}';
-    } else {
-      return null;
-    }
-  }
 
   Color? get gradeColor {
     final gradeSplit = (coin.grade ?? '').split('-');
@@ -127,7 +116,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                 ),
                 Detail(
                   name: 'Denomination',
-                  value: denomination,
+                  value: coin.fullDenomintation,
                 ),
                 Detail(
                   name: 'Composition',
@@ -135,13 +124,15 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   color: compositionColor,
                 ),
                 MultiSourceDetail(
-                    name: 'Mintage',
-                    multiSourceValue: coin.mintage,
-                    request: MintageRequest.fromCoin(coin)),
+                  name: 'Mintage',
+                  multiSourceValue: coin.mintage,
+                  request: MintageRequest.fromCoin(coin),
+                ),
                 MultiSourceDetail(
-                    name: 'Retail Price',
-                    multiSourceValue: coin.retailPrice,
-                    request: PriceRequest.fromCoin(coin)),
+                  name: 'Retail Price',
+                  multiSourceValue: coin.retailPrice,
+                  request: PriceRequest.fromCoin(coin),
+                ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(

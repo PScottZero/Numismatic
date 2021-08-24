@@ -34,7 +34,7 @@ class CoinCard extends StatelessWidget {
             children: [
               Image(
                 image: AssetImage(
-                  'assets/images/${coin.images?[0] ?? 'no-image.bmp'}',
+                  'assets/images/${coin.images?[0] ?? 'no-image.png'}',
                 ),
               ),
               Container(
@@ -46,7 +46,7 @@ class CoinCard extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                 margin: EdgeInsets.all(10),
                 child: Text(
-                  coin.type,
+                  coin.fullType,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14),
                 ),

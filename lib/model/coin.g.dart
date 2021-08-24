@@ -17,6 +17,7 @@ Coin _$CoinFromJson(Map<String, dynamic> json) {
     json['denomination'] as int?,
     _$enumDecodeNullable(_$CurrencySymbolEnumMap, json['currencySymbol']),
     json['composition'] as String?,
+    json['variation'] as String?,
     json['retailPrice'] == null
         ? null
         : MultiSourceValue.fromJson(
@@ -24,6 +25,9 @@ Coin _$CoinFromJson(Map<String, dynamic> json) {
     json['mintage'] == null
         ? null
         : MultiSourceValue.fromJson(json['mintage'] as Map<String, dynamic>),
+    json['retailPriceLastUpdated'] == null
+        ? null
+        : DateTime.parse(json['retailPriceLastUpdated'] as String),
   );
 }
 
@@ -37,8 +41,11 @@ Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
       'denomination': instance.denomination,
       'currencySymbol': _$CurrencySymbolEnumMap[instance.currencySymbol],
       'composition': instance.composition,
+      'variation': instance.variation,
       'retailPrice': instance.retailPrice,
       'mintage': instance.mintage,
+      'retailPriceLastUpdated':
+          instance.retailPriceLastUpdated?.toIso8601String(),
     };
 
 K _$enumDecode<K, V>(
