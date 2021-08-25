@@ -15,9 +15,11 @@ void main() {
 }
 
 class NumismaticApp extends StatelessWidget {
-  ThemeData buildCustomThemeData(ThemeData base) => base.copyWith(
-        primaryColor: Color(0xff00417a),
-        accentColor: Color(0xff00417a),
+  ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
+        brightness: brightness,
+        primarySwatch: Colors.green,
+        primaryColor: Colors.green[400],
+        accentColor: Colors.green[400],
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(
@@ -27,16 +29,14 @@ class NumismaticApp extends StatelessWidget {
           ),
         ),
       );
-  ThemeData buildLightTheme() => buildCustomThemeData(ThemeData.light());
-  ThemeData buildDarkTheme() => buildCustomThemeData(ThemeData.dark());
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Numismatic',
       debugShowCheckedModeBanner: false,
-      theme: buildLightTheme(),
-      darkTheme: buildDarkTheme(),
+      theme: themeOfBrightness(Brightness.light),
+      darkTheme: themeOfBrightness(Brightness.dark),
       home: CoinGridView(),
     );
   }

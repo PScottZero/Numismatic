@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pcgs-photograde-request.dart';
+part of 'pcgs_photograde_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -4,41 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f599662d-a8ce-48a3-ba6d-107fd9f17907" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/CoinSide.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/GreysheetMintageRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/GreysheetPriceRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/MintageRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/PCGSPhotogradeRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/PriceRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/util/RequestToVariants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/greysheet_scraper_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/coin-database.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/coin-info-backend.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/config/LocalCoinData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/config/LocalCoinData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/controller/CoinDataController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/controller/CoinDataController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/controller/CoinPriceCacheController.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/CoinDataRequest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/CoinPriceCache.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/CoinPriceCache.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/CoinType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/CoinType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/GreysheetData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/GreysheetData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/model/GreysheetDataRequest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/service/CoinDataService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/service/CoinDataService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/service/CoinPriceCacheService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/service/ScraperService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/service/ScraperService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/pscottzero/util/CoinVariantTranslator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="f599662d-a8ce-48a3-ba6d-107fd9f17907" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

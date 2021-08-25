@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:provider/provider.dart';
@@ -32,14 +33,16 @@ class CoinGridView extends StatelessWidget {
                   child: Text('Press + to add a coin'),
                 ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddCoinView(),
-              ),
-            ),
-            child: Icon(Icons.add, color: Colors.white),
-            backgroundColor: Color(0xff00417a),
+            onPressed: () {
+              model.currentCoin = Coin();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddCoinView(),
+                ),
+              );
+            },
+            child: Icon(Icons.add),
           ),
         );
       },

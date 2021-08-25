@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'coin.dart';
-part 'pcgs-photograde-request.g.dart';
+part 'pcgs_photograde_request.g.dart';
 
 @JsonSerializable()
 class PCGSPhotogradeRequest {

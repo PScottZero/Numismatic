@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
-import 'package:numismatic/model/mintage-request.dart';
-import 'package:numismatic/model/price-request.dart';
 import 'package:numismatic/views/components/coin_image_carousel.dart';
-import 'package:numismatic/views/components/multi_source_detail.dart';
 import 'components/delete_coin_dialog.dart';
 import 'components/detail.dart';
 
@@ -39,24 +36,6 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
         return Colors.green;
       } else {
         return Colors.blue;
-      }
-    }
-    return null;
-  }
-
-  Color? get compositionColor {
-    if (coin.composition != null) {
-      switch (coin.composition) {
-        case 'Gold':
-          return Colors.yellow;
-        case 'Silver':
-          return Colors.grey;
-        case 'Nickel':
-          return Colors.blueGrey[400]!;
-        case 'Copper':
-          return Colors.brown[400]!;
-        default:
-          return null;
       }
     }
     return null;
@@ -114,25 +93,20 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   name: 'Mint Mark',
                   value: coin.mintMark,
                 ),
-                Detail(
-                  name: 'Denomination',
-                  value: coin.fullDenomintation,
-                ),
-                Detail(
-                  name: 'Composition',
-                  value: coin.composition,
-                  color: compositionColor,
-                ),
-                MultiSourceDetail(
-                  name: 'Mintage',
-                  multiSourceValue: coin.mintage,
-                  request: MintageRequest.fromCoin(coin),
-                ),
-                MultiSourceDetail(
-                  name: 'Retail Price',
-                  multiSourceValue: coin.retailPrice,
-                  request: PriceRequest.fromCoin(coin),
-                ),
+                // Detail(
+                //   name: 'Denomination',
+                //   value: coin.fullDenomintation,
+                // ),
+                // MultiSourceDetail(
+                //   name: 'Mintage',
+                //   multiSourceValue: coin.mintage,
+                //   request: MintageRequest.fromCoin(coin),
+                // ),
+                // MultiSourceDetail(
+                //   name: 'Retail Price',
+                //   multiSourceValue: coin.retailPrice,
+                //   request: PriceRequest.fromCoin(coin),
+                // ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(

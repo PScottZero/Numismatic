@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/pcgs-photograde-request.dart';
+import 'package:numismatic/model/pcgs_photograde_request.dart';
 
 class CoinImageCarousel extends StatefulWidget {
   final Coin coin;

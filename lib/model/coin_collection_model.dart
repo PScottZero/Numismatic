@@ -2,17 +2,29 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:numismatic/model/greysheet_static_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'coin-type.dart';
+import 'coin_type.dart';
 import 'coin.dart';
 
 class CoinCollectionModel extends ChangeNotifier {
   List<Coin> collection = [];
   List<CoinType> coinTypes = [];
+  Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
+
+  Coin currentCoin = Coin();
+
+  List<String> get allCoinTypes {
+    return greysheetStaticData?.keys
+            .map((e) => fromGreysheetString(e)?.name ?? e)
+            .toList() ??
+        [];
+  }
 
   CoinCollectionModel() {
     loadTypes();
+    loadGreysheetStaticData();
     loadCollection();
   }
 
@@ -29,10 +41,40 @@ class CoinCollectionModel extends ChangeNotifier {
     }
   }
 
+  CoinType? fromGreysheetString(String type) {
+    try {
+      return coinTypes
+          .where((element) => element.getGreysheetName() == type)
+          .toList()
+          .first;
+    } catch (ex) {
+      return null;
+    }
+  }
+
   loadTypes() async {
-    coinTypes = jsonDecode(
+    coinTypes = (jsonDecode(
       await rootBundle.loadString('assets/json/coin-types.json'),
-    ).map<CoinType>((e) => CoinType.fromJson(e)).toList();
+    ) as List<dynamic>)
+        .map((type) => CoinType.fromJson(type))
+        .toList();
+    notifyListeners();
+  }
+
+  loadGreysheetStaticData() async {
+    greysheetStaticData = Map<String, Map<String, dynamic>>.from(jsonDecode(
+      await rootBundle.loadString('assets/json/static-greysheet-data.json'),
+    )).map(
+      (type, variants) => MapEntry(
+        type,
+        variants.map(
+          (variant, dataJson) => MapEntry(
+            variant,
+            GreysheetStaticData.fromJson(dataJson),
+          ),
+        ),
+      ),
+    );
     notifyListeners();
   }
 

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'coin-type.g.dart';
+part 'coin_type.g.dart';
 
 @JsonSerializable()
 class CoinType {
