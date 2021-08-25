@@ -36,18 +36,18 @@ class Coin {
     this.retailPriceLastUpdated,
   ]);
 
-  void setProperty(String property, String? value) {
+  void setProperty(String property, String value) {
     switch (property) {
-      case 'year':
+      case 'Year':
         year = value;
         break;
-      case 'mintmark':
+      case 'Mint Mark':
         mintMark = value;
         break;
-      case 'variation':
+      case 'Variation':
         variation = value;
         break;
-      case 'grade':
+      case 'Grade':
         grade = value;
         break;
       default:
