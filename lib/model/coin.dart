@@ -16,6 +16,7 @@ class Coin {
   String? retailPrice;
   GreysheetPriceRequest? retailPriceRequest;
   String? photogradeName;
+  String? photogradeGrade;
   DateTime? retailPriceLastUpdated;
 
   Coin({

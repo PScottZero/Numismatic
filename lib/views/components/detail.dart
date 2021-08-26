@@ -25,14 +25,22 @@ class Detail extends StatelessWidget {
                   style: GoogleFonts.comfortaa(
                     textStyle: TextStyle(fontSize: 20),
                     height: 1.5,
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light
+                        ? Colors.black
+                        : Colors.white),
                   ),
                   children: [
-                    color != null
-                        ? TextSpan(
-                            text: value,
-                            style: TextStyle(color: this.color),
-                          )
-                        : TextSpan(text: value)
+                    TextSpan(
+                      text: value,
+                      style: TextStyle(
+                        color: this.color ??
+                            (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),

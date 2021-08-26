@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:numismatic/model/coin.dart';
@@ -44,9 +42,16 @@ class _CoinImageCarouselState extends State<CoinImageCarousel> {
                 borderRadius: BorderRadius.circular(20),
                 clipBehavior: Clip.antiAlias,
                 child: image != 'no-image.png'
-                    ? Image.network(image)
+                    ? Image.network(
+                        image,
+                        errorBuilder: (context, exception, stackTrace) {
+                          return Image(
+                            image: AssetImage('assets/images/no-image.png'),
+                          );
+                        },
+                      )
                     : Image(
-                        image: AssetImage('assets/images/$image'),
+                        image: AssetImage('assets/images/no-image.png'),
                       ),
               ),
             ),

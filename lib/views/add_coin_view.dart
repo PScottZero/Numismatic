@@ -49,12 +49,16 @@ class _AddCoinViewState extends State<AddCoinView> {
     return [year, mintMark];
   }
 
-  getImageUrls(CoinCollectionModel model, String? manualPhotogradeType) {
-    var photogradeType = manualPhotogradeType ??
+  getImageUrls(
+    CoinCollectionModel model,
+    String? manualType,
+    String? manualGrade,
+  ) {
+    var photogradeType = manualType ??
         CoinType.coinTypeFromString(coin.type, model.coinTypes)
             ?.photogradeName ??
         '';
-    var grade = _gradeToNumber(coin.grade!);
+    var grade = manualGrade ?? _gradeToNumber(coin.grade!);
     return [
       'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}o.jpg',
       'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}r.jpg',
@@ -78,7 +82,11 @@ class _AddCoinViewState extends State<AddCoinView> {
   }
 
   getAsyncData(CoinCollectionModel model) async {
-    coin.images = getImageUrls(model, coin.photogradeName);
+    coin.images = getImageUrls(
+      model,
+      coin.photogradeName,
+      coin.photogradeGrade,
+    );
     coin.retailPrice = await GreysheetScraper.retailPriceForCoin(
       coin,
       model.greysheetStaticData!,
@@ -86,6 +94,10 @@ class _AddCoinViewState extends State<AddCoinView> {
     );
     model.addCoin(coin);
     Navigator.of(context).pop();
+  }
+
+  String? nullIfEmpty(String? str) {
+    return str != '' ? str : null;
   }
 
   @override
@@ -117,22 +129,24 @@ class _AddCoinViewState extends State<AddCoinView> {
                   stringToGreysheetType(coin.type, model.coinTypes),
                 ),
                 onChanged: (variation) {
-                  coin.variation = variation;
+                  coin.variation = nullIfEmpty(variation);
                   var yearAndMintMark = yearAndMintMarkFromVariation(variation);
-                  coin.year = yearAndMintMark[0];
-                  coin.mintMark = yearAndMintMark[1];
+                  coin.year = nullIfEmpty(yearAndMintMark[0]);
+                  coin.mintMark = nullIfEmpty(yearAndMintMark[1]);
                   setState(() {});
                 },
               ),
               DataInput(
                 label: 'Grade',
-                onChanged: (grade) {
-                  coin.grade = grade;
-                },
+                onChanged: (grade) => coin.grade = nullIfEmpty(grade),
               ),
               DataInput(
-                label: 'PCGS Photograde Name',
-                onChanged: (name) => coin.photogradeName = name,
+                label: 'Photograde Name Override',
+                onChanged: (name) => coin.photogradeName = nullIfEmpty(name),
+              ),
+              DataInput(
+                label: 'Photograde Grade Override',
+                onChanged: (grade) => coin.photogradeGrade = nullIfEmpty(grade),
               ),
               SizedBox(height: 10),
               ElevatedButton(

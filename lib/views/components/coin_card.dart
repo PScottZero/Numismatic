@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:numismatic/model/coin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +33,16 @@ class CoinCard extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             children: [
               coin.images != null && coin.images![0] != 'no-image.png'
-                  ? Image.network(coin.images![0])
+                  ? Image.network(
+                      coin.images![0],
+                      errorBuilder: (context, exception, stackTrace) {
+                        return Image(
+                          image: AssetImage('assets/images/no-image.png'),
+                        );
+                      },
+                    )
                   : Image(
-                      image: AssetImage('assets/images/${coin.images![0]}'),
+                      image: AssetImage('assets/images/no-image.png'),
                     ),
               Container(
                 decoration: BoxDecoration(
@@ -50,7 +55,10 @@ class CoinCard extends StatelessWidget {
                 child: Text(
                   coin.fullType,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],

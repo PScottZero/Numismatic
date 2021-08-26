@@ -86,11 +86,11 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                 ),
                 Detail(
                   name: 'Mintage',
-                  value: coin.mintage.toString(),
+                  value: coin.mintage,
                 ),
                 Detail(
                   name: 'Retail Price',
-                  value: coin.retailPrice.toString(),
+                  value: coin.retailPrice,
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
