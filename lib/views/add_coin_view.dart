@@ -6,17 +6,25 @@ import 'package:numismatic/model/coin_type.dart';
 import 'package:numismatic/scrapers/greysheet-scraper.dart';
 import 'package:numismatic/views/components/autocomplete_input.dart';
 import 'package:numismatic/views/components/data_input.dart';
+import 'package:numismatic/views/components/rounded_button.dart';
 import 'package:provider/provider.dart';
 
 class AddCoinView extends StatefulWidget {
-  const AddCoinView({Key? key}) : super(key: key);
+  final bool addToWantlist;
+
+  const AddCoinView(this.addToWantlist);
 
   @override
-  _AddCoinViewState createState() => _AddCoinViewState();
+  _AddCoinViewState createState() => _AddCoinViewState(addToWantlist);
 }
 
 class _AddCoinViewState extends State<AddCoinView> {
   final Coin coin = Coin();
+  final bool addToWantlist;
+
+  _AddCoinViewState(this.addToWantlist) {
+    coin.inCollection = !addToWantlist;
+  }
 
   String stringToGreysheetType(String type, List<CoinType> coinTypes) {
     String greysheetType = type;
@@ -29,9 +37,6 @@ class _AddCoinViewState extends State<AddCoinView> {
     );
     return greysheetType;
   }
-
-  MaterialStateProperty<T> msp<T>(T property) =>
-      MaterialStateProperty.all<T>(property);
 
   List<String?> yearAndMintMarkFromVariation(String variation) {
     String? year;
@@ -149,16 +154,8 @@ class _AddCoinViewState extends State<AddCoinView> {
                 onChanged: (grade) => coin.photogradeGrade = nullIfEmpty(grade),
               ),
               SizedBox(height: 10),
-              ElevatedButton(
-                style: ButtonStyle(
-                  shape: msp(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  padding: msp(EdgeInsets.only(top: 12, bottom: 12)),
-                  textStyle: msp(GoogleFonts.comfortaa(fontSize: 20)),
-                ),
+              RoundedButton(
+                label: 'Add Coin',
                 onPressed: () {
                   coin.mintage = model
                           .greysheetStaticData![CoinType.coinTypeFromString(
@@ -169,7 +166,6 @@ class _AddCoinViewState extends State<AddCoinView> {
                       null;
                   getAsyncData(model);
                 },
-                child: Text('Add Coin'),
               ),
             ],
           ),

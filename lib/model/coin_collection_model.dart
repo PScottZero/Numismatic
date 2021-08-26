@@ -10,6 +10,7 @@ import 'coin.dart';
 
 class CoinCollectionModel extends ChangeNotifier {
   List<Coin> collection = [];
+  List<Coin> wantlist = [];
   List<CoinType> coinTypes = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
 
@@ -17,6 +18,7 @@ class CoinCollectionModel extends ChangeNotifier {
     loadTypes();
     loadGreysheetStaticData();
     loadCollection();
+    loadWantlist();
   }
 
   List<String> get allCoinTypes =>
@@ -54,6 +56,14 @@ class CoinCollectionModel extends ChangeNotifier {
     var preferences = await SharedPreferences.getInstance();
     collection = jsonDecode(preferences.getString('collection') ?? '[]')
         .map<Coin>((e) => Coin.fromJson(e))
+        .toList() as List<Coin>;
+    notifyListeners();
+  }
+
+  loadWantlist() async {
+    var preferences = await SharedPreferences.getInstance();
+    wantlist = jsonDecode(preferences.getString('wantlist') ?? '[]')
+        .map<Coin>((e) => Coin.fromJson(e))
         .toList();
     notifyListeners();
   }
@@ -64,21 +74,55 @@ class CoinCollectionModel extends ChangeNotifier {
       'collection',
       jsonEncode(collection.map((e) => e.toJson()).toList()),
     );
-    collection = jsonDecode(preferences.getString('collection') ?? '[]')
-        .map<Coin>((e) => Coin.fromJson(e))
-        .toList();
+    notifyListeners();
+  }
+
+  saveWantlist() async {
+    var preferences = await SharedPreferences.getInstance();
+    preferences.setString(
+      'wantlist',
+      jsonEncode(collection.map((e) => e.toJson()).toList()),
+    );
     notifyListeners();
   }
 
   addCoin(Coin coin) {
-    collection.add(coin);
-    saveCollection();
+    if (coin.inCollection) {
+      collection.add(coin);
+      saveCollection();
+    } else {
+      wantlist.add(coin);
+      saveWantlist();
+    }
     notifyListeners();
   }
 
   deleteCoin(Coin coin) {
+    if (coin.inCollection) {
+      collection.remove(coin);
+      saveCollection();
+    } else {
+      wantlist.remove(coin);
+      saveWantlist();
+    }
+    notifyListeners();
+  }
+
+  moveCoinToCollection(Coin coin) {
+    coin.inCollection = true;
+    collection.add(coin);
+    wantlist.remove(coin);
+    saveCollection();
+    saveWantlist();
+    notifyListeners();
+  }
+
+  moveCoinToWantlist(Coin coin) {
+    coin.inCollection = false;
+    wantlist.add(coin);
     collection.remove(coin);
     saveCollection();
+    saveWantlist();
     notifyListeners();
   }
 

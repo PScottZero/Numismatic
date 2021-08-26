@@ -18,6 +18,7 @@ class Coin {
   String? photogradeName;
   String? photogradeGrade;
   DateTime? retailPriceLastUpdated;
+  bool inCollection;
 
   Coin({
     this.type = '',
@@ -32,6 +33,7 @@ class Coin {
     this.retailPriceRequest,
     this.photogradeName,
     this.retailPriceLastUpdated,
+    this.inCollection = true,
   });
 
   String get fullType {

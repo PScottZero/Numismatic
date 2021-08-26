@@ -19,7 +19,7 @@ class CoinCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CoinDetailsView(model, coin),
+              builder: (context) => CoinDetailsView(coin),
             ),
           ),
         },

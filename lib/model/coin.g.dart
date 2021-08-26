@@ -26,7 +26,8 @@ Coin _$CoinFromJson(Map<String, dynamic> json) {
     retailPriceLastUpdated: json['retailPriceLastUpdated'] == null
         ? null
         : DateTime.parse(json['retailPriceLastUpdated'] as String),
-  );
+    inCollection: json['inCollection'] as bool,
+  )..photogradeGrade = json['photogradeGrade'] as String?;
 }
 
 Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
@@ -41,6 +42,8 @@ Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
       'retailPrice': instance.retailPrice,
       'retailPriceRequest': instance.retailPriceRequest,
       'photogradeName': instance.photogradeName,
+      'photogradeGrade': instance.photogradeGrade,
       'retailPriceLastUpdated':
           instance.retailPriceLastUpdated?.toIso8601String(),
+      'inCollection': instance.inCollection,
     };
