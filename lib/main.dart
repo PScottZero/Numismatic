@@ -17,9 +17,9 @@ void main() {
 class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         brightness: brightness,
-        primarySwatch: Colors.green,
-        primaryColor: Colors.green,
-        accentColor: Colors.green,
+        primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
+        accentColor: Colors.blueAccent,
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(
