@@ -111,9 +111,11 @@ class _AddCoinViewState extends State<AddCoinView> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Add Coin',
-              style: GoogleFonts.comfortaa(),
+            title: Center(
+              child: Text(
+                'Add Coin',
+                style: GoogleFonts.comfortaa(),
+              ),
             ),
           ),
           body: ListView(
@@ -161,7 +163,7 @@ class _AddCoinViewState extends State<AddCoinView> {
                           .greysheetStaticData![CoinType.coinTypeFromString(
                                       coin.type, model.coinTypes)
                                   ?.getGreysheetName() ??
-                              '']?[coin.variation]
+                              coin.type]?[coin.variation]
                           ?.mintage ??
                       null;
                   getAsyncData(model);

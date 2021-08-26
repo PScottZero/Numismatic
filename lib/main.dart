@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/views/coin_grid_view.dart';
+import 'package:numismatic/views/collection_info_view.dart';
 import 'package:provider/provider.dart';
 
 import 'model/coin_collection_model.dart';
@@ -19,7 +20,7 @@ class NumismaticApp extends StatelessWidget {
         brightness: brightness,
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue,
-        accentColor: Colors.blueAccent,
+        accentColor: Colors.blue,
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(
@@ -50,7 +51,7 @@ class _NavigationState extends State<Navigation> {
   final _options = <Widget>[
     CoinGridView(),
     CoinGridView(isWantlist: true),
-    Center(child: Text('Collection Info (WIP)')),
+    CollectionInfoView(),
   ];
   var _selectedIndex = 0;
 
@@ -83,9 +84,11 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Numismatic',
-          style: GoogleFonts.comfortaa(),
+        title: Center(
+          child: Text(
+            'Numismatic',
+            style: GoogleFonts.comfortaa(),
+          ),
         ),
       ),
       body: PageView(

@@ -69,21 +69,21 @@ class CoinCollectionModel extends ChangeNotifier {
   }
 
   saveCollection() async {
+    collection.sort((a, b) => a.fullType.compareTo(b.fullType));
     var preferences = await SharedPreferences.getInstance();
     preferences.setString(
       'collection',
       jsonEncode(collection.map((e) => e.toJson()).toList()),
     );
-    notifyListeners();
   }
 
   saveWantlist() async {
+    wantlist.sort((a, b) => a.fullType.compareTo(b.fullType));
     var preferences = await SharedPreferences.getInstance();
     preferences.setString(
       'wantlist',
       jsonEncode(collection.map((e) => e.toJson()).toList()),
     );
-    notifyListeners();
   }
 
   addCoin(Coin coin) {
@@ -119,8 +119,8 @@ class CoinCollectionModel extends ChangeNotifier {
 
   moveCoinToWantlist(Coin coin) {
     coin.inCollection = false;
-    wantlist.add(coin);
     collection.remove(coin);
+    wantlist.add(coin);
     saveCollection();
     saveWantlist();
     notifyListeners();

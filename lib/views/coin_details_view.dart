@@ -23,27 +23,6 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
 
   _CoinDetailsViewState(this.coin);
 
-  Color? get gradeColor {
-    final gradeSplit = (coin.grade ?? '').split('-');
-    if (gradeSplit.length >= 2) {
-      int gradeValue = int.tryParse(gradeSplit[1]) ?? 0;
-      if (gradeValue < 10) {
-        return Colors.red;
-      } else if (gradeValue < 50) {
-        return Colors.orange;
-      } else if (gradeSplit[0] != 'PR') {
-        return Colors.green;
-      } else {
-        return Colors.blue;
-      }
-    }
-    return null;
-  }
-
-  MaterialStateProperty<T> msp<T>(T property) {
-    return MaterialStateProperty.all<T>(property);
-  }
-
   _showDeleteCoinDialog() async {
     return showDialog(
       context: context,
@@ -59,9 +38,11 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              coin.type,
-              style: GoogleFonts.comfortaa(),
+            title: Center(
+              child: Text(
+                coin.type,
+                style: GoogleFonts.comfortaa(),
+              ),
             ),
           ),
           body: ListView(
@@ -80,20 +61,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                         height: 1.5,
                       ),
                     ),
-                    Detail(
-                      name: 'Grade',
-                      value: coin.grade,
-                      color: gradeColor,
-                    ),
-                    Detail(
-                      name: 'Mintage',
-                      value: coin.mintage,
-                    ),
-                    Detail(
-                      name: 'Retail Price',
-                      value: coin.retailPrice,
-                    ),
-                    SizedBox(height: 20),
+                    Detail(name: 'Grade', value: coin.grade),
+                    Detail(name: 'Mintage', value: coin.mintage),
+                    Detail(name: 'Retail Price', value: coin.retailPrice),
                     RoundedButton(
                       label:
                           'Move to ${coin.inCollection ? 'Wantlist' : 'Collection'}',
@@ -101,7 +71,6 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                           ? model.moveCoinToWantlist(coin)
                           : model.moveCoinToCollection(coin),
                     ),
-                    SizedBox(height: 20),
                     RoundedButton(
                       label: 'Delete',
                       onPressed: _showDeleteCoinDialog,

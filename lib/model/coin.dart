@@ -37,8 +37,31 @@ class Coin {
   });
 
   String get fullType {
-    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type ${variation != null ? '($variation)' : ''}'
+    final yearAndMintMark = yearAndMintMarkFromVariation(variation ?? '');
+    final remove = yearAndMintMark[1] != null
+        ? yearAndMintMark.join('-')
+        : yearAndMintMark[0] != null
+            ? yearAndMintMark[0]
+            : '';
+    print(remove);
+    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type ${variation != null ? '(${variation!.replaceAll(remove!, '')})' : ''}'
         .trim();
+  }
+
+  List<String?> yearAndMintMarkFromVariation(String variation) {
+    String? year;
+    String? mintMark;
+    if (variation.length > 0) {
+      try {
+        year = variation.split(' ')[0];
+        if (year.contains('-')) {
+          var split = year.split('-');
+          year = split[0];
+          mintMark = split[1];
+        }
+      } catch (_) {}
+    }
+    return [year, mintMark];
   }
 
   factory Coin.fromJson(Map<String, dynamic> json) => _$CoinFromJson(json);

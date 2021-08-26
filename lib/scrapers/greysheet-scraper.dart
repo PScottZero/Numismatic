@@ -13,7 +13,8 @@ class GreysheetScraper {
   ) =>
       _scrapeRetailPriceFromGreysheet(
         staticData[CoinType.coinTypeFromString(coin.type, coinTypes)
-                    ?.getGreysheetName()]?[coin.variation]
+                        ?.getGreysheetName() ??
+                    coin.type]?[coin.variation]
                 ?.pricesUrl ??
             '',
         coin.grade ?? '',

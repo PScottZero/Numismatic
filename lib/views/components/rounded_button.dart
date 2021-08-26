@@ -14,17 +14,19 @@ class RoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 20),
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
+          elevation: msp(0),
           shape: msp(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
           ),
           backgroundColor: msp(color),
-          padding: msp(EdgeInsets.only(top: 15, bottom: 15)),
-          textStyle: msp(GoogleFonts.comfortaa(fontSize: 20)),
+          padding: msp(EdgeInsets.only(top: 20, bottom: 18)),
+          textStyle: msp(GoogleFonts.comfortaa(fontSize: 22)),
         ),
         onPressed: onPressed,
         child: Text(label),
