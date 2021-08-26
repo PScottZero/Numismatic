@@ -58,7 +58,6 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff00417a),
         title: Text(
           coin.type,
           style: GoogleFonts.comfortaa(),
@@ -73,7 +72,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  coin.type,
+                  coin.fullType,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -86,27 +85,13 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   color: gradeColor,
                 ),
                 Detail(
-                  name: 'Year',
-                  value: coin.year,
+                  name: 'Mintage',
+                  value: coin.mintage.toString(),
                 ),
                 Detail(
-                  name: 'Mint Mark',
-                  value: coin.mintMark,
+                  name: 'Retail Price',
+                  value: coin.retailPrice.toString(),
                 ),
-                // Detail(
-                //   name: 'Denomination',
-                //   value: coin.fullDenomintation,
-                // ),
-                // MultiSourceDetail(
-                //   name: 'Mintage',
-                //   multiSourceValue: coin.mintage,
-                //   request: MintageRequest.fromCoin(coin),
-                // ),
-                // MultiSourceDetail(
-                //   name: 'Retail Price',
-                //   multiSourceValue: coin.retailPrice,
-                //   request: PriceRequest.fromCoin(coin),
-                // ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(

@@ -13,51 +13,23 @@ class CoinCollectionModel extends ChangeNotifier {
   List<CoinType> coinTypes = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
 
-  Coin currentCoin = Coin();
-
-  List<String> get allCoinTypes {
-    return greysheetStaticData?.keys
-            .map((e) => fromGreysheetString(e)?.name ?? e)
-            .toList() ??
-        [];
-  }
-
   CoinCollectionModel() {
     loadTypes();
     loadGreysheetStaticData();
     loadCollection();
   }
 
-  CoinType? fromString(String type) {
-    var filteredTypes = coinTypes
-        .where(
-          (element) => element.name == type,
-        )
-        .toList();
-    if (filteredTypes.length != 0) {
-      return filteredTypes[0];
-    } else {
-      return null;
-    }
-  }
+  List<String> get allCoinTypes =>
+      greysheetStaticData?.keys
+          .map((e) => CoinType.coinTypeFromString(e, coinTypes)?.name ?? e)
+          .toList() ??
+      [];
 
-  CoinType? fromGreysheetString(String type) {
-    try {
-      return coinTypes
-          .where((element) => element.getGreysheetName() == type)
-          .toList()
-          .first;
-    } catch (ex) {
-      return null;
-    }
-  }
+  List<String> variationsFromCoinType(String type) =>
+      greysheetStaticData?[type]?.keys.toList() ?? [];
 
   loadTypes() async {
-    coinTypes = (jsonDecode(
-      await rootBundle.loadString('assets/json/coin-types.json'),
-    ) as List<dynamic>)
-        .map((type) => CoinType.fromJson(type))
-        .toList();
+    coinTypes = await CoinType.coinTypesFromJson;
     notifyListeners();
   }
 
@@ -109,4 +81,6 @@ class CoinCollectionModel extends ChangeNotifier {
     saveCollection();
     notifyListeners();
   }
+
+  refresh() => notifyListeners();
 }

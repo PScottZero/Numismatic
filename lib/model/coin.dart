@@ -12,9 +12,10 @@ class Coin {
   String? grade;
   List<String>? images;
   String? notes;
-  double? mintage;
-  double? retailPrice;
+  String? mintage;
+  String? retailPrice;
   GreysheetPriceRequest? retailPriceRequest;
+  String? photogradeName;
   DateTime? retailPriceLastUpdated;
 
   Coin({
@@ -28,34 +29,12 @@ class Coin {
     this.mintage,
     this.retailPrice,
     this.retailPriceRequest,
+    this.photogradeName,
     this.retailPriceLastUpdated,
   });
 
-  void setProperty(String property, String? value) {
-    if (value == '') value = null;
-    switch (property) {
-      case 'Type':
-        type = value!;
-        break;
-      case 'Year':
-        year = value;
-        break;
-      case 'Mint Mark':
-        mintMark = value;
-        break;
-      case 'Variation':
-        variation = value;
-        break;
-      case 'Grade':
-        grade = value;
-        break;
-      default:
-        break;
-    }
-  }
-
   String get fullType {
-    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type ${variation ?? ""}'
+    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type ${variation != null ? '($variation)' : ''}'
         .trim();
   }
 

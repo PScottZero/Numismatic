@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:numismatic/model/coin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +34,11 @@ class CoinCard extends StatelessWidget {
           child: Stack(
             alignment: Alignment.bottomLeft,
             children: [
-              Image(
-                image: AssetImage(
-                  'assets/images/${coin.images?[0] ?? 'no-image.png'}',
-                ),
-              ),
+              coin.images != null && coin.images![0] != 'no-image.png'
+                  ? Image.network(coin.images![0])
+                  : Image(
+                      image: AssetImage('assets/images/${coin.images![0]}'),
+                    ),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

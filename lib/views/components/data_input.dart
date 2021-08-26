@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/model/coin.dart';
 
 class DataInput extends StatefulWidget {
   final String label;
-  final Coin coin;
+  final Function(String) onChanged;
 
-  const DataInput(this.label, this.coin);
+  const DataInput({required this.label, required this.onChanged});
 
   @override
-  _DataInputState createState() => _DataInputState(label, coin);
+  _DataInputState createState() => _DataInputState(label, onChanged);
 }
 
 class _DataInputState extends State<DataInput> {
   final String label;
-  final Coin coin;
+  final Function(String) onChanged;
 
   late TextEditingController _controller;
 
-  _DataInputState(this.label, this.coin);
+  _DataInputState(this.label, this.onChanged);
 
   @override
   void initState() {
@@ -40,9 +39,7 @@ class _DataInputState extends State<DataInput> {
         SizedBox(height: 10),
         TextField(
           controller: _controller,
-          onChanged: (value) {
-            coin.setProperty(label.trim().toLowerCase(), value);
-          },
+          onChanged: onChanged,
           style: TextStyle(
             fontSize: 20,
           ),

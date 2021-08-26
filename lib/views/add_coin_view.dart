@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/coin_type.dart';
+import 'package:numismatic/scrapers/greysheet-scraper.dart';
 import 'package:numismatic/views/components/autocomplete_input.dart';
 import 'package:numismatic/views/components/data_input.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +16,76 @@ class AddCoinView extends StatefulWidget {
 }
 
 class _AddCoinViewState extends State<AddCoinView> {
-  final Coin coin = Coin(type: '');
+  final Coin coin = Coin();
 
-  MaterialStateProperty<T> msp<T>(T property) {
-    return MaterialStateProperty.all<T>(property);
+  String stringToGreysheetType(String type, List<CoinType> coinTypes) {
+    String greysheetType = type;
+    coinTypes.forEach(
+      (coinType) {
+        if (coinType.name == type || coinType.greysheetName == type) {
+          greysheetType = coinType.getGreysheetName();
+        }
+      },
+    );
+    return greysheetType;
+  }
+
+  MaterialStateProperty<T> msp<T>(T property) =>
+      MaterialStateProperty.all<T>(property);
+
+  List<String?> yearAndMintMarkFromVariation(String variation) {
+    String? year;
+    String? mintMark;
+    if (variation.length > 0) {
+      try {
+        year = variation.split(' ')[0];
+        if (year.contains('-')) {
+          var split = year.split('-');
+          year = split[0];
+          mintMark = split[1];
+        }
+      } catch (_) {}
+    }
+    return [year, mintMark];
+  }
+
+  getImageUrls(CoinCollectionModel model, String? manualPhotogradeType) {
+    var photogradeType = manualPhotogradeType ??
+        CoinType.coinTypeFromString(coin.type, model.coinTypes)
+            ?.photogradeName ??
+        '';
+    var grade = _gradeToNumber(coin.grade!);
+    return [
+      'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}o.jpg',
+      'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}r.jpg',
+    ];
+  }
+
+  static String _gradeToNumber(String grade) {
+    switch (grade.length) {
+      case 4:
+        return grade.substring(2, 4);
+      case 3:
+        if (grade[0] == 'F') {
+          return grade.substring(1, 3);
+        }
+        return grade[2];
+      case 2:
+        return grade[1];
+      default:
+        return '';
+    }
+  }
+
+  getAsyncData(CoinCollectionModel model) async {
+    coin.images = getImageUrls(model, coin.photogradeName);
+    coin.retailPrice = await GreysheetScraper.retailPriceForCoin(
+      coin,
+      model.greysheetStaticData!,
+      model.coinTypes,
+    );
+    model.addCoin(coin);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -35,13 +103,37 @@ class _AddCoinViewState extends State<AddCoinView> {
             padding: EdgeInsets.all(30),
             children: [
               AutocompleteInput(
-                  label: 'Coin Type',
-                  options: model.allCoinTypes,
-                  required: true),
-              DataInput("Year", coin),
-              DataInput("Mint Mark", coin),
-              DataInput("Variation", coin),
-              DataInput("Grade", coin),
+                label: 'Coin Type',
+                options: model.allCoinTypes,
+                onChanged: (type) {
+                  coin.type = type;
+                  setState(() {});
+                },
+                required: true,
+              ),
+              AutocompleteInput(
+                label: 'Variation',
+                options: model.variationsFromCoinType(
+                  stringToGreysheetType(coin.type, model.coinTypes),
+                ),
+                onChanged: (variation) {
+                  coin.variation = variation;
+                  var yearAndMintMark = yearAndMintMarkFromVariation(variation);
+                  coin.year = yearAndMintMark[0];
+                  coin.mintMark = yearAndMintMark[1];
+                  setState(() {});
+                },
+              ),
+              DataInput(
+                label: 'Grade',
+                onChanged: (grade) {
+                  coin.grade = grade;
+                },
+              ),
+              DataInput(
+                label: 'PCGS Photograde Name',
+                onChanged: (name) => coin.photogradeName = name,
+              ),
               SizedBox(height: 10),
               ElevatedButton(
                 style: ButtonStyle(
@@ -54,8 +146,14 @@ class _AddCoinViewState extends State<AddCoinView> {
                   textStyle: msp(GoogleFonts.comfortaa(fontSize: 20)),
                 ),
                 onPressed: () {
-                  model.addCoin(coin);
-                  Navigator.of(context).pop();
+                  coin.mintage = model
+                          .greysheetStaticData![CoinType.coinTypeFromString(
+                                      coin.type, model.coinTypes)
+                                  ?.getGreysheetName() ??
+                              '']?[coin.variation]
+                          ?.mintage ??
+                      null;
+                  getAsyncData(model);
                 },
                 child: Text('Add Coin'),
               ),

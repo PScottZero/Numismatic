@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +33,6 @@ class CoinGridView extends StatelessWidget {
                 ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              model.currentCoin = Coin();
               Navigator.push(
                 context,
                 MaterialPageRoute(

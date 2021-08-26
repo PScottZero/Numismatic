@@ -16,9 +16,13 @@ Coin _$CoinFromJson(Map<String, dynamic> json) {
     images:
         (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
     notes: json['notes'] as String?,
-    mintage: (json['mintage'] as num?)?.toDouble(),
-    retailPrice: (json['retailPrice'] as num?)?.toDouble(),
-    retailPriceRequest: json['retailPriceRequest'],
+    mintage: json['mintage'] as String?,
+    retailPrice: json['retailPrice'] as String?,
+    retailPriceRequest: json['retailPriceRequest'] == null
+        ? null
+        : GreysheetPriceRequest.fromJson(
+            json['retailPriceRequest'] as Map<String, dynamic>),
+    photogradeName: json['photogradeName'] as String?,
     retailPriceLastUpdated: json['retailPriceLastUpdated'] == null
         ? null
         : DateTime.parse(json['retailPriceLastUpdated'] as String),
@@ -36,6 +40,7 @@ Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
       'mintage': instance.mintage,
       'retailPrice': instance.retailPrice,
       'retailPriceRequest': instance.retailPriceRequest,
+      'photogradeName': instance.photogradeName,
       'retailPriceLastUpdated':
           instance.retailPriceLastUpdated?.toIso8601String(),
     };
