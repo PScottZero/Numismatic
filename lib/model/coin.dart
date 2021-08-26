@@ -43,8 +43,12 @@ class Coin {
         : yearAndMintMark[0] != null
             ? yearAndMintMark[0]
             : '';
-    print(remove);
-    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type ${variation != null ? '(${variation!.replaceAll(remove!, '')})' : ''}'
+    var variationWithoutYear = variation?.replaceAll(remove!, '').trim() ?? '';
+    var variationFormatted =
+        variation != null && variationWithoutYear.length > 2
+            ? '($variationWithoutYear)'
+            : '';
+    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type $variationFormatted'
         .trim();
   }
 

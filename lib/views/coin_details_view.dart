@@ -38,11 +38,10 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Center(
-              child: Text(
-                coin.type,
-                style: GoogleFonts.comfortaa(),
-              ),
+            centerTitle: true,
+            title: Text(
+              coin.type,
+              style: GoogleFonts.comfortaa(),
             ),
           ),
           body: ListView(
@@ -53,12 +52,14 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      coin.fullType,
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        height: 1.5,
+                    Center(
+                      child: Text(
+                        coin.fullType,
+                        style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          height: 1.5,
+                        ),
                       ),
                     ),
                     Detail(name: 'Grade', value: coin.grade),
@@ -67,9 +68,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                     RoundedButton(
                       label:
                           'Move to ${coin.inCollection ? 'Wantlist' : 'Collection'}',
-                      onPressed: () => coin.inCollection
-                          ? model.moveCoinToWantlist(coin)
-                          : model.moveCoinToCollection(coin),
+                      onPressed: () => model.toggleInCollectino(coin),
                     ),
                     RoundedButton(
                       label: 'Delete',

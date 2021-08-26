@@ -19,8 +19,8 @@ class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         brightness: brightness,
         primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
-        accentColor: Colors.blue,
+        primaryColor: Colors.blue[300],
+        accentColor: Colors.blue[300],
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(
@@ -84,11 +84,10 @@ class _NavigationState extends State<Navigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Numismatic',
-            style: GoogleFonts.comfortaa(),
-          ),
+        centerTitle: true,
+        title: Text(
+          'Numismatic',
+          style: GoogleFonts.comfortaa(),
         ),
       ),
       body: PageView(

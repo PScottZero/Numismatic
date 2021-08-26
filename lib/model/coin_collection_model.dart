@@ -8,17 +8,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'coin_type.dart';
 import 'coin.dart';
 
+const String ALL_COINS_KEY = 'coins';
+
 class CoinCollectionModel extends ChangeNotifier {
-  List<Coin> collection = [];
-  List<Coin> wantlist = [];
+  List<Coin> allCoins = [];
+  List<Coin> get collection =>
+      allCoins.where((element) => element.inCollection).toList();
+  List<Coin> get wantlist =>
+      allCoins.where((element) => !element.inCollection).toList();
   List<CoinType> coinTypes = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
 
   CoinCollectionModel() {
     loadTypes();
     loadGreysheetStaticData();
-    loadCollection();
-    loadWantlist();
+    loadCoins();
   }
 
   List<String> get allCoinTypes =>
@@ -52,77 +56,38 @@ class CoinCollectionModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  loadCollection() async {
+  loadCoins() async {
     var preferences = await SharedPreferences.getInstance();
-    collection = jsonDecode(preferences.getString('collection') ?? '[]')
+    allCoins = jsonDecode(preferences.getString('coins') ?? '[]')
         .map<Coin>((e) => Coin.fromJson(e))
         .toList() as List<Coin>;
     notifyListeners();
   }
 
-  loadWantlist() async {
-    var preferences = await SharedPreferences.getInstance();
-    wantlist = jsonDecode(preferences.getString('wantlist') ?? '[]')
-        .map<Coin>((e) => Coin.fromJson(e))
-        .toList();
-    notifyListeners();
-  }
-
-  saveCollection() async {
-    collection.sort((a, b) => a.fullType.compareTo(b.fullType));
+  saveCoins() async {
+    allCoins.sort((a, b) => a.fullType.compareTo(b.fullType));
     var preferences = await SharedPreferences.getInstance();
     preferences.setString(
-      'collection',
-      jsonEncode(collection.map((e) => e.toJson()).toList()),
-    );
-  }
-
-  saveWantlist() async {
-    wantlist.sort((a, b) => a.fullType.compareTo(b.fullType));
-    var preferences = await SharedPreferences.getInstance();
-    preferences.setString(
-      'wantlist',
-      jsonEncode(collection.map((e) => e.toJson()).toList()),
+      'coins',
+      jsonEncode(allCoins.map((e) => e.toJson()).toList()),
     );
   }
 
   addCoin(Coin coin) {
-    if (coin.inCollection) {
-      collection.add(coin);
-      saveCollection();
-    } else {
-      wantlist.add(coin);
-      saveWantlist();
-    }
+    allCoins.add(coin);
+    saveCoins();
     notifyListeners();
   }
 
   deleteCoin(Coin coin) {
-    if (coin.inCollection) {
-      collection.remove(coin);
-      saveCollection();
-    } else {
-      wantlist.remove(coin);
-      saveWantlist();
-    }
+    allCoins.remove(coin);
+    saveCoins();
     notifyListeners();
   }
 
-  moveCoinToCollection(Coin coin) {
-    coin.inCollection = true;
-    collection.add(coin);
-    wantlist.remove(coin);
-    saveCollection();
-    saveWantlist();
-    notifyListeners();
-  }
-
-  moveCoinToWantlist(Coin coin) {
-    coin.inCollection = false;
-    collection.remove(coin);
-    wantlist.add(coin);
-    saveCollection();
-    saveWantlist();
+  toggleInCollectino(Coin coin) {
+    coin.inCollection = !coin.inCollection;
+    saveCoins();
     notifyListeners();
   }
 

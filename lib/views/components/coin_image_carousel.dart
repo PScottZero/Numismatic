@@ -27,7 +27,7 @@ class _CoinImageCarouselState extends State<CoinImageCarousel> {
       items: (coin.images ?? ['no-image.png']).map(
         (image) {
           return Container(
-            padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+            padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),

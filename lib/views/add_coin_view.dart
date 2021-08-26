@@ -111,11 +111,10 @@ class _AddCoinViewState extends State<AddCoinView> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
-            title: Center(
-              child: Text(
-                'Add Coin',
-                style: GoogleFonts.comfortaa(),
-              ),
+            centerTitle: true,
+            title: Text(
+              'Add Coin',
+              style: GoogleFonts.comfortaa(),
             ),
           ),
           body: ListView(

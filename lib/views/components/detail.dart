@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Detail extends StatelessWidget {
   final String name;
@@ -18,7 +17,7 @@ class Detail extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.blue[300],
               borderRadius: BorderRadius.circular(15),
             ),
             child: Center(
