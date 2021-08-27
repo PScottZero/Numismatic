@@ -119,16 +119,19 @@ class CoinCollectionModel extends ChangeNotifier {
   }
 
   static String gradeToNumber(String grade) {
-    switch (grade.length) {
+    var gradeSplit = grade.split(' ');
+    var gradePart = grade;
+    if (gradeSplit.length > 1) gradePart = gradeSplit[0];
+    switch (gradePart.length) {
       case 4:
-        return grade.substring(2, 4);
+        return gradePart.substring(2, 4);
       case 3:
-        if (grade[0] == 'F') {
-          return grade.substring(1, 3);
+        if (gradePart[0] == 'F') {
+          return gradePart.substring(1, 3);
         }
-        return grade[2];
+        return gradePart[2];
       case 2:
-        return grade[1];
+        return gradePart[1];
       default:
         return '';
     }

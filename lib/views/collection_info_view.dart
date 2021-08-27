@@ -6,14 +6,16 @@ import 'package:provider/provider.dart';
 class CollectionInfoView extends StatelessWidget {
   String collectionValue(CoinCollectionModel model) {
     if (model.collection.length > 0) {
-      model.collection
+      var mapped = model.collection
           .map(
             (e) => double.tryParse(
-              e.retailPrice?.replaceAll('\$', '') ?? '',
+              e.retailPrice?.replaceAll('\$', '').replaceAll(',', '') ?? '',
             ),
           )
-          .reduce((sum, element) => (sum ?? 0) + (element ?? 0))
-          ?.toStringAsFixed(2);
+          .toList();
+      var reduced =
+          mapped.reduce((sum, element) => (sum ?? 0) + (element ?? 0));
+      return '\$${reduced?.toStringAsFixed(2) ?? 0.0}';
     }
     return '\$0.00';
   }

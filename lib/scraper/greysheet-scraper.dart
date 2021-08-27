@@ -27,13 +27,13 @@ class GreysheetScraper {
   ) async {
     if (await scraper.loadWebPage(route)) {
       var grades = scraper
-          .getElement("p.entry-title", [])
-          .map((e) => e["title"].toString().trim())
+          .getElement('p.entry-title', [])
+          .map((e) => e['title'].toString().trim())
           .toList();
       var prices = scraper
-          .getElement("button.button-cpg-value", [])
+          .getElement('button.button-cpg-value', [])
           .map(
-            (e) => e["title"]
+            (e) => e['title']
                 .toString()
                 .replaceAll('CPG:', '')
                 .replaceAll(' ', '')

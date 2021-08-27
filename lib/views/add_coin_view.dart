@@ -129,8 +129,9 @@ class _AddCoinViewState extends State<AddCoinView> {
                   }
                 },
                 comparator: (a, b) =>
-                    int.parse(CoinCollectionModel.gradeToNumber(b)).compareTo(
-                  int.parse(CoinCollectionModel.gradeToNumber(a)),
+                    (int.tryParse(CoinCollectionModel.gradeToNumber(b)) ?? 0)
+                        .compareTo(
+                  (int.tryParse(CoinCollectionModel.gradeToNumber(a)) ?? 0),
                 ),
                 onChanged: (grade) {
                   coin.grade = nullIfEmpty(grade);
