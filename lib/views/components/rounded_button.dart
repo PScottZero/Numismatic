@@ -24,7 +24,7 @@ class RoundedButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
-          backgroundColor: msp(color),
+          backgroundColor: msp(color ?? Colors.blue[300]),
           padding: msp(EdgeInsets.only(top: 20, bottom: 17)),
           textStyle: msp(GoogleFonts.comfortaa(fontSize: 22)),
         ),

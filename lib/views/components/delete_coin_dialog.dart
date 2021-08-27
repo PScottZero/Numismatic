@@ -40,7 +40,7 @@ class DeleteCoinDialog extends StatelessWidget {
                 'Cancel',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.blue,
+                  color: Colors.blue[300],
                 ),
               ),
             ),

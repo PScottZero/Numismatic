@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/coin_type.dart';
-import 'package:numismatic/scrapers/greysheet-scraper.dart';
 import 'package:numismatic/views/components/autocomplete_input.dart';
 import 'package:numismatic/views/components/data_input.dart';
 import 'package:numismatic/views/components/rounded_button.dart';
@@ -63,39 +62,18 @@ class _AddCoinViewState extends State<AddCoinView> {
         CoinType.coinTypeFromString(coin.type, model.coinTypes)
             ?.photogradeName ??
         '';
-    var grade = manualGrade ?? _gradeToNumber(coin.grade!);
+    var grade = manualGrade ?? CoinCollectionModel.gradeToNumber(coin.grade!);
     return [
       'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}o.jpg',
       'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/$photogradeType-${grade}r.jpg',
     ];
   }
 
-  static String _gradeToNumber(String grade) {
-    switch (grade.length) {
-      case 4:
-        return grade.substring(2, 4);
-      case 3:
-        if (grade[0] == 'F') {
-          return grade.substring(1, 3);
-        }
-        return grade[2];
-      case 2:
-        return grade[1];
-      default:
-        return '';
-    }
-  }
-
-  getAsyncData(CoinCollectionModel model) async {
+  finalizeCoinData(CoinCollectionModel model) async {
     coin.images = getImageUrls(
       model,
       coin.photogradeName,
       coin.photogradeGrade,
-    );
-    coin.retailPrice = await GreysheetScraper.retailPriceForCoin(
-      coin,
-      model.greysheetStaticData!,
-      model.coinTypes,
     );
     model.addCoin(coin);
     Navigator.of(context).pop();
@@ -142,9 +120,22 @@ class _AddCoinViewState extends State<AddCoinView> {
                   setState(() {});
                 },
               ),
-              DataInput(
+              AutocompleteInput(
                 label: 'Grade',
-                onChanged: (grade) => coin.grade = nullIfEmpty(grade),
+                options: model.gradeOptions.map((e) => e.item1).toList(),
+                onTap: () {
+                  if (coin.type.length > 0 && coin.variation != null) {
+                    model.getGreysheetGradesForCoin(coin);
+                  }
+                },
+                comparator: (a, b) =>
+                    int.parse(CoinCollectionModel.gradeToNumber(b)).compareTo(
+                  int.parse(CoinCollectionModel.gradeToNumber(a)),
+                ),
+                onChanged: (grade) {
+                  coin.grade = nullIfEmpty(grade);
+                  model.setCoinPrice(coin, grade);
+                },
               ),
               DataInput(
                 label: 'Photograde Name Override',
@@ -165,7 +156,7 @@ class _AddCoinViewState extends State<AddCoinView> {
                               coin.type]?[coin.variation]
                           ?.mintage ??
                       null;
-                  getAsyncData(model);
+                  finalizeCoinData(model);
                 },
               ),
             ],

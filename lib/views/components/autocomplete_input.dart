@@ -4,15 +4,19 @@ class AutocompleteInput extends StatelessWidget {
   final String label;
   final List<String> options;
   final Function(String) onChanged;
+  final Function()? onTap;
+  final int Function(String, String)? comparator;
   final bool required;
 
   AutocompleteInput({
     required this.label,
     required this.options,
     required this.onChanged,
+    this.comparator,
+    this.onTap,
     this.required = false,
   }) {
-    options.sort();
+    comparator != null ? options.sort(comparator) : options.sort();
   }
 
   @override
@@ -52,6 +56,7 @@ class AutocompleteInput extends StatelessWidget {
                 fontSize: 20,
               ),
               onChanged: onChanged,
+              onTap: onTap,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 10),
                 border: OutlineInputBorder(

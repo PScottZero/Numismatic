@@ -73,7 +73,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                     RoundedButton(
                       label: 'Delete',
                       onPressed: _showDeleteCoinDialog,
-                      color: Colors.red,
+                      color: Colors.red[400],
                     ),
                   ],
                 ),

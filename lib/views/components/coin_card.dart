@@ -44,20 +44,26 @@ class CoinCard extends StatelessWidget {
                   : Image(
                       image: AssetImage('assets/images/no-image.png'),
                     ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0x99000000),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 100,
+                  minHeight: 0,
                 ),
-                width: double.infinity,
-                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                margin: EdgeInsets.all(10),
-                child: Text(
-                  coin.fullType,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0x77000000),
+                  ),
+                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  margin: EdgeInsets.all(10),
+                  child: Text(
+                    coin.fullType,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

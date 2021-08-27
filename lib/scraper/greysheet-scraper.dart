@@ -1,12 +1,13 @@
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_type.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
+import 'package:tuple/tuple.dart';
 import 'package:web_scraper/web_scraper.dart';
 
 class GreysheetScraper {
   static final scraper = WebScraper("https://www.greysheet.com/");
 
-  static Future<String?> retailPriceForCoin(
+  static Future<List<Tuple2<String, String>>?> retailPriceForCoin(
     Coin coin,
     Map<String, Map<String, GreysheetStaticData>> staticData,
     List<CoinType> coinTypes,
@@ -20,7 +21,7 @@ class GreysheetScraper {
         coin.grade ?? '',
       );
 
-  static Future<String?> _scrapeRetailPriceFromGreysheet(
+  static Future<List<Tuple2<String, String>>?> _scrapeRetailPriceFromGreysheet(
     String route,
     String grade,
   ) async {
@@ -39,9 +40,12 @@ class GreysheetScraper {
                 .trim(),
           )
           .toList();
-      var index = grades.indexOf(grade);
-      if (index >= 0) {
-        return prices[index];
+      List<Tuple2<String, String>> gradesAndPrices = [];
+      if (grades.length == prices.length) {
+        for (var i = 0; i < grades.length; i++) {
+          gradesAndPrices.add(Tuple2(grades[i], prices[i]));
+        }
+        return gradesAndPrices;
       }
       return null;
     }

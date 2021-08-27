@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
+import 'package:numismatic/scraper/greysheet-scraper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tuple/tuple.dart';
 
 import 'coin_type.dart';
 import 'coin.dart';
@@ -17,6 +19,7 @@ class CoinCollectionModel extends ChangeNotifier {
   List<Coin> get wantlist =>
       allCoins.where((element) => !element.inCollection).toList();
   List<CoinType> coinTypes = [];
+  List<Tuple2<String, String>> gradeOptions = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
 
   CoinCollectionModel() {
@@ -89,6 +92,46 @@ class CoinCollectionModel extends ChangeNotifier {
     coin.inCollection = !coin.inCollection;
     saveCoins();
     notifyListeners();
+  }
+
+  setGradeOptionsAndPrices(List<Tuple2<String, String>> options) {
+    gradeOptions = options;
+    notifyListeners();
+  }
+
+  getGreysheetGradesForCoin(Coin coin) async {
+    gradeOptions = await GreysheetScraper.retailPriceForCoin(
+            coin, greysheetStaticData ?? Map(), coinTypes) ??
+        [];
+    notifyListeners();
+  }
+
+  setCoinPrice(Coin coin, String grade) {
+    try {
+      coin.retailPrice = gradeOptions
+          .where(
+            (element) => element.item1 == grade,
+          )
+          .first
+          .item2;
+      notifyListeners();
+    } catch (ex) {}
+  }
+
+  static String gradeToNumber(String grade) {
+    switch (grade.length) {
+      case 4:
+        return grade.substring(2, 4);
+      case 3:
+        if (grade[0] == 'F') {
+          return grade.substring(1, 3);
+        }
+        return grade[2];
+      case 2:
+        return grade[1];
+      default:
+        return '';
+    }
   }
 
   refresh() => notifyListeners();
