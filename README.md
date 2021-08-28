@@ -1,4 +1,4 @@
-# numismatic
+# Numismatic
 
 A new Flutter project.
 
