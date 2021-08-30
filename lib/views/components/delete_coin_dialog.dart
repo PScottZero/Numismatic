@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class DeleteCoinDialog extends StatelessWidget {
               child: Text(
                 'Delete',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: ViewConstants.fontSmall,
                   color: Colors.red,
                 ),
               ),
@@ -39,7 +40,7 @@ class DeleteCoinDialog extends StatelessWidget {
               child: Text(
                 'Cancel',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: ViewConstants.fontSmall,
                   color: Colors.blue[300],
                 ),
               ),

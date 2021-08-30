@@ -2,22 +2,18 @@ import 'package:flutter/material.dart';
 
 class AutocompleteInput extends StatelessWidget {
   final String label;
+  final String initialValue;
   final List<String> options;
   final Function(String) onChanged;
-  final Function()? onTap;
-  final int Function(String, String)? comparator;
   final bool required;
 
   AutocompleteInput({
     required this.label,
+    required this.initialValue,
     required this.options,
     required this.onChanged,
-    this.comparator,
-    this.onTap,
     this.required = false,
-  }) {
-    comparator != null ? options.sort(comparator) : options.sort();
-  }
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +45,7 @@ class AutocompleteInput extends StatelessWidget {
           },
           onSelected: onChanged,
           fieldViewBuilder: (context, controller, focusNode, onSubmit) {
+            controller..text = initialValue;
             return TextField(
               controller: controller,
               focusNode: focusNode,
@@ -56,7 +53,6 @@ class AutocompleteInput extends StatelessWidget {
                 fontSize: 20,
               ),
               onChanged: onChanged,
-              onTap: onTap,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 10),
                 border: OutlineInputBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numismatic/constants/view_constants.dart';
 
 class Detail extends StatelessWidget {
   final String name;
@@ -15,18 +16,17 @@ class Detail extends StatelessWidget {
         ? Container(
             margin: EdgeInsets.only(top: 20),
             width: double.infinity,
-            padding: EdgeInsets.all(15),
+            padding: ViewConstants.paddingAllMedium,
             decoration: BoxDecoration(
               color: Colors.blue[300],
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Center(
-              child: Text(
-                '$name: $value',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                ),
+            child: Text(
+              '$name: $value',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.white,
               ),
             ),
           )

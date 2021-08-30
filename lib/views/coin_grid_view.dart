@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:provider/provider.dart';
@@ -19,14 +20,14 @@ class CoinGridView extends StatelessWidget {
         return Scaffold(
           body: coins.length > 0
               ? GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  padding: EdgeInsets.all(10),
+                  crossAxisCount: ViewConstants.gridColumnCount,
+                  mainAxisSpacing: ViewConstants.gridGap,
+                  crossAxisSpacing: ViewConstants.gridGap,
+                  padding: ViewConstants.paddingAllSmall,
                   children: coins.map((e) => CoinCard(e)).toList(),
                 )
               : Container(
-                  padding: EdgeInsets.all(10),
+                  padding: ViewConstants.paddingAllSmall,
                   child: Center(
                     child: Text(
                       'Press + to add a coin to your ${isWantlist ? 'wantlist' : 'collection'}',
@@ -39,7 +40,10 @@ class CoinGridView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddCoinView(isWantlist),
+                  builder: (context) => AddCoinView(
+                    addToWantlist: isWantlist,
+                    edit: false,
+                  ),
                 ),
               );
             },

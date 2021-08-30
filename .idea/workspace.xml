@@ -5,53 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/no-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/coin-database-request.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/mintage-request.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/mintage-request.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/pcgs-photograde-request.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/price-request.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/price-request.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/views/components/coin-image-carousel.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/views/components/multi-source-detail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/launcher_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/launcher_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/launcher_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/launcher_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/launcher_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/launcher_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/launcher_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/launcher_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/launcher_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/launcher_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/test_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/test_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/model/coin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/multiple-source-property.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/multi-source-value.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin_type.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_type.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/scraper/greysheet-scraper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/scraper/greysheet-scraper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/add_coin_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/coin_details_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/collection_info_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/collection_info_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/autocomplete_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/autocomplete_input.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/components/coin_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/coin_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_field.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_image_carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/coin_image_carousel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_type_input.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/data_input.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/delete_coin_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/delete_coin_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/details_text_field.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/source_options.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/numismatic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/numismatic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\8psco\.android\avd\Pixel_5_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -85,16 +78,35 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="showLigatures" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\8psco\Documents\GitHub\Numismatic\assets\images" />
+      <recent name="C:\Users\8psco\Documents\GitHub\numismatic\assets\images" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter.main.dart" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -123,5 +135,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

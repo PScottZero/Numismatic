@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'coin_type.g.dart';
 
 @JsonSerializable()
@@ -9,6 +10,8 @@ class CoinType {
   String name;
   String? greysheetName;
   String photogradeName;
+
+  static List<CoinType> coinTypes = [];
 
   CoinType({
     required this.name,
@@ -24,7 +27,7 @@ class CoinType {
     }
   }
 
-  static CoinType? coinTypeFromString(String type, List<CoinType> coinTypes) {
+  static CoinType? coinTypeFromString(String type) {
     try {
       return coinTypes
           .where((element) =>
@@ -35,10 +38,6 @@ class CoinType {
     } catch (_) {
       return null;
     }
-  }
-
-  static Future<CoinType?> coinTypeFromStringAsync(String type) async {
-    return coinTypeFromString(type, await coinTypesFromJson);
   }
 
   static Future<List<CoinType>> get coinTypesFromJson async => (jsonDecode(

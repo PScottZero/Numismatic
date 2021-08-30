@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/views/coin_grid_view.dart';
 import 'package:numismatic/views/collection_info_view.dart';
 import 'package:provider/provider.dart';
@@ -19,13 +20,13 @@ class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         brightness: brightness,
         primarySwatch: Colors.blue,
-        primaryColor: Colors.blue[300],
-        accentColor: Colors.blue[300],
+        primaryColor: ViewConstants.primaryColor,
+        accentColor: ViewConstants.primaryColor,
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(
-              fontSize: 20,
-              height: 1.5,
+              fontSize: ViewConstants.fontMedium,
+              height: ViewConstants.lineHeight,
             ),
           ),
         ),
@@ -48,19 +49,18 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
+  late PageController _pageController;
+  var _selectedIndex = 0;
   final _options = <Widget>[
     CoinGridView(),
     CoinGridView(isWantlist: true),
     CollectionInfoView(),
   ];
-  var _selectedIndex = 0;
-
-  PageController? _pageController;
 
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
-      _pageController?.animateToPage(
+      _pageController.animateToPage(
         index,
         duration: Duration(milliseconds: 200),
         curve: Curves.easeInOut,
@@ -76,7 +76,7 @@ class _NavigationState extends State<Navigation> {
 
   @override
   void dispose() {
-    _pageController?.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 

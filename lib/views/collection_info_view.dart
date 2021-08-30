@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/components/detail.dart';
 import 'package:provider/provider.dart';
@@ -6,16 +7,15 @@ import 'package:provider/provider.dart';
 class CollectionInfoView extends StatelessWidget {
   String collectionValue(CoinCollectionModel model) {
     if (model.collection.length > 0) {
-      var mapped = model.collection
+      var sum = model.collection
           .map(
             (e) => double.tryParse(
               e.retailPrice?.replaceAll('\$', '').replaceAll(',', '') ?? '',
             ),
           )
-          .toList();
-      var reduced =
-          mapped.reduce((sum, element) => (sum ?? 0) + (element ?? 0));
-      return '\$${reduced?.toStringAsFixed(2) ?? 0.0}';
+          .toList()
+          .reduce((sum, element) => (sum ?? 0) + (element ?? 0));
+      return '\$${(sum ?? 0.0).toStringAsFixed(2)}';
     }
     return '\$0.00';
   }
@@ -25,19 +25,17 @@ class CollectionInfoView extends StatelessWidget {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         return Container(
-          padding: EdgeInsets.all(30),
+          padding: ViewConstants.paddingAllLarge(),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: ListView(
               children: [
-                Center(
-                  child: Text(
-                    'Collection Info',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      height: 1.5,
-                    ),
+                Text(
+                  'Collection Info',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: ViewConstants.fontLarge,
+                    fontWeight: FontWeight.bold,
+                    height: ViewConstants.lineHeight,
                   ),
                 ),
                 Detail(
