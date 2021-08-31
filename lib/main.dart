@@ -20,13 +20,13 @@ class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         brightness: brightness,
         primarySwatch: Colors.blue,
-        primaryColor: ViewConstants.primaryColor,
-        accentColor: ViewConstants.primaryColor,
+        primaryColor: ViewConstants.colorPrimary,
+        accentColor: ViewConstants.colorPrimary,
         textTheme: GoogleFonts.comfortaaTextTheme(
           TextTheme(
             bodyText2: TextStyle(
               fontSize: ViewConstants.fontMedium,
-              height: ViewConstants.lineHeight,
+              height: ViewConstants.spacing1_5,
             ),
           ),
         ),

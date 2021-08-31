@@ -5,17 +5,16 @@ import 'package:web_scraper/web_scraper.dart';
 
 class GreysheetScraper {
   static final scraper = WebScraper("https://www.greysheet.com/");
+  static Map<String, Map<String, GreysheetStaticData>>? staticData;
 
-  static Future<String?> retailPriceForCoin(
-    Coin coin,
-    Map<String, Map<String, GreysheetStaticData>> staticData,
-  ) =>
+  static Future<String?> retailPriceForCoin(Coin coin) =>
       _scrapeRetailPriceFromGreysheet(
-        staticData[CoinType.coinTypeFromString(coin.type)?.getGreysheetName() ??
+        staticData?[CoinType.coinTypeFromString(coin.type)
+                        ?.getGreysheetName() ??
                     coin.type]?[coin.variation]
                 ?.pricesUrl ??
             '',
-        coin.grade ?? '',
+        coin.grade?.replaceAll('-', '') ?? '',
       );
 
   static Future<String?> _scrapeRetailPriceFromGreysheet(

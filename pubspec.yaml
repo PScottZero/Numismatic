@@ -23,6 +23,7 @@ dependencies:
   build_runner: ^2.1.1
   tuple: ^2.0.0
   smooth_page_indicator: ^0.3.0-nullsafety.0
+  flutter_typeahead: ^3.2.0
 
 dev_dependencies:
   flutter_test:

@@ -38,17 +38,16 @@ class _CoinDataTextFieldState extends State<CoinDataTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label),
-        SizedBox(height: 10),
+        SizedBox(height: ViewConstants.gapSmall),
         TextField(
           controller: _controller,
           onChanged: onChanged,
-          style: TextStyle(
-            fontSize: ViewConstants.fontMedium,
-          ),
+          style: TextStyle(fontSize: ViewConstants.fontMedium),
           decoration: InputDecoration(
-            contentPadding: ViewConstants.paddingAllSmall,
+            contentPadding: ViewConstants.paddingAllMedium,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              gapPadding: 10,
+              borderRadius: ViewConstants.borderRadiusMedium,
             ),
           ),
         ),

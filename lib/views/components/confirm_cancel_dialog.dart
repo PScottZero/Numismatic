@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:numismatic/constants/view_constants.dart';
+
+class ConfirmCancelDialog extends StatelessWidget {
+  final String title;
+  final String message;
+  final String confirmAction;
+  final VoidCallback onConfirmed;
+
+  const ConfirmCancelDialog({
+    required this.title,
+    required this.message,
+    required this.confirmAction,
+    required this.onConfirmed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(
+        message,
+        style: TextStyle(
+          height: ViewConstants.spacingDouble,
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: onConfirmed,
+          child: Text(
+            confirmAction,
+            style: TextStyle(
+              fontSize: ViewConstants.fontSmall,
+              color: ViewConstants.colorWarning,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(
+            'Cancel',
+            style: TextStyle(
+              fontSize: ViewConstants.fontSmall,
+              color: ViewConstants.colorPrimary,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

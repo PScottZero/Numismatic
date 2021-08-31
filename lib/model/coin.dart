@@ -46,6 +46,28 @@ class Coin {
     this.retailPriceLastUpdated,
   });
 
+  static Coin copyOf(Coin coin) {
+    return Coin(
+      type: coin.type,
+      year: coin.year,
+      mintMark: coin.mintMark,
+      variation: coin.variation,
+      mintage: coin.mintage,
+      grade: coin.grade,
+      retailPrice: coin.retailPrice,
+      images: coin.images,
+      notes: coin.notes,
+      inCollection: coin.inCollection,
+      imagesSource: coin.imagesSource,
+      mintageSource: coin.mintageSource,
+      retailPriceSource: coin.retailPriceSource,
+      photogradeName: coin.photogradeName,
+      photogradeGrade: coin.photogradeGrade,
+      dateAdded: coin.dateAdded,
+      retailPriceLastUpdated: coin.retailPriceLastUpdated,
+    );
+  }
+
   String? get typeId {
     var coinType = CoinType.coinTypeFromString(type);
     if (coinType != null) {

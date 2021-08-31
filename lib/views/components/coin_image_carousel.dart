@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
@@ -42,16 +41,11 @@ class _CoinImageCarouselState extends State<CoinImageCarousel> {
                 padding: ViewConstants.paddingAllLarge(),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x22000000),
-                        blurRadius: 10,
-                      ),
-                    ],
+                    borderRadius: ViewConstants.borderRadiusLarge,
+                    boxShadow: ViewConstants.dropShadow,
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: ViewConstants.borderRadiusLarge,
                     clipBehavior: Clip.antiAlias,
                     child: image != 'no-image.png'
                         ? custom.NetworkImage(image)
@@ -68,12 +62,12 @@ class _CoinImageCarouselState extends State<CoinImageCarousel> {
           activeIndex: _imageIndex,
           count: coin.images?.length ?? 0,
           effect: ColorTransitionEffect(
-            spacing: 8,
-            radius: 8,
-            dotWidth: 8,
-            dotHeight: 8,
-            dotColor: Colors.grey[200]!,
-            activeDotColor: ViewConstants.primaryColor,
+            spacing: ViewConstants.dotSpacing,
+            radius: ViewConstants.dotSize,
+            dotWidth: ViewConstants.dotSize,
+            dotHeight: ViewConstants.dotSize,
+            dotColor: ViewConstants.colorInactive,
+            activeDotColor: ViewConstants.colorPrimary,
           ),
         ),
         SizedBox(height: ViewConstants.gapSmall),

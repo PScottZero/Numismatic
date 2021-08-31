@@ -14,18 +14,18 @@ class Detail extends StatelessWidget {
   Widget build(BuildContext context) {
     return value != null
         ? Container(
-            margin: EdgeInsets.only(top: 20),
+            margin: EdgeInsets.only(top: ViewConstants.gapLarge),
             width: double.infinity,
             padding: ViewConstants.paddingAllMedium,
             decoration: BoxDecoration(
-              color: Colors.blue[300],
-              borderRadius: BorderRadius.circular(15),
+              color: ViewConstants.colorPrimary,
+              borderRadius: ViewConstants.borderRadiusMedium,
             ),
             child: Text(
               '$name: $value',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 22,
+                fontSize: ViewConstants.fontMedium,
                 color: Colors.white,
               ),
             ),

@@ -1,5 +1,6 @@
-import 'package:numismatic/model/coin.dart';
 import 'package:flutter/material.dart';
+import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/components/network_image.dart' as custom;
 import 'package:provider/provider.dart';
@@ -19,14 +20,16 @@ class CoinCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CoinDetailsView(coin),
+              builder: (context) => CoinDetailsView(
+                model.allCoins.indexOf(coin),
+              ),
             ),
           ),
         },
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: ViewConstants.borderRadiusLarge,
           ),
           clipBehavior: Clip.antiAlias,
           child: Stack(
@@ -39,22 +42,22 @@ class CoinCard extends StatelessWidget {
                     ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxHeight: 100,
+                  maxHeight: ViewConstants.cardTitleMaxHeight,
                   minHeight: 0,
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0x77000000),
+                    borderRadius: ViewConstants.borderRadiusSmall,
+                    color: ViewConstants.colorCardTitle,
                   ),
                   width: double.infinity,
-                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  margin: EdgeInsets.all(10),
+                  padding: ViewConstants.cardTitlePadding,
+                  margin: ViewConstants.cardTitleMargin,
                   child: Text(
                     coin.fullType,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: ViewConstants.fontMini,
                       color: Colors.white,
                     ),
                   ),

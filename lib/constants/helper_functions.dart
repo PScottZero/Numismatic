@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
 class HelperFunctions {
@@ -17,4 +18,7 @@ class HelperFunctions {
       return Tuple2(year, null);
     }
   }
+
+  static MaterialStateProperty<T> msp<T>(T property) =>
+      MaterialStateProperty.all<T>(property);
 }

@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
+import 'package:numismatic/scraper/greysheet-scraper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'coin.dart';
@@ -28,11 +31,14 @@ class CoinCollectionModel extends ChangeNotifier {
     loadCoins();
   }
 
-  List<String> get allCoinTypes =>
-      greysheetStaticData?.keys
-          .map((e) => CoinType.coinTypeFromString(e)?.name ?? e)
-          .toList() ??
-      [];
+  List<String> get allCoinTypes {
+    var types = greysheetStaticData?.keys
+            .map((e) => CoinType.coinTypeFromString(e)?.name ?? e)
+            .toList() ??
+        [];
+    types.sort();
+    return types;
+  }
 
   loadTypes() async {
     coinTypes = await CoinType.coinTypesFromJson;
@@ -54,6 +60,7 @@ class CoinCollectionModel extends ChangeNotifier {
         ),
       ),
     );
+    GreysheetScraper.staticData = greysheetStaticData;
     notifyListeners();
   }
 
@@ -74,22 +81,65 @@ class CoinCollectionModel extends ChangeNotifier {
     );
   }
 
+  overwriteCoin(int index, Coin coin) async {
+    allCoins[index] = coin;
+    saveCoins();
+  }
+
   addCoin(Coin coin) {
     allCoins.add(coin);
     saveCoins();
     notifyListeners();
   }
 
-  deleteCoin(Coin coin) {
-    allCoins.remove(coin);
+  deleteCoin(int index) {
+    allCoins.removeAt(index);
     saveCoins();
     notifyListeners();
+  }
+
+  Coin? coinAtIndex(int index) {
+    return allCoins[index];
   }
 
   toggleInCollection(Coin coin) {
     coin.inCollection = !coin.inCollection;
     saveCoins();
     notifyListeners();
+  }
+
+  saveCollectionJson() async {
+    await File('/storage/emulated/0/Documents/collection.json').writeAsString(
+      jsonEncode(allCoins.map((e) => e.toJson()).toList()),
+    );
+  }
+
+  Future<bool> loadCollectionJson() async {
+    var file = File('/storage/emulated/0/Documents/collection.json');
+    if (await file.exists()) {
+      allCoins = jsonDecode(
+        await file.readAsString(),
+      ).map<Coin>((e) => Coin.fromJson(e)).toList() as List<Coin>;
+      notifyListeners();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  notify(String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(
+            fontSize: ViewConstants.fontSmall,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.black,
+      ),
+    );
   }
 
   refresh() => notifyListeners();

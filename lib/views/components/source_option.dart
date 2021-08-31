@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/data_source.dart';
 
@@ -15,25 +16,22 @@ class SourceOption extends StatelessWidget {
     required this.onChanged,
   });
 
-  MaterialStateProperty<T> msp<T>(T property) =>
-      MaterialStateProperty.all<T>(property);
-
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         SizedBox(
-          width: 18,
-          height: 18,
+          width: ViewConstants.radioButtonSize,
+          height: ViewConstants.radioButtonSize,
           child: Radio<DataSource>(
-            fillColor: msp(ViewConstants.primaryColor),
+            fillColor: HelperFunctions.msp(ViewConstants.colorPrimary),
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 10),
+          padding: EdgeInsets.only(left: ViewConstants.gapSmall),
           child: Text(
             label,
             style: TextStyle(fontSize: ViewConstants.fontSmall),

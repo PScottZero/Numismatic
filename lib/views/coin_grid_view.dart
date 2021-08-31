@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';

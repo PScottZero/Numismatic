@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/data_source.dart';
 
 import 'source_option.dart';
 
-class MultiSourceTextField extends StatefulWidget {
+class MultiSourceField extends StatefulWidget {
   final String label;
   final String initialValueManual;
   final DataSource initialDataSource;
   final Function(String) onChanged;
   final Function(DataSource?) onRadioChanged;
 
-  const MultiSourceTextField({
+  const MultiSourceField({
     required this.label,
     required this.initialValueManual,
     required this.initialDataSource,
@@ -21,7 +20,7 @@ class MultiSourceTextField extends StatefulWidget {
   });
 
   @override
-  _MultiSourceTextFieldState createState() => _MultiSourceTextFieldState(
+  _MultiSourceFieldState createState() => _MultiSourceFieldState(
         label,
         initialValueManual,
         initialDataSource,
@@ -30,16 +29,17 @@ class MultiSourceTextField extends StatefulWidget {
       );
 }
 
-class _MultiSourceTextFieldState extends State<MultiSourceTextField> {
+class _MultiSourceFieldState extends State<MultiSourceField> {
   final String label;
   final String manualInitialValue;
   final DataSource initialDataSource;
   final Function(String) onChanged;
   final Function(DataSource?) onRadioChanged;
+
   late TextEditingController _controller;
   DataSource _source = DataSource.auto;
 
-  _MultiSourceTextFieldState(
+  _MultiSourceFieldState(
     this.label,
     this.manualInitialValue,
     this.initialDataSource,
