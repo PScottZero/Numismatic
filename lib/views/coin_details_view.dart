@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/data_source.dart';
-import 'package:numismatic/scraper/greysheet-scraper.dart';
+import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:numismatic/views/components/coin_image_carousel.dart';
 import 'package:numismatic/views/components/confirm_cancel_dialog.dart';
@@ -96,7 +96,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
             ),
             body: ListView(
               children: [
-                CoinImageCarousel(coin),
+                coin.images != null
+                    ? CoinImageCarousel(model.allCoins.indexOf(coin))
+                    : Container(),
                 Container(
                   padding: ViewConstants.paddingAllLarge(top: false),
                   child: Column(

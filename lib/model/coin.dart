@@ -37,7 +37,7 @@ class Coin {
     this.images,
     this.notes,
     this.inCollection = true,
-    this.imagesSource = DataSource.auto,
+    this.imagesSource = DataSource.manual,
     this.mintageSource = DataSource.auto,
     this.retailPriceSource = DataSource.auto,
     this.photogradeName,

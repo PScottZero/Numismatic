@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ViewConstants {
+  static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/250/';
+
   // colors
   static final Color colorButton = Colors.green[300]!;
   static final Color colorCardTitle = Color(0x77000000);
@@ -25,6 +27,23 @@ class ViewConstants {
   static final cardTitleMargin = EdgeInsets.all(10);
   static const cardTitleMaxHeight = 100.0;
   static final cardTitlePadding = EdgeInsets.fromLTRB(10, 5, 10, 5);
+  static final decorationInput = InputDecoration(
+    contentPadding: ViewConstants.paddingAllLarge(),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: ViewConstants.colorPrimary,
+        width: ViewConstants.borderWidthFocused,
+      ),
+      borderRadius: ViewConstants.borderRadiusMedium,
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(
+        color: Colors.white,
+        width: ViewConstants.borderWidthUnfocused,
+      ),
+      borderRadius: ViewConstants.borderRadiusMedium,
+    ),
+  );
   static const dotSize = 8.0;
   static const dotSpacing = 8.0;
   static const dropShadow = [

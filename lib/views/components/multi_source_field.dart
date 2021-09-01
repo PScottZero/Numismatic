@@ -4,68 +4,37 @@ import 'package:numismatic/model/data_source.dart';
 
 import 'source_option.dart';
 
-class MultiSourceField extends StatefulWidget {
+class MultiSourceField<T> extends StatefulWidget {
   final String label;
-  final String initialValueManual;
   final DataSource initialDataSource;
-  final Function(String) onChanged;
+  final Widget manualChild;
   final Function(DataSource?) onRadioChanged;
 
   const MultiSourceField({
     required this.label,
-    required this.initialValueManual,
     required this.initialDataSource,
-    required this.onChanged,
+    required this.manualChild,
     required this.onRadioChanged,
   });
 
   @override
-  _MultiSourceFieldState createState() => _MultiSourceFieldState(
-        label,
-        initialValueManual,
-        initialDataSource,
-        onChanged,
-        onRadioChanged,
-      );
+  _MultiSourceFieldState createState() => _MultiSourceFieldState();
 }
 
 class _MultiSourceFieldState extends State<MultiSourceField> {
-  final String label;
-  final String manualInitialValue;
-  final DataSource initialDataSource;
-  final Function(String) onChanged;
-  final Function(DataSource?) onRadioChanged;
-
-  late TextEditingController _controller;
   DataSource _source = DataSource.auto;
-
-  _MultiSourceFieldState(
-    this.label,
-    this.manualInitialValue,
-    this.initialDataSource,
-    this.onChanged,
-    this.onRadioChanged,
-  ) {
-    _source = initialDataSource;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController()..text = manualInitialValue;
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   changeDataSource(DataSource? source) {
     setState(() {
       _source = source ?? DataSource.auto;
     });
-    onRadioChanged(source);
+    widget.onRadioChanged(source);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _source = widget.initialDataSource;
   }
 
   @override
@@ -73,7 +42,7 @@ class _MultiSourceFieldState extends State<MultiSourceField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
+        Text(widget.label),
         SizedBox(height: ViewConstants.gapSmall),
         Padding(
           padding: EdgeInsets.only(bottom: ViewConstants.gapSmall),
@@ -102,26 +71,8 @@ class _MultiSourceFieldState extends State<MultiSourceField> {
           ),
         ),
         _source == DataSource.manual
-            ? Column(
-                children: [
-                  TextField(
-                    controller: _controller,
-                    onChanged: onChanged,
-                    style: TextStyle(
-                      fontSize: ViewConstants.fontMedium,
-                    ),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: ViewConstants.gapSmall),
-                ],
-              )
-            : Container(),
-        SizedBox(height: ViewConstants.gapSmall),
+            ? widget.manualChild
+            : SizedBox(height: ViewConstants.gapSmall),
       ],
     );
   }

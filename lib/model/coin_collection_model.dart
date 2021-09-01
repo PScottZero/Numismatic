@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
-import 'package:numismatic/scraper/greysheet-scraper.dart';
+import 'package:numismatic/scraper/greysheet_scraper.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'coin.dart';
@@ -99,7 +101,10 @@ class CoinCollectionModel extends ChangeNotifier {
   }
 
   Coin? coinAtIndex(int index) {
-    return allCoins[index];
+    if (index >= 0 && index < allCoins.length) {
+      return allCoins[index];
+    }
+    return null;
   }
 
   toggleInCollection(Coin coin) {
@@ -109,22 +114,30 @@ class CoinCollectionModel extends ChangeNotifier {
   }
 
   saveCollectionJson() async {
-    await File('/storage/emulated/0/Documents/collection.json').writeAsString(
-      jsonEncode(allCoins.map((e) => e.toJson()).toList()),
-    );
+    var dir = await DownloadsPathProvider.downloadsDirectory;
+    if (await Permission.storage.request().isGranted && dir != null) {
+      await File('${dir.path}/collection.json').writeAsString(
+        jsonEncode(allCoins.map((e) => e.toJson()).toList()),
+      );
+    }
   }
 
   Future<bool> loadCollectionJson() async {
-    var file = File('/storage/emulated/0/Documents/collection.json');
-    if (await file.exists()) {
-      allCoins = jsonDecode(
-        await file.readAsString(),
-      ).map<Coin>((e) => Coin.fromJson(e)).toList() as List<Coin>;
-      notifyListeners();
-      return true;
-    } else {
-      return false;
+    var dir = await DownloadsPathProvider.downloadsDirectory;
+    if (await Permission.storage.request().isGranted && dir != null) {
+      var file = File('${dir.path}/collection.json');
+      if (await file.exists()) {
+        allCoins = jsonDecode(
+          await file.readAsString(),
+        ).map<Coin>((e) => Coin.fromJson(e)).toList() as List<Coin>;
+        saveCoins();
+        notifyListeners();
+        return true;
+      } else {
+        return false;
+      }
     }
+    return false;
   }
 
   notify(String message, BuildContext context) {

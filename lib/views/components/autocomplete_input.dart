@@ -44,10 +44,14 @@ class AutocompleteInput extends StatelessWidget {
             if (pattern == '') {
               return options;
             }
-            return options.where(
+            var matching = options.where(
               (element) =>
                   element.toLowerCase().contains(pattern.toLowerCase()),
             );
+            if (matching.length > 0) {
+              return matching;
+            }
+            return [pattern];
           },
           itemBuilder: (context, suggestion) {
             return Padding(
@@ -55,6 +59,13 @@ class AutocompleteInput extends StatelessWidget {
               child: Text(suggestion.toString()),
             );
           },
+          noItemsFoundBuilder: (context) => Padding(
+            padding: ViewConstants.paddingAllSmall,
+            child: Text(
+              'Not Found',
+              style: TextStyle(fontStyle: FontStyle.italic),
+            ),
+          ),
           onSuggestionSelected: (suggestion) {
             _typeAheadController.text = suggestion;
             onChanged(suggestion);
@@ -65,22 +76,7 @@ class AutocompleteInput extends StatelessWidget {
             style: TextStyle(
               fontSize: ViewConstants.fontMedium,
             ),
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: ViewConstants.colorPrimary,
-                  width: ViewConstants.borderWidthFocused,
-                ),
-                borderRadius: ViewConstants.borderRadiusMedium,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.white,
-                  width: ViewConstants.borderWidthUnfocused,
-                ),
-                borderRadius: ViewConstants.borderRadiusMedium,
-              ),
-            ),
+            decoration: ViewConstants.decorationInput,
           ),
         ),
         SizedBox(height: ViewConstants.gapLarge),
