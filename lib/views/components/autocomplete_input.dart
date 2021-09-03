@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/model/reference.dart';
 
 class AutocompleteInput extends StatelessWidget {
   final String label;
-  final String initialValue;
+  final StringReference reference;
   final List<String> options;
-  final Function(String) onChanged;
+  final VoidCallback? refresh;
   final bool required;
 
   final TextEditingController _typeAheadController = TextEditingController();
 
   AutocompleteInput({
     required this.label,
-    required this.initialValue,
+    required this.reference,
     required this.options,
-    required this.onChanged,
+    this.refresh,
     this.required = false,
   }) {
-    _typeAheadController.text = initialValue;
+    _typeAheadController.text = reference.value ?? '';
   }
 
   @override
@@ -68,11 +69,11 @@ class AutocompleteInput extends StatelessWidget {
           ),
           onSuggestionSelected: (suggestion) {
             _typeAheadController.text = suggestion;
-            onChanged(suggestion);
+            reference.value = suggestion;
+            if (refresh != null) refresh!();
           },
           textFieldConfiguration: TextFieldConfiguration(
             controller: _typeAheadController,
-            autofocus: true,
             style: TextStyle(
               fontSize: ViewConstants.fontMedium,
             ),

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
@@ -30,7 +29,7 @@ class AddCoinView extends StatefulWidget {
     if (coin != null && edit) {
       return Coin.copyOf(coin!);
     }
-    return Coin(inCollection: !addToWantlist);
+    return Coin.empty(inCollection: !addToWantlist);
   }
 
   AddCoinView({
@@ -46,7 +45,8 @@ class AddCoinView extends StatefulWidget {
 
 class _AddCoinViewState extends State<AddCoinView> {
   Coin _coin;
-  List<String> _variations = [];
+  List<String> get _variations =>
+      modelRef?.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
   CoinCollectionModel? modelRef;
 
   _AddCoinViewState(this._coin);
@@ -56,9 +56,9 @@ class _AddCoinViewState extends State<AddCoinView> {
     String? manualGrade,
   ) async {
     var photogradeType = manualName ??
-        CoinType.coinTypeFromString(_coin.type)?.photogradeName ??
+        CoinType.coinTypeFromString(_coin.type.value ?? '')?.photogradeName ??
         '';
-    var grade = manualGrade ?? gradeToNumber(_coin.grade!);
+    var grade = manualGrade ?? gradeToNumber(_coin.grade.value ?? '');
     var urls = [
       '${ViewConstants.pcgsUrl}$photogradeType-${grade}o.jpg',
       '${ViewConstants.pcgsUrl}$photogradeType-${grade}r.jpg',
@@ -84,14 +84,15 @@ class _AddCoinViewState extends State<AddCoinView> {
   }
 
   addCoin() async {
-    if (_coin.type != '') {
-      if (_coin.variation != null) {
+    if (_coin.type.value != '') {
+      if (_coin.variation.value != null) {
         await handleDataSource(
           _coin.mintageSource,
           () async => _coin.mintage = modelRef
-                  ?.greysheetStaticData![CoinType.coinTypeFromString(_coin.type)
-                          ?.getGreysheetName() ??
-                      _coin.type]?[_coin.variation]
+                  ?.greysheetStaticData![
+                      CoinType.coinTypeFromString(_coin.type.value ?? '')
+                              ?.getGreysheetName() ??
+                          _coin.type.value]?[_coin.variation.value]
                   ?.mintage ??
               null,
         );
@@ -140,8 +141,6 @@ class _AddCoinViewState extends State<AddCoinView> {
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
-        _variations =
-            model.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
         modelRef = model;
         return Scaffold(
           appBar: AppBar(
@@ -156,38 +155,21 @@ class _AddCoinViewState extends State<AddCoinView> {
             children: [
               AutocompleteInput(
                 label: 'Coin Type',
-                initialValue: _coin.type,
+                reference: _coin.type,
                 options: model.allCoinTypes,
-                onChanged: (type) {
-                  setState(() {
-                    _coin.type = type;
-                    _variations = model.greysheetStaticData?[_coin.typeId]?.keys
-                            .toList() ??
-                        [];
-                  });
-                },
+                refresh: () => setState(() {}),
                 required: true,
               ),
               AutocompleteInput(
                 label: 'Variation',
-                initialValue: _coin.variation ?? '',
+                reference: _coin.variation,
                 options: _variations,
-                onChanged: (variation) {
-                  _coin.variation = nullIfEmpty(variation);
-                  var yearAndMintMark =
-                      HelperFunctions.yearAndMintMarkFromVariation(variation);
-                  _coin.year = nullIfEmpty(yearAndMintMark?.item1);
-                  _coin.mintMark = nullIfEmpty(yearAndMintMark?.item2);
-                },
                 required: true,
               ),
               AutocompleteInput(
                 label: 'Grade',
-                initialValue: _coin.grade ?? '',
+                reference: _coin.grade,
                 options: grades,
-                onChanged: (grade) {
-                  _coin.grade = nullIfEmpty(grade);
-                },
               ),
               MultiSourceField<String>(
                 label: 'Mintage',

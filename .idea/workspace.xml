@@ -10,41 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/views/components/deletable_image.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/model/coin_comparator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/model/reference.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/constants/view_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/view_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated_plugin_registrant.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/model/coin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/model/coin.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.g.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/coin_type.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_type.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/greysheet_price_request.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/greysheet_price_request.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/greysheet_static_data.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/greysheet_static_data.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/scraper/greysheet-scraper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/scraper/greysheet_scraper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/scraper/greysheet_scraper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/scraper/greysheet_scraper.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/add_coin_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/coin_details_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/components/autocomplete_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/autocomplete_input.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/coin_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_data_text_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/coin_data_text_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_image_carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/coin_image_carousel.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/components/coin_images_selector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/image_selector.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/components/multi_source_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/multi_source_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/numismatic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/numismatic.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\8psco\.android\avd\Pixel_5_API_31.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -63,6 +52,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1x9Iq15KK5OkU8jzkvrs67qP0tl" />
   <component name="ProjectView">
@@ -139,5 +131,21 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/views/add_coin_view.dart</url>
+          <line>86</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/views/add_coin_view.dart</url>
+          <line>78</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

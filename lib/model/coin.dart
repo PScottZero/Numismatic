@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/model/coin_type.dart';
+import 'package:numismatic/model/reference.dart';
 
 import 'data_source.dart';
 
@@ -8,26 +9,26 @@ part 'coin.g.dart';
 
 @JsonSerializable()
 class Coin {
-  String type;
+  StringReference type = StringReference();
   String? year;
   String? mintMark;
-  String? variation;
+  StringReference variation = StringReference();
   String? mintage;
-  String? grade;
+  StringReference grade = StringReference();
   String? retailPrice;
   List<String>? images;
   String? notes;
-  bool inCollection;
-  DataSource imagesSource;
-  DataSource mintageSource;
-  DataSource retailPriceSource;
+  bool inCollection = true;
+  DataSource imagesSource = DataSource.manual;
+  DataSource mintageSource = DataSource.auto;
+  DataSource retailPriceSource = DataSource.auto;
   String? photogradeName;
   String? photogradeGrade;
   DateTime? dateAdded;
   DateTime? retailPriceLastUpdated;
 
-  Coin({
-    this.type = '',
+  Coin(
+    this.type,
     this.year,
     this.mintMark,
     this.variation,
@@ -36,66 +37,62 @@ class Coin {
     this.retailPrice,
     this.images,
     this.notes,
-    this.inCollection = true,
-    this.imagesSource = DataSource.manual,
-    this.mintageSource = DataSource.auto,
-    this.retailPriceSource = DataSource.auto,
+    this.inCollection,
+    this.imagesSource,
+    this.mintageSource,
+    this.retailPriceSource,
     this.photogradeName,
     this.photogradeGrade,
     this.dateAdded,
     this.retailPriceLastUpdated,
-  });
+  );
+
+  Coin.empty({this.inCollection = true});
 
   static Coin copyOf(Coin coin) {
     return Coin(
-      type: coin.type,
-      year: coin.year,
-      mintMark: coin.mintMark,
-      variation: coin.variation,
-      mintage: coin.mintage,
-      grade: coin.grade,
-      retailPrice: coin.retailPrice,
-      images: coin.images,
-      notes: coin.notes,
-      inCollection: coin.inCollection,
-      imagesSource: coin.imagesSource,
-      mintageSource: coin.mintageSource,
-      retailPriceSource: coin.retailPriceSource,
-      photogradeName: coin.photogradeName,
-      photogradeGrade: coin.photogradeGrade,
-      dateAdded: coin.dateAdded,
-      retailPriceLastUpdated: coin.retailPriceLastUpdated,
+      coin.type,
+      coin.year,
+      coin.mintMark,
+      coin.variation,
+      coin.mintage,
+      coin.grade,
+      coin.retailPrice,
+      coin.images,
+      coin.notes,
+      coin.inCollection,
+      coin.imagesSource,
+      coin.mintageSource,
+      coin.retailPriceSource,
+      coin.photogradeName,
+      coin.photogradeGrade,
+      coin.dateAdded,
+      coin.retailPriceLastUpdated,
     );
   }
 
-  String? get typeId {
-    var coinType = CoinType.coinTypeFromString(type);
+  String get typeId {
+    var coinType = CoinType.coinTypeFromString(type.value ?? '');
     if (coinType != null) {
       return coinType.getGreysheetName();
     } else {
-      return type;
+      return type.value ?? '';
     }
   }
 
   String get fullType {
-    final yearAndMintMark =
-        HelperFunctions.yearAndMintMarkFromVariation(variation ?? '');
-
-    // remove year (YYYY) or year and mint mark (YYYY-MM) from variation
-    final remove = yearAndMintMark?.item2 != null
-        ? '${yearAndMintMark!.item1}-${yearAndMintMark.item2}'
-        : yearAndMintMark?.item1 != null
-            ? yearAndMintMark?.item1
-            : '';
-    var variationWithoutYearOrMintMark =
-        variation?.replaceAll(remove!, '').trim() ?? '';
-    var variationInParentheses =
-        variation != null && variationWithoutYearOrMintMark.length > 2
-            ? '($variationWithoutYearOrMintMark)'
-            : '';
-    return '${year ?? ""}${mintMark != null ? "-$mintMark" : ""} $type $variationInParentheses'
-        .trim();
+    if (hasYear()) {
+      final year = variation.value?.split(' ')[0];
+      final noYearVariation = variation.value?.replaceAll(year ?? '', '');
+      return '$year ${type.value ?? ''} $noYearVariation';
+    } else {
+      return '${type.value ?? ''} ${variation.value ?? ''}';
+    }
   }
+
+  hasYear() =>
+      HelperFunctions.yearAndMintMarkFromVariation(variation.value ?? '') !=
+      null;
 
   factory Coin.fromJson(Map<String, dynamic> json) => _$CoinFromJson(json);
 

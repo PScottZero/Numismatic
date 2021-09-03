@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
+import 'package:numismatic/model/sort_method.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'coin.dart';
+import 'coin_comparator.dart';
 import 'coin_type.dart';
 
 const String ALL_COINS_KEY = 'coins';
@@ -23,9 +25,7 @@ class CoinCollectionModel extends ChangeNotifier {
       allCoins.where((element) => !element.inCollection).toList();
   List<CoinType> coinTypes = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
-
-  String? lastCoinType;
-  String? lastVariation;
+  SortMethod sortMethod = SortMethod.type;
 
   CoinCollectionModel() {
     loadTypes();
@@ -75,7 +75,7 @@ class CoinCollectionModel extends ChangeNotifier {
   }
 
   saveCoins() async {
-    allCoins.sort((a, b) => a.fullType.compareTo(b.fullType));
+    allCoins.sort(CoinComparator.get(sortMethod));
     var preferences = await SharedPreferences.getInstance();
     preferences.setString(
       'coins',

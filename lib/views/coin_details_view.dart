@@ -69,8 +69,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                coin.type,
+                coin.type.value ?? '',
                 style: GoogleFonts.comfortaa(),
+                textAlign: TextAlign.center,
               ),
               actions: [
                 Padding(
@@ -104,16 +105,19 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        coin.fullType,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: ViewConstants.fontLarge,
-                          fontWeight: FontWeight.bold,
-                          height: ViewConstants.spacing1_5,
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          coin.fullType,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: ViewConstants.fontLarge,
+                            fontWeight: FontWeight.bold,
+                            height: ViewConstants.spacing1_5,
+                          ),
                         ),
                       ),
-                      Detail(name: 'Grade', value: coin.grade),
+                      Detail(name: 'Grade', value: coin.grade.value),
                       Detail(
                         name: 'Mintage',
                         value: coin.mintageSource != DataSource.none

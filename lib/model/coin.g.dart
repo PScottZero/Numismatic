@@ -8,27 +8,25 @@ part of 'coin.dart';
 
 Coin _$CoinFromJson(Map<String, dynamic> json) {
   return Coin(
-    type: json['type'] as String,
-    year: json['year'] as String?,
-    mintMark: json['mintMark'] as String?,
-    variation: json['variation'] as String?,
-    mintage: json['mintage'] as String?,
-    grade: json['grade'] as String?,
-    retailPrice: json['retailPrice'] as String?,
-    images:
-        (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
-    notes: json['notes'] as String?,
-    inCollection: json['inCollection'] as bool,
-    imagesSource: _$enumDecode(_$DataSourceEnumMap, json['imagesSource']),
-    mintageSource: _$enumDecode(_$DataSourceEnumMap, json['mintageSource']),
-    retailPriceSource:
-        _$enumDecode(_$DataSourceEnumMap, json['retailPriceSource']),
-    photogradeName: json['photogradeName'] as String?,
-    photogradeGrade: json['photogradeGrade'] as String?,
-    dateAdded: json['dateAdded'] == null
+    StringReference.fromJson(json['type'] as Map<String, dynamic>),
+    json['year'] as String?,
+    json['mintMark'] as String?,
+    StringReference.fromJson(json['variation'] as Map<String, dynamic>),
+    json['mintage'] as String?,
+    StringReference.fromJson(json['grade'] as Map<String, dynamic>),
+    json['retailPrice'] as String?,
+    (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    json['notes'] as String?,
+    json['inCollection'] as bool,
+    _$enumDecode(_$DataSourceEnumMap, json['imagesSource']),
+    _$enumDecode(_$DataSourceEnumMap, json['mintageSource']),
+    _$enumDecode(_$DataSourceEnumMap, json['retailPriceSource']),
+    json['photogradeName'] as String?,
+    json['photogradeGrade'] as String?,
+    json['dateAdded'] == null
         ? null
         : DateTime.parse(json['dateAdded'] as String),
-    retailPriceLastUpdated: json['retailPriceLastUpdated'] == null
+    json['retailPriceLastUpdated'] == null
         ? null
         : DateTime.parse(json['retailPriceLastUpdated'] as String),
   );

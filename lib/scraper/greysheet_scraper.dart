@@ -9,12 +9,12 @@ class GreysheetScraper {
 
   static Future<String?> retailPriceForCoin(Coin coin) =>
       _scrapeRetailPriceFromGreysheet(
-        staticData?[CoinType.coinTypeFromString(coin.type)
+        staticData?[CoinType.coinTypeFromString(coin.type.value ?? '')
                         ?.getGreysheetName() ??
-                    coin.type]?[coin.variation]
+                    coin.type.value]?[coin.variation.value]
                 ?.pricesUrl ??
             '',
-        coin.grade?.replaceAll('-', '') ?? '',
+        coin.grade.value?.replaceAll('-', '') ?? '',
       );
 
   static Future<String?> _scrapeRetailPriceFromGreysheet(

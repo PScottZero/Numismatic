@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/add_coin_view.dart';
+import 'package:numismatic/views/components/coin_card.dart';
 import 'package:provider/provider.dart';
-
-import 'components/coin_card.dart';
 
 class CoinGridView extends StatelessWidget {
   final bool isWantlist;

@@ -38,7 +38,6 @@ class ViewConstants {
     ),
     enabledBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: Colors.white,
         width: ViewConstants.borderWidthUnfocused,
       ),
       borderRadius: ViewConstants.borderRadiusMedium,
