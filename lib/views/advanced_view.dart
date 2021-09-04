@@ -2,32 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/components/confirm_cancel_dialog.dart';
-import 'package:numismatic/views/components/detail.dart';
 import 'package:numismatic/views/components/rounded_button.dart';
 import 'package:provider/provider.dart';
 
-class CollectionInfoView extends StatefulWidget {
+class AdvancedView extends StatefulWidget {
   @override
-  _CollectionInfoViewState createState() => _CollectionInfoViewState();
+  _AdvancedViewState createState() => _AdvancedViewState();
 }
 
-class _CollectionInfoViewState extends State<CollectionInfoView> {
+class _AdvancedViewState extends State<AdvancedView> {
   CoinCollectionModel? _modelRef;
-
-  String collectionValue(CoinCollectionModel model) {
-    if (model.collection.length > 0) {
-      var sum = model.collection
-          .map(
-            (e) => double.tryParse(
-              e.retailPrice?.replaceAll('\$', '').replaceAll(',', '') ?? '',
-            ),
-          )
-          .toList()
-          .reduce((sum, element) => (sum ?? 0) + (element ?? 0));
-      return '\$${(sum ?? 0.0).toStringAsFixed(2)}';
-    }
-    return '\$0.00';
-  }
 
   _showRestoreDialog() async {
     return showDialog(
@@ -65,32 +49,12 @@ class _CollectionInfoViewState extends State<CollectionInfoView> {
         return Container(
           padding: ViewConstants.paddingAllLarge(),
           child: Center(
-            child: ListView(
+            child: Column(
               children: [
-                Text(
-                  'Collection Info',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: ViewConstants.fontLarge,
-                    fontWeight: FontWeight.bold,
-                    height: ViewConstants.spacing1_5,
-                  ),
-                ),
-                Detail(
-                  name: 'Coins In Collection',
-                  value: model.collection.length.toString(),
-                ),
-                Detail(
-                  name: 'Coins In Wantlist',
-                  value: model.wantlist.length.toString(),
-                ),
-                Detail(
-                  name: 'Collection Value',
-                  value: collectionValue(model),
-                ),
                 RoundedButton(
                   label: 'Backup App Data',
                   onPressed: _backup,
+                  topMargin: false,
                 ),
                 RoundedButton(
                   label: 'Restore App Data',

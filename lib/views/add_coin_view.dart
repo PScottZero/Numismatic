@@ -13,6 +13,7 @@ import 'package:numismatic/model/grades.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:numismatic/views/components/autocomplete_input.dart';
 import 'package:numismatic/views/components/coin_data_text_field.dart';
+import 'package:numismatic/views/components/loading_dialog.dart';
 import 'package:numismatic/views/components/multi_source_field.dart';
 import 'package:numismatic/views/components/rounded_button.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,6 @@ class AddCoinView extends StatefulWidget {
   final Coin? coin;
   final bool addToWantlist;
   final bool edit;
-  final int coinIndex;
 
   Coin get coinParameter {
     if (coin != null && edit) {
@@ -32,12 +32,7 @@ class AddCoinView extends StatefulWidget {
     return Coin.empty(inCollection: !addToWantlist);
   }
 
-  AddCoinView({
-    required this.addToWantlist,
-    required this.edit,
-    this.coin,
-    this.coinIndex = -1,
-  });
+  AddCoinView({this.addToWantlist = false, this.edit = false, this.coin});
 
   @override
   _AddCoinViewState createState() => _AddCoinViewState(coinParameter);
@@ -46,8 +41,8 @@ class AddCoinView extends StatefulWidget {
 class _AddCoinViewState extends State<AddCoinView> {
   Coin _coin;
   List<String> get _variations =>
-      modelRef?.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
-  CoinCollectionModel? modelRef;
+      _model?.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
+  CoinCollectionModel? _model;
 
   _AddCoinViewState(this._coin);
 
@@ -86,9 +81,15 @@ class _AddCoinViewState extends State<AddCoinView> {
   addCoin() async {
     if (_coin.type.value != '') {
       if (_coin.variation.value != null) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return LoadingDialog();
+          },
+        );
         await handleDataSource(
           _coin.mintageSource,
-          () async => _coin.mintage = modelRef
+          () async => _coin.mintage = _model
                   ?.greysheetStaticData![
                       CoinType.coinTypeFromString(_coin.type.value ?? '')
                               ?.getGreysheetName() ??
@@ -107,23 +108,21 @@ class _AddCoinViewState extends State<AddCoinView> {
       }
       await handleDataSource(
         _coin.imagesSource,
-        () async {
-          _coin.images = await getImagesFromPCGS(
-            _coin.photogradeName,
-            _coin.photogradeGrade,
-          );
-        },
+        () async => _coin.images = await getImagesFromPCGS(
+          _coin.photogradeName,
+          _coin.photogradeGrade,
+        ),
       );
       if ((_coin.images?.length ?? -1) == 0) {
         _coin.images = null;
       }
-      if (widget.edit && widget.coinIndex >= 0) {
-        modelRef?.overwriteCoin(widget.coinIndex, _coin);
-        modelRef?.refresh();
+      if (widget.edit) {
+        _model?.overwriteCoin(widget.coin!, _coin);
       } else {
         _coin.dateAdded = DateTime.now();
-        modelRef?.addCoin(_coin);
+        _model?.addCoin(_coin);
       }
+      Navigator.of(context).pop();
       Navigator.of(context).pop();
     }
   }
@@ -141,7 +140,7 @@ class _AddCoinViewState extends State<AddCoinView> {
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
-        modelRef = model;
+        _model = model;
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,

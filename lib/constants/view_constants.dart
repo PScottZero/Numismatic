@@ -6,7 +6,8 @@ class ViewConstants {
   // colors
   static final Color colorButton = Colors.green[300]!;
   static final Color colorCardTitle = Color(0x77000000);
-  static final Color colorInactive = Colors.grey[300]!;
+  static final Color colorInactiveLight = Colors.grey[300]!;
+  static final Color colorInactiveDark = Colors.grey[500]!;
   static final Color colorPrimary = Colors.blue[300]!;
   static final Color colorWarning = Colors.red[300]!;
 
@@ -27,22 +28,25 @@ class ViewConstants {
   static final cardTitleMargin = EdgeInsets.all(10);
   static const cardTitleMaxHeight = 100.0;
   static final cardTitlePadding = EdgeInsets.fromLTRB(10, 5, 10, 5);
-  static final decorationInput = InputDecoration(
-    contentPadding: ViewConstants.paddingAllLarge(),
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        color: ViewConstants.colorPrimary,
-        width: ViewConstants.borderWidthFocused,
-      ),
-      borderRadius: ViewConstants.borderRadiusMedium,
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(
-        width: ViewConstants.borderWidthUnfocused,
-      ),
-      borderRadius: ViewConstants.borderRadiusMedium,
-    ),
-  );
+  static decorationInput(Brightness brightness) => InputDecoration(
+        contentPadding: ViewConstants.paddingAllLarge(),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ViewConstants.colorPrimary,
+            width: ViewConstants.borderWidthFocused,
+          ),
+          borderRadius: ViewConstants.borderRadiusMedium,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: brightness == Brightness.light
+                ? ViewConstants.colorInactiveDark
+                : ViewConstants.colorInactiveLight,
+            width: ViewConstants.borderWidthUnfocused,
+          ),
+          borderRadius: ViewConstants.borderRadiusMedium,
+        ),
+      );
   static const dotSize = 8.0;
   static const dotSpacing = 8.0;
   static const dropShadow = [
@@ -52,6 +56,7 @@ class ViewConstants {
     ),
   ];
   static const gapLarge = 20.0;
+  static const gapMedium = 15.0;
   static const gapSmall = 10.0;
   static const gridColumnCount = 2;
   static const gridGap = 10.0;

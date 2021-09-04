@@ -21,14 +21,13 @@ class CoinCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CoinDetailsView(
-                model.allCoins.indexOf(coin),
-              ),
+              builder: (context) => CoinDetailsView(coin),
             ),
           ),
         },
         child: Card(
           elevation: 5,
+          margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: ViewConstants.borderRadiusLarge,
           ),

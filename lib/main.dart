@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/views/advanced_view.dart';
 import 'package:numismatic/views/coin_grid_view.dart';
-import 'package:numismatic/views/collection_info_view.dart';
 import 'package:provider/provider.dart';
 
 import 'model/coin_collection_model.dart';
@@ -54,7 +54,7 @@ class _NavigationState extends State<Navigation> {
   final _options = <Widget>[
     CoinGridView(),
     CoinGridView(isWantlist: true),
-    CollectionInfoView(),
+    AdvancedView(),
   ];
 
   void _onTap(int index) {
@@ -104,16 +104,24 @@ class _NavigationState extends State<Navigation> {
         currentIndex: _selectedIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.grid_view),
+            icon: Icon(_selectedIndex == 0
+                ? Icons.grid_view_rounded
+                : Icons.grid_view),
             label: 'Collection',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
+            icon: Icon(
+              _selectedIndex == 1 ? Icons.favorite : Icons.favorite_border,
+            ),
             label: 'Wantlist',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info_outline),
-            label: 'Info',
+            icon: Icon(
+              _selectedIndex == 2
+                  ? Icons.bug_report
+                  : Icons.bug_report_outlined,
+            ),
+            label: 'Advanced',
           ),
         ],
       ),

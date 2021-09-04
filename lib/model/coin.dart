@@ -71,6 +71,26 @@ class Coin {
     );
   }
 
+  static set(Coin destination, Coin source) {
+    destination.type = source.type;
+    destination.year = source.year;
+    destination.mintMark = source.mintMark;
+    destination.variation = source.variation;
+    destination.mintage = source.mintage;
+    destination.grade = source.grade;
+    destination.retailPrice = source.retailPrice;
+    destination.images = source.images;
+    destination.notes = source.notes;
+    destination.inCollection = source.inCollection;
+    destination.imagesSource = source.imagesSource;
+    destination.mintageSource = source.mintageSource;
+    destination.retailPriceSource = source.retailPriceSource;
+    destination.photogradeName = source.photogradeName;
+    destination.photogradeGrade = source.photogradeGrade;
+    destination.dateAdded = source.dateAdded;
+    destination.retailPriceLastUpdated = source.retailPriceLastUpdated;
+  }
+
   String get typeId {
     var coinType = CoinType.coinTypeFromString(type.value ?? '');
     if (coinType != null) {

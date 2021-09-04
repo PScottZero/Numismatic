@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/data_source.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:numismatic/views/add_coin_view.dart';
-import 'package:numismatic/views/components/coin_image_carousel.dart';
+import 'package:numismatic/views/components/image_carousel.dart';
 import 'package:numismatic/views/components/confirm_cancel_dialog.dart';
 import 'package:numismatic/views/components/rounded_button.dart';
 import 'package:provider/provider.dart';
@@ -13,31 +14,26 @@ import 'package:provider/provider.dart';
 import 'components/detail.dart';
 
 class CoinDetailsView extends StatefulWidget {
-  final int coinIndex;
+  final Coin coin;
 
-  const CoinDetailsView(this.coinIndex);
+  const CoinDetailsView(this.coin);
 
   @override
-  _CoinDetailsViewState createState() => _CoinDetailsViewState(this.coinIndex);
+  _CoinDetailsViewState createState() => _CoinDetailsViewState();
 }
 
 class _CoinDetailsViewState extends State<CoinDetailsView> {
-  final int coinIndex;
   CoinCollectionModel? _modelRef;
-
-  _CoinDetailsViewState(this.coinIndex);
 
   init(CoinCollectionModel model) {
     _modelRef = model;
-    var coin = model.coinAtIndex(coinIndex);
-    if (coin != null) {
-      var thirtyDaysAgo = DateTime.now().subtract(Duration(days: 30));
-      if ((coin.retailPriceLastUpdated ?? DateTime.now())
-          .isBefore(thirtyDaysAgo)) {
-        setState(() async {
-          coin.retailPrice = await GreysheetScraper.retailPriceForCoin(coin);
-        });
-      }
+    var thirtyDaysAgo = DateTime.now().subtract(Duration(days: 30));
+    if ((widget.coin.retailPriceLastUpdated ?? DateTime.now())
+        .isBefore(thirtyDaysAgo)) {
+      setState(() async {
+        widget.coin.retailPrice =
+            await GreysheetScraper.retailPriceForCoin(widget.coin);
+      });
     }
   }
 
@@ -50,7 +46,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
           message: 'Are you sure you want to delete this coin?',
           confirmAction: 'Delete',
           onConfirmed: () {
-            _modelRef?.deleteCoin(coinIndex);
+            _modelRef?.deleteCoin(widget.coin);
             Navigator.of(context).popUntil((route) => route.isFirst);
           },
         );
@@ -63,92 +59,88 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         init(model);
-        var coin = model.coinAtIndex(coinIndex);
-        if (coin != null) {
-          return Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: Text(
-                coin.type.value ?? '',
-                style: GoogleFonts.comfortaa(),
-                textAlign: TextAlign.center,
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(
+              widget.coin.type.value ?? '',
+              style: GoogleFonts.comfortaa(),
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddCoinView(
+                          coin: widget.coin,
+                          addToWantlist: widget.coin.inCollection,
+                          edit: true,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Icon(Icons.edit),
+                ),
               ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddCoinView(
-                            coin: coin,
-                            addToWantlist: coin.inCollection,
-                            edit: true,
-                            coinIndex: model.allCoins.indexOf(coin),
-                          ),
-                        ),
-                      );
-                    },
-                    child: Icon(Icons.edit),
-                  ),
+            ],
+          ),
+          body: ListView(
+            children: [
+              widget.coin.images != null
+                  ? ImageCarousel(widget.coin.images)
+                  : Container(),
+              Container(
+                padding: ViewConstants.paddingAllLarge(
+                  top: widget.coin.images == null,
                 ),
-              ],
-            ),
-            body: ListView(
-              children: [
-                coin.images != null
-                    ? CoinImageCarousel(model.allCoins.indexOf(coin))
-                    : Container(),
-                Container(
-                  padding: ViewConstants.paddingAllLarge(top: false),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          coin.fullType,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: ViewConstants.fontLarge,
-                            fontWeight: FontWeight.bold,
-                            height: ViewConstants.spacing1_5,
-                          ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        widget.coin.fullType,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: ViewConstants.fontLarge,
+                          fontWeight: FontWeight.bold,
+                          height: ViewConstants.spacing1_5,
                         ),
                       ),
-                      Detail(name: 'Grade', value: coin.grade.value),
-                      Detail(
-                        name: 'Mintage',
-                        value: coin.mintageSource != DataSource.none
-                            ? coin.mintage
-                            : null,
-                      ),
-                      Detail(
-                        name: 'Retail Price',
-                        value: coin.retailPriceSource != DataSource.none
-                            ? coin.retailPrice
-                            : null,
-                      ),
-                      RoundedButton(
-                        label:
-                            'Move to ${coin.inCollection ? 'Wantlist' : 'Collection'}',
-                        onPressed: () => model.toggleInCollection(coin),
-                      ),
-                      RoundedButton(
-                        label: 'Delete',
-                        onPressed: _showDeleteCoinDialog,
-                        color: ViewConstants.colorWarning,
-                      ),
-                    ],
-                  ),
+                    ),
+                    Detail(name: 'Grade', value: widget.coin.grade.value),
+                    Detail(
+                      name: 'Mintage',
+                      value: widget.coin.mintageSource != DataSource.none
+                          ? widget.coin.mintage
+                          : null,
+                    ),
+                    Detail(
+                      name: 'Retail Price',
+                      value: widget.coin.retailPriceSource != DataSource.none
+                          ? widget.coin.retailPrice
+                          : null,
+                    ),
+                    RoundedButton(
+                      label:
+                          'Move to ${widget.coin.inCollection ? 'Wantlist' : 'Collection'}',
+                      onPressed: () => model.toggleInCollection(widget.coin),
+                    ),
+                    RoundedButton(
+                      label: 'Delete',
+                      onPressed: _showDeleteCoinDialog,
+                      color: ViewConstants.colorWarning,
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-        } else {
-          return Container();
-        }
+              ),
+            ],
+          ),
+        );
       },
     );
   }

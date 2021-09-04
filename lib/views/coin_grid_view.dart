@@ -1,34 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:numismatic/views/components/coin_card.dart';
+import 'package:numismatic/views/components/count_and_value.dart';
 import 'package:provider/provider.dart';
 
-class CoinGridView extends StatelessWidget {
+class CoinGridView extends StatefulWidget {
   final bool isWantlist;
 
-  CoinGridView({this.isWantlist = false});
+  const CoinGridView({this.isWantlist = false});
+
+  @override
+  _CoinGridViewState createState() => _CoinGridViewState();
+}
+
+class _CoinGridViewState extends State<CoinGridView> {
+  CoinCollectionModel? _model;
+
+  String get title => widget.isWantlist ? 'Wantlist' : 'Collection';
+  List<Coin> get coins =>
+      widget.isWantlist ? _model?.wantlist ?? [] : _model?.collection ?? [];
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
-        var coins = isWantlist ? model.wantlist : model.collection;
+        var coins = widget.isWantlist ? model.wantlist : model.collection;
+        _model = model;
         return Scaffold(
           body: coins.length > 0
               ? GridView.count(
                   crossAxisCount: ViewConstants.gridColumnCount,
-                  mainAxisSpacing: ViewConstants.gridGap,
-                  crossAxisSpacing: ViewConstants.gridGap,
-                  padding: ViewConstants.paddingAllSmall,
-                  children: coins.map((e) => CoinCard(e)).toList(),
+                  mainAxisSpacing: ViewConstants.gapLarge,
+                  crossAxisSpacing: ViewConstants.gapLarge,
+                  padding: ViewConstants.paddingAllLarge(),
+                  childAspectRatio: 1,
+                  children: <Widget>[CountAndValue(coins)] +
+                      coins.map((e) => CoinCard(e)).toList(),
                 )
               : Container(
                   padding: ViewConstants.paddingAllSmall,
                   child: Center(
                     child: Text(
-                      'Press + to add a coin to your ${isWantlist ? 'wantlist' : 'collection'}',
+                      'Press + to add a coin to your ${widget.isWantlist ? 'wantlist' : 'collection'}',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -39,7 +55,7 @@ class CoinGridView extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => AddCoinView(
-                    addToWantlist: isWantlist,
+                    addToWantlist: widget.isWantlist,
                     edit: false,
                   ),
                 ),

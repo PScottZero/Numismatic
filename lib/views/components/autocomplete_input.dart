@@ -54,9 +54,12 @@ class AutocompleteInput extends StatelessWidget {
             }
             return [pattern];
           },
+          suggestionsBoxDecoration: SuggestionsBoxDecoration(
+            borderRadius: ViewConstants.borderRadiusMedium,
+          ),
           itemBuilder: (context, suggestion) {
             return Padding(
-              padding: ViewConstants.paddingAllSmall,
+              padding: ViewConstants.paddingAllMedium,
               child: Text(suggestion.toString()),
             );
           },
@@ -77,7 +80,9 @@ class AutocompleteInput extends StatelessWidget {
             style: TextStyle(
               fontSize: ViewConstants.fontMedium,
             ),
-            decoration: ViewConstants.decorationInput,
+            decoration: ViewConstants.decorationInput(
+              MediaQuery.of(context).platformBrightness,
+            ),
           ),
         ),
         SizedBox(height: ViewConstants.gapLarge),

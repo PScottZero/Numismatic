@@ -83,9 +83,10 @@ class CoinCollectionModel extends ChangeNotifier {
     );
   }
 
-  overwriteCoin(int index, Coin coin) async {
-    allCoins[index] = coin;
+  overwriteCoin(Coin destination, Coin source) {
+    Coin.set(destination, source);
     saveCoins();
+    notifyListeners();
   }
 
   addCoin(Coin coin) {
@@ -94,17 +95,10 @@ class CoinCollectionModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  deleteCoin(int index) {
-    allCoins.removeAt(index);
+  deleteCoin(Coin coin) {
+    allCoins.remove(coin);
     saveCoins();
     notifyListeners();
-  }
-
-  Coin? coinAtIndex(int index) {
-    if (index >= 0 && index < allCoins.length) {
-      return allCoins[index];
-    }
-    return null;
   }
 
   toggleInCollection(Coin coin) {
@@ -128,7 +122,7 @@ class CoinCollectionModel extends ChangeNotifier {
       var file = File('${dir.path}/collection.json');
       if (await file.exists()) {
         allCoins = jsonDecode(
-          await file.readAsString(),
+          file.readAsStringSync(),
         ).map<Coin>((e) => Coin.fromJson(e)).toList() as List<Coin>;
         saveCoins();
         notifyListeners();

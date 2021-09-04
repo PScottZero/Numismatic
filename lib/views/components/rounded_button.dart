@@ -7,13 +7,19 @@ class RoundedButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final Color? color;
+  final bool topMargin;
 
-  RoundedButton({required this.label, required this.onPressed, this.color});
+  RoundedButton({
+    required this.label,
+    required this.onPressed,
+    this.color,
+    this.topMargin = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: ViewConstants.gapLarge),
+      margin: EdgeInsets.only(top: topMargin ? ViewConstants.gapLarge : 0),
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
