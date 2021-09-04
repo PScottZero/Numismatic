@@ -1,14 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
 import 'package:numismatic/model/sort_method.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'coin.dart';
@@ -105,48 +101,6 @@ class CoinCollectionModel extends ChangeNotifier {
     coin.inCollection = !coin.inCollection;
     saveCoins();
     notifyListeners();
-  }
-
-  saveCollectionJson() async {
-    var dir = await DownloadsPathProvider.downloadsDirectory;
-    if (await Permission.storage.request().isGranted && dir != null) {
-      await File('${dir.path}/collection.json').writeAsString(
-        jsonEncode(allCoins.map((e) => e.toJson()).toList()),
-      );
-    }
-  }
-
-  Future<bool> loadCollectionJson() async {
-    var dir = await DownloadsPathProvider.downloadsDirectory;
-    if (await Permission.storage.request().isGranted && dir != null) {
-      var file = File('${dir.path}/collection.json');
-      if (await file.exists()) {
-        allCoins = jsonDecode(
-          file.readAsStringSync(),
-        ).map<Coin>((e) => Coin.fromJson(e)).toList() as List<Coin>;
-        saveCoins();
-        notifyListeners();
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return false;
-  }
-
-  notify(String message, BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: TextStyle(
-            fontSize: ViewConstants.fontSmall,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.black,
-      ),
-    );
   }
 
   refresh() => notifyListeners();

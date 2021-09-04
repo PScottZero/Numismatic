@@ -29,7 +29,7 @@ class CountAndValue extends StatelessWidget {
         color: ViewConstants.colorPrimary,
         borderRadius: ViewConstants.borderRadiusMedium,
       ),
-      padding: ViewConstants.paddingAllLarge(),
+      padding: ViewConstants.paddingAllSmall,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -37,11 +37,13 @@ class CountAndValue extends StatelessWidget {
             Text(
               'Count: ${coins.length.toString()}',
               textAlign: TextAlign.center,
+              style: TextStyle(height: ViewConstants.fontSmall),
             ),
             SizedBox(height: ViewConstants.gapSmall),
             Text(
               'Total Value:\n$totalValue',
               textAlign: TextAlign.center,
+              style: TextStyle(height: ViewConstants.fontSmall),
             ),
           ],
         ),

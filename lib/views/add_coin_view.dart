@@ -205,6 +205,11 @@ class _AddCoinViewState extends State<AddCoinView> {
                   _coin.imagesSource = source ?? DataSource.auto;
                 },
               ),
+              CoinDataTextField(
+                label: 'Notes',
+                initialValue: _coin.notes,
+                onChanged: (notes) => _coin.notes = nullIfEmpty(notes),
+              ),
               ExpansionTile(
                 tilePadding: EdgeInsets.zero,
                 title: Text(
@@ -216,11 +221,13 @@ class _AddCoinViewState extends State<AddCoinView> {
                 children: [
                   CoinDataTextField(
                     label: 'Photograde Name',
+                    initialValue: _coin.photogradeName,
                     onChanged: (name) =>
                         _coin.photogradeName = nullIfEmpty(name),
                   ),
                   CoinDataTextField(
                     label: 'Photograde Grade',
+                    initialValue: _coin.photogradeGrade,
                     onChanged: (grade) =>
                         _coin.photogradeGrade = nullIfEmpty(grade),
                   ),

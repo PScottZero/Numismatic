@@ -41,7 +41,7 @@ class _CoinGridViewState extends State<CoinGridView> {
                       coins.map((e) => CoinCard(e)).toList(),
                 )
               : Container(
-                  padding: ViewConstants.paddingAllSmall,
+                  padding: ViewConstants.paddingAllLarge(),
                   child: Center(
                     child: Text(
                       'Press + to add a coin to your ${widget.isWantlist ? 'wantlist' : 'collection'}',

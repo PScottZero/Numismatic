@@ -4,12 +4,12 @@ class ViewConstants {
   static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/250/';
 
   // colors
-  static final Color colorButton = Colors.green[300]!;
+  static final Color colorButton = Colors.blue[400]!;
   static final Color colorCardTitle = Color(0x77000000);
   static final Color colorInactiveLight = Colors.grey[300]!;
   static final Color colorInactiveDark = Colors.grey[500]!;
-  static final Color colorPrimary = Colors.blue[300]!;
-  static final Color colorWarning = Colors.red[300]!;
+  static final Color colorPrimary = Colors.blueGrey[400]!;
+  static final Color colorWarning = Colors.red[400]!;
 
   // text sizing
   static const fontLarge = 28.0;
@@ -49,12 +49,6 @@ class ViewConstants {
       );
   static const dotSize = 8.0;
   static const dotSpacing = 8.0;
-  static const dropShadow = [
-    BoxShadow(
-      color: Color(0x22000000),
-      blurRadius: 10,
-    ),
-  ];
   static const gapLarge = 20.0;
   static const gapMedium = 15.0;
   static const gapSmall = 10.0;

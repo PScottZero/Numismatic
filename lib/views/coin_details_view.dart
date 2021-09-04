@@ -63,7 +63,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              widget.coin.type.value ?? '',
+              widget.coin.fullType,
               style: GoogleFonts.comfortaa(),
               textAlign: TextAlign.center,
             ),
@@ -124,6 +124,10 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       value: widget.coin.retailPriceSource != DataSource.none
                           ? widget.coin.retailPrice
                           : null,
+                    ),
+                    Detail(
+                      name: 'Notes',
+                      value: widget.coin.notes,
                     ),
                     RoundedButton(
                       label:
