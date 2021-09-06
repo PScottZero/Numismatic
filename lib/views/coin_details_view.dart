@@ -6,8 +6,8 @@ import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/data_source.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:numismatic/views/add_coin_view.dart';
-import 'package:numismatic/views/components/image_carousel.dart';
 import 'package:numismatic/views/components/confirm_cancel_dialog.dart';
+import 'package:numismatic/views/components/image_carousel.dart';
 import 'package:numismatic/views/components/rounded_button.dart';
 import 'package:provider/provider.dart';
 
@@ -64,7 +64,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
             centerTitle: true,
             title: Text(
               widget.coin.fullType,
-              style: GoogleFonts.comfortaa(),
+              style: GoogleFonts.quicksand(),
               textAlign: TextAlign.center,
             ),
             actions: [

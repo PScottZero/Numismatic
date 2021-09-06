@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
@@ -43,6 +44,8 @@ class _AddCoinViewState extends State<AddCoinView> {
   List<String> get _variations =>
       _model?.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
   CoinCollectionModel? _model;
+
+  String get title => widget.addToWantlist ? 'Wantlist' : 'Collection';
 
   _AddCoinViewState(this._coin);
 
@@ -116,6 +119,11 @@ class _AddCoinViewState extends State<AddCoinView> {
       if ((_coin.images?.length ?? -1) == 0) {
         _coin.images = null;
       }
+      var yearAndMintMark = HelperFunctions.yearAndMintMarkFromVariation(
+        _coin.variation.value ?? '',
+      );
+      _coin.year = yearAndMintMark.item1;
+      _coin.mintMark = yearAndMintMark.item2;
       if (widget.edit) {
         _model?.overwriteCoin(widget.coin!, _coin);
       } else {
@@ -146,7 +154,7 @@ class _AddCoinViewState extends State<AddCoinView> {
             centerTitle: true,
             title: Text(
               '${widget.edit ? 'Edit' : 'Add'} Coin',
-              style: GoogleFonts.comfortaa(),
+              style: GoogleFonts.quicksand(),
             ),
           ),
           body: ListView(
@@ -156,6 +164,9 @@ class _AddCoinViewState extends State<AddCoinView> {
                 label: 'Coin Type',
                 reference: _coin.type,
                 options: model.allCoinTypes,
+                decoration: ViewConstants.decorationInput(
+                  MediaQuery.of(context).platformBrightness,
+                ),
                 refresh: () => setState(() {}),
                 required: true,
               ),
@@ -163,12 +174,18 @@ class _AddCoinViewState extends State<AddCoinView> {
                 label: 'Variation',
                 reference: _coin.variation,
                 options: _variations,
+                decoration: ViewConstants.decorationInput(
+                  MediaQuery.of(context).platformBrightness,
+                ),
                 required: true,
               ),
               AutocompleteInput(
                 label: 'Grade',
                 reference: _coin.grade,
                 options: grades,
+                decoration: ViewConstants.decorationInput(
+                  MediaQuery.of(context).platformBrightness,
+                ),
               ),
               MultiSourceField<String>(
                 label: 'Mintage',
@@ -234,7 +251,7 @@ class _AddCoinViewState extends State<AddCoinView> {
                 ],
               ),
               RoundedButton(
-                label: widget.edit ? 'Save Changes' : 'Add Coin',
+                label: widget.edit ? 'Save Changes' : 'Add To $title',
                 onPressed: () => addCoin(),
               )
             ],

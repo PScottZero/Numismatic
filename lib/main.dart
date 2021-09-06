@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/views/add_coin_view.dart';
 import 'package:numismatic/views/coin_grid_view.dart';
+import 'package:numismatic/views/components/search_bar.dart';
+import 'package:numismatic/views/components/sort_menu.dart';
 import 'package:provider/provider.dart';
 
 import 'model/coin_collection_model.dart';
+import 'model/coin_comparator.dart';
 
 void main() {
   runApp(
@@ -18,10 +22,10 @@ void main() {
 class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         brightness: brightness,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
         primaryColor: ViewConstants.colorPrimary,
         accentColor: ViewConstants.colorPrimary,
-        textTheme: GoogleFonts.comfortaaTextTheme(
+        textTheme: GoogleFonts.quicksandTextTheme(
           TextTheme(
             bodyText2: TextStyle(
               fontSize: ViewConstants.fontMedium,
@@ -35,6 +39,7 @@ class NumismaticApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Numismatic',
+      debugShowCheckedModeBanner: false,
       theme: themeOfBrightness(Brightness.light),
       darkTheme: themeOfBrightness(Brightness.dark),
       home: Navigation(),
@@ -49,8 +54,13 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   late PageController _pageController;
+  final _options = <Widget>[
+    CoinGridView(),
+    CoinGridView(isWantlist: true),
+  ];
   var _selectedIndex = 0;
-  final _options = <Widget>[CoinGridView(), CoinGridView(isWantlist: true)];
+
+  bool get viewingWantlist => _selectedIndex == 1;
 
   void _onTap(int index) {
     setState(() {
@@ -77,41 +87,81 @@ class _NavigationState extends State<Navigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Numismatic',
-          style: GoogleFonts.comfortaa(),
-        ),
-      ),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        children: _options,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onTap,
-        currentIndex: _selectedIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              _selectedIndex == 0 ? Icons.grid_view_sharp : Icons.grid_view,
+    return Consumer<CoinCollectionModel>(
+      builder: (context, model, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Padding(
+              padding: EdgeInsets.only(left: 5),
+              child: Text(
+                'Numismatic',
+                style: GoogleFonts.quicksand(
+                  fontSize: ViewConstants.fontMedium,
+                ),
+              ),
             ),
-            label: 'Collection',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              _selectedIndex == 1 ? Icons.favorite : Icons.favorite_border,
+            actions: [
+              IconButton(
+                onPressed: model.toggleSortDirection,
+                icon: Icon(
+                  CoinComparator.ascending
+                      ? Icons.arrow_upward
+                      : Icons.arrow_downward,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 10),
+                child: SortMenu(model.setSortMethod),
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size(double.infinity, 70),
+              child: SearchBar(viewingWantlist),
             ),
-            label: 'Wantlist',
           ),
-        ],
-      ),
+          body: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            children: _options,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: _onTap,
+            currentIndex: _selectedIndex,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  _selectedIndex == 0 ? Icons.grid_view_sharp : Icons.grid_view,
+                ),
+                label: 'Collection',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  viewingWantlist ? Icons.favorite : Icons.favorite_border,
+                ),
+                label: 'Wantlist',
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddCoinView(
+                    addToWantlist: viewingWantlist,
+                    edit: false,
+                  ),
+                ),
+              );
+            },
+            child: Icon(Icons.add),
+          ),
+        );
+      },
     );
   }
 }

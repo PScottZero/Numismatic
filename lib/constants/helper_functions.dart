@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
 class HelperFunctions {
-  static Tuple2<String, String?>? yearAndMintMarkFromVariation(
+  static Tuple2<String?, String?> yearAndMintMarkFromVariation(
     String variation,
   ) {
     var year = variation.split(' ')[0];
@@ -12,7 +12,7 @@ class HelperFunctions {
       if (yearAndMintMark.length == 2) {
         return Tuple2(yearAndMintMark.first, yearAndMintMark.last);
       } else {
-        return null;
+        return Tuple2(null, null);
       }
     } else {
       return Tuple2(year, null);

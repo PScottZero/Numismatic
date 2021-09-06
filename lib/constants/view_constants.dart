@@ -29,7 +29,9 @@ class ViewConstants {
   static const cardTitleMaxHeight = 100.0;
   static final cardTitlePadding = EdgeInsets.fromLTRB(10, 5, 10, 5);
   static decorationInput(Brightness brightness) => InputDecoration(
-        contentPadding: ViewConstants.paddingAllLarge(),
+        filled: true,
+        fillColor: Colors.grey[800]!,
+        contentPadding: ViewConstants.paddingAllMedium,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: ViewConstants.colorPrimary,
@@ -37,12 +39,10 @@ class ViewConstants {
           ),
           borderRadius: ViewConstants.borderRadiusMedium,
         ),
-        enabledBorder: OutlineInputBorder(
+        border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: brightness == Brightness.light
-                ? ViewConstants.colorInactiveDark
-                : ViewConstants.colorInactiveLight,
-            width: ViewConstants.borderWidthUnfocused,
+            width: 0,
+            style: BorderStyle.none,
           ),
           borderRadius: ViewConstants.borderRadiusMedium,
         ),
@@ -54,7 +54,6 @@ class ViewConstants {
   static const gapSmall = 10.0;
   static const gridColumnCount = 2;
   static const gridGap = 10.0;
-  static final paddingButton = EdgeInsets.only(top: 20, bottom: 17);
   static paddingAllLarge({bool top = true}) =>
       EdgeInsets.fromLTRB(20, top ? 20 : 0, 20, 20);
   static const paddingAllMedium = EdgeInsets.all(15);

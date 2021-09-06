@@ -1,6 +1,4 @@
 PODS:
-  - downloads_path_provider_28 (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
@@ -14,7 +12,6 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - downloads_path_provider_28 (from `.symlinks/plugins/downloads_path_provider_28/ios`)
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
@@ -23,8 +20,6 @@ DEPENDENCIES:
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 EXTERNAL SOURCES:
-  downloads_path_provider_28:
-    :path: ".symlinks/plugins/downloads_path_provider_28/ios"
   Flutter:
     :path: Flutter
   flutter_keyboard_visibility:
@@ -39,7 +34,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
-  downloads_path_provider_28: 7425048683ec0b86238361bd93795e91c2bc61a2
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f

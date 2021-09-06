@@ -10,17 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/constants/helper_functions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/helper_functions.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/constants/view_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/view_constants.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin_comparator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_comparator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/add_coin_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/advanced_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_details_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/components/autocomplete_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/autocomplete_input.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/components/count_and_value.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/count_and_value.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/components/image_carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/image_carousel.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/components/rounded_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/components/rounded_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/numismatic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/numismatic.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

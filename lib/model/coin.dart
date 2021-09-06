@@ -111,7 +111,8 @@ class Coin {
   }
 
   hasYear() =>
-      HelperFunctions.yearAndMintMarkFromVariation(variation.value ?? '') !=
+      HelperFunctions.yearAndMintMarkFromVariation(variation.value ?? '')
+          .item1 !=
       null;
 
   factory Coin.fromJson(Map<String, dynamic> json) => _$CoinFromJson(json);

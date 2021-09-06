@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
+import 'package:numismatic/model/reference.dart';
 import 'package:numismatic/model/sort_method.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +14,7 @@ import 'coin_type.dart';
 
 const String ALL_COINS_KEY = 'coins';
 
-class CoinCollectionModel extends ChangeNotifier {
+class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
   List<Coin> allCoins = [];
   List<Coin> get collection =>
       allCoins.where((element) => element.inCollection).toList();
@@ -21,9 +22,17 @@ class CoinCollectionModel extends ChangeNotifier {
       allCoins.where((element) => !element.inCollection).toList();
   List<CoinType> coinTypes = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
-  SortMethod sortMethod = SortMethod.type;
+  StringReference searchString = StringReference('');
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
 
   CoinCollectionModel() {
+    WidgetsBinding.instance?.addObserver(this);
+    CoinComparator.setSortMethod(SortMethod.type);
     loadTypes();
     loadGreysheetStaticData();
     loadCoins();
@@ -67,11 +76,11 @@ class CoinCollectionModel extends ChangeNotifier {
     allCoins = jsonDecode(preferences.getString('coins') ?? '[]')
         .map<Coin>((e) => Coin.fromJson(e))
         .toList() as List<Coin>;
+    allCoins.sort(CoinComparator.comparator);
     notifyListeners();
   }
 
   saveCoins() async {
-    allCoins.sort(CoinComparator.get(sortMethod));
     var preferences = await SharedPreferences.getInstance();
     preferences.setString(
       'coins',
@@ -81,18 +90,21 @@ class CoinCollectionModel extends ChangeNotifier {
 
   overwriteCoin(Coin destination, Coin source) {
     Coin.set(destination, source);
+    _sortCoins();
     saveCoins();
     notifyListeners();
   }
 
   addCoin(Coin coin) {
     allCoins.add(coin);
+    _sortCoins();
     saveCoins();
     notifyListeners();
   }
 
   deleteCoin(Coin coin) {
     allCoins.remove(coin);
+    _sortCoins();
     saveCoins();
     notifyListeners();
   }
@@ -102,6 +114,20 @@ class CoinCollectionModel extends ChangeNotifier {
     saveCoins();
     notifyListeners();
   }
+
+  setSortMethod(SortMethod method) {
+    CoinComparator.setSortMethod(method);
+    _sortCoins();
+    notifyListeners();
+  }
+
+  toggleSortDirection() {
+    CoinComparator.ascending = !CoinComparator.ascending;
+    _sortCoins();
+    notifyListeners();
+  }
+
+  _sortCoins() => allCoins.sort(CoinComparator.comparator);
 
   refresh() => notifyListeners();
 }

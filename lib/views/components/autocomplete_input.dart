@@ -4,20 +4,26 @@ import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/reference.dart';
 
 class AutocompleteInput extends StatelessWidget {
-  final String label;
+  final String? label;
   final StringReference reference;
   final List<String> options;
+  final InputDecoration decoration;
+  final double fontSize;
   final VoidCallback? refresh;
   final bool required;
+  final bool padding;
 
   final TextEditingController _typeAheadController = TextEditingController();
 
   AutocompleteInput({
-    required this.label,
+    this.label,
     required this.reference,
     required this.options,
+    required this.decoration,
+    this.fontSize = ViewConstants.fontMedium,
     this.refresh,
     this.required = false,
+    this.padding = true,
   }) {
     _typeAheadController.text = reference.value ?? '';
   }
@@ -29,7 +35,7 @@ class AutocompleteInput extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text(label),
+            label != null ? Text(label!) : Container(),
             required
                 ? Text(
                     "*",
@@ -38,7 +44,7 @@ class AutocompleteInput extends StatelessWidget {
                 : Container()
           ],
         ),
-        SizedBox(height: ViewConstants.gapSmall),
+        padding ? SizedBox(height: ViewConstants.gapSmall) : Container(),
         TypeAheadField<String>(
           animationDuration: Duration.zero,
           suggestionsCallback: (pattern) {
@@ -50,7 +56,7 @@ class AutocompleteInput extends StatelessWidget {
                   element.toLowerCase().contains(pattern.toLowerCase()),
             );
             if (matching.length > 0) {
-              return matching;
+              return matching.toList();
             }
             return [pattern];
           },
@@ -71,21 +77,26 @@ class AutocompleteInput extends StatelessWidget {
             ),
           ),
           onSuggestionSelected: (suggestion) {
-            _typeAheadController.text = suggestion;
             reference.value = suggestion;
             if (refresh != null) refresh!();
           },
           textFieldConfiguration: TextFieldConfiguration(
             controller: _typeAheadController,
-            style: TextStyle(
-              fontSize: ViewConstants.fontMedium,
-            ),
-            decoration: ViewConstants.decorationInput(
-              MediaQuery.of(context).platformBrightness,
-            ),
+            style: TextStyle(fontSize: fontSize),
+            decoration: decoration,
+            onSubmitted: (value) {
+              reference.value = value;
+              if (refresh != null) refresh!();
+            },
+            onChanged: (value) {
+              reference.value = value;
+              if (value == '') {
+                if (refresh != null) refresh!();
+              }
+            },
           ),
         ),
-        SizedBox(height: ViewConstants.gapLarge),
+        padding ? SizedBox(height: ViewConstants.gapLarge) : Container(),
       ],
     );
   }
