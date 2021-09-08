@@ -4,7 +4,6 @@ import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/data_source.dart';
-import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:numismatic/views/components/confirm_cancel_dialog.dart';
 import 'package:numismatic/views/components/image_carousel.dart';
@@ -24,18 +23,6 @@ class CoinDetailsView extends StatefulWidget {
 
 class _CoinDetailsViewState extends State<CoinDetailsView> {
   CoinCollectionModel? _modelRef;
-
-  init(CoinCollectionModel model) {
-    _modelRef = model;
-    var thirtyDaysAgo = DateTime.now().subtract(Duration(days: 30));
-    if ((widget.coin.retailPriceLastUpdated ?? DateTime.now())
-        .isBefore(thirtyDaysAgo)) {
-      setState(() async {
-        widget.coin.retailPrice =
-            await GreysheetScraper.retailPriceForCoin(widget.coin);
-      });
-    }
-  }
 
   _showDeleteCoinDialog() async {
     return showDialog(
@@ -58,7 +45,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
-        init(model);
+        _modelRef = model;
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,

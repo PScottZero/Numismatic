@@ -9,7 +9,8 @@ part 'coin_type.g.dart';
 class CoinType {
   String name;
   String? greysheetName;
-  String photogradeName;
+  String? photogradeName;
+  double? denomination;
 
   static List<CoinType> coinTypes = [];
 
@@ -17,6 +18,7 @@ class CoinType {
     required this.name,
     this.greysheetName,
     required this.photogradeName,
+    required this.denomination,
   });
 
   String getGreysheetName() {
@@ -24,6 +26,14 @@ class CoinType {
       return "${name}s";
     } else {
       return this.greysheetName!;
+    }
+  }
+
+  String getPhotogradeName() {
+    if (this.photogradeName == null) {
+      return name.replaceAll(' ', '');
+    } else {
+      return this.photogradeName!;
     }
   }
 

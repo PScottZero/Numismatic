@@ -25,6 +25,7 @@ dependencies:
   flutter_typeahead: ^3.2.0
   image_picker: ^0.8.3+3
   permission_handler: ^8.1.4+2
+  pinch_zoom: ^1.0.0
 
 dev_dependencies:
   flutter_test:

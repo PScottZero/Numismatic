@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ViewConstants {
-  static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/250/';
+  static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/';
 
   // colors
   static final Color colorButton = Colors.blue[400]!;

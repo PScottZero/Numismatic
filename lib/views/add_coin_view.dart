@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,8 @@ class _AddCoinViewState extends State<AddCoinView> {
     String? manualGrade,
   ) async {
     var photogradeType = manualName ??
-        CoinType.coinTypeFromString(_coin.type.value ?? '')?.photogradeName ??
+        CoinType.coinTypeFromString(_coin.type.value ?? '')
+            ?.getPhotogradeName() ??
         '';
     var grade = manualGrade ?? gradeToNumber(_coin.grade.value ?? '');
     var urls = [
@@ -72,6 +74,16 @@ class _AddCoinViewState extends State<AddCoinView> {
   }
 
   String? nullIfEmpty(String? str) => str != '' ? str : null;
+
+  String? formatRetailPrice(String? price) {
+    price = price?.replaceAll('\$', '').replaceAll(',', '');
+    var priceDouble = double.tryParse(price ?? '');
+    if (priceDouble != null) {
+      return '\$${priceDouble.toStringAsFixed(2)}';
+    } else {
+      return price;
+    }
+  }
 
   handleDataSource(DataSource? source, AsyncCallback onAuto) async {
     if (source == DataSource.auto) {
@@ -124,6 +136,7 @@ class _AddCoinViewState extends State<AddCoinView> {
       );
       _coin.year = yearAndMintMark.item1;
       _coin.mintMark = yearAndMintMark.item2;
+      _coin.retailPrice = formatRetailPrice(_coin.retailPrice);
       if (widget.edit) {
         _model?.overwriteCoin(widget.coin!, _coin);
       } else {
@@ -253,7 +266,8 @@ class _AddCoinViewState extends State<AddCoinView> {
               RoundedButton(
                 label: widget.edit ? 'Save Changes' : 'Add To $title',
                 onPressed: () => addCoin(),
-              )
+              ),
+              SizedBox(height: Platform.isIOS ? ViewConstants.gapSmall : 0),
             ],
           ),
         );

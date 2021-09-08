@@ -20,7 +20,7 @@ class Detail extends StatelessWidget {
               top: topMargin ? ViewConstants.gapLarge : 0,
             ),
             width: double.infinity,
-            padding: ViewConstants.paddingAllMedium,
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 18),
             decoration: BoxDecoration(
               color: ViewConstants.colorPrimary,
               borderRadius: ViewConstants.borderRadiusMedium,

@@ -39,10 +39,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   List<String> get allCoinTypes {
-    var types = greysheetStaticData?.keys
-            .map((e) => CoinType.coinTypeFromString(e)?.name ?? e)
-            .toList() ??
-        [];
+    var types = coinTypes.map((e) => e.name).toList();
     types.sort();
     return types;
   }
@@ -76,7 +73,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     allCoins = jsonDecode(preferences.getString('coins') ?? '[]')
         .map<Coin>((e) => Coin.fromJson(e))
         .toList() as List<Coin>;
-    allCoins.sort(CoinComparator.comparator);
+    _sortCoins();
     notifyListeners();
   }
 

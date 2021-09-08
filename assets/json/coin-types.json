@@ -1,418 +1,674 @@
 [
   {
-    "name": "Liberty Cap Half Cent",
-    "photogradeName": "1793HalfCent"
+    "name": "Massachusetts Oak Tree",
+    "greysheetName": "Massachusetts",
+    "photogradeName": "OakTree"
+  },
+  {
+    "name": "Massachusetts Pine Tree",
+    "greysheetName": "Massachusetts",
+    "photogradeName": "PineTree"
+  },
+  {
+    "name": "Wood's Hibernia",
+    "greysheetName": "Rosa Americana & Hibernia"
+  },
+  {
+    "name": "Rosa Americana",
+    "greysheetName": "Rosa Americana & Hibernia"
+  },
+  {
+    "name": "Elephant Token"
+  },
+  {
+    "name": "Pitt Token",
+    "photogradeName": "PittTokens"
+  },
+  {
+    "name": "Voce Populi",
+    "greysheetName": "Rosa Americana & Hibernia"
+  },
+  {
+    "name": "Higley Copper",
+    "photogradeName": "Higley"
+  },
+  {
+    "name": "Rhode Island Ship Token"
+  },
+  {
+    "name": "John Chalmers",
+    "greysheetName": "Chalmers Coinage",
+    "photogradeName": "Chalmers"
+  },
+  {
+    "name": "Nova Constellatio",
+    "greysheetName": "Nova Constellatio"
+  },
+  {
+    "name": "Massachusetts Copper",
+    "greysheetName": "Massachusetts",
+    "photogradeName": "Massachusetts"
+  },
+  {
+    "name": "Machin's Mill",
+    "greysheetName": "Machins Mills"
+  },
+  {
+    "name": "Nova Eborac",
+    "greysheetName": "Nova Eborac"
+  },
+  {
+    "name": "North American Token",
+    "greysheetName": "Other Colonial & Post-Colonial Coinage"
+  },
+  {
+    "name": "Mott Token",
+    "greysheetName": "Other Colonial & Post-Colonial Coinage",
+    "photogradeName": "MottTokens"
+  },
+  {
+    "name": "Kentucky Token",
+    "greysheetName": "Kentucky",
+    "photogradeName": "Kentucky"
+  },
+  {
+    "name": "Franklin Press Token",
+    "greysheetName": "Other Colonial & Post-Colonial Coinage",
+    "photogradeName": "FranklinPress"
+  },
+  {
+    "name": "Talbot, Allum & Lee Token",
+    "greysheetName": "New York",
+    "photogradeName": "TalbotAllumLee"
+  },
+  {
+    "name": "Maryland Lord Baltimore",
+    "greysheetName": "Maryland-Lord Baltimore",
+    "photogradeName": "Maryland"
+  },
+  {
+    "name": "New Jersey St. Patrick",
+    "greysheetName": "St. Patrick",
+    "photogradeName": "StPatricks"
+  },
+  {
+    "name": "Virginia Colonial",
+    "greysheetName": "Virginia",
+    "photogradeName": "Virginia"
+  },
+  {
+    "name": "Connecticut Post-Colonial",
+    "greysheetName": "Connecticut",
+    "photogradeName": "Connecticut"
+  },
+  {
+    "name": "New Jersey Post-Colonial",
+    "greysheetName": "New Jersey",
+    "photogradeName": "NewJersey"
+  },
+  {
+    "name": "Vermont Post-Colonial",
+    "greysheetName": "Vermont",
+    "photogradeName": "Vermont"
+  },
+  {
+    "name": "Continental Dollar",
+    "denomination": 1.00
+  },
+  {
+    "name": "Immune Columbia",
+    "greysheetName": "Immunis Columbia"
+  },
+  {
+    "name": "Washington Military Bust",
+    "greysheetName": "George Washington Pieces",
+    "photogradeName": "WashingtonMilitary"
+  },
+  {
+    "name": "Washington Draped Bust",
+    "greysheetName": "George Washington Pieces",
+    "photogradeName": "WashingtonDraped"
+  },
+  {
+    "name": "Georgius Triumpho",
+    "greysheetName": "George Washington Pieces",
+    "photogradeName": "WashingtonTriumpho"
+  },
+  {
+    "name": "Washington President Cent",
+    "greysheetName": "George Washington Pieces",
+    "photogradeName": "WashingtonCent",
+    "denomination": 0.01
+  },
+  {
+    "name": "Washington Success Medal",
+    "greysheetName": "George Washington Pieces",
+    "photogradeName": "SuccessMedal"
+  },
+  {
+    "name": "Washington Liberty & Security",
+    "greysheetName": "George Washington Pieces",
+    "photogradeName": "LibAndSec"
+  },
+  {
+    "name": "Fugio Cent",
+    "greysheetName": "Fugio Cents",
+    "denomination": 0.01
+  },
+  {
+    "name": "Liberty Cap Half Cent (Left)",
+    "photogradeName": "1793HalfCent",
+    "denomination": 0.005
+  },
+  {
+    "name": "Liberty Cap Half Cent (Large Head)",
+    "photogradeName": "LibertyCapHalfCentL",
+    "denomination": 0.005
+  },
+  {
+    "name": "Liberty Cap Half Cent (Small Head)",
+    "photogradeName": "LibertyCapHalfCentS",
+    "denomination": 0.005
   },
   {
     "name": "Draped Bust Half Cent",
-    "photogradeName": "DrapedHalfCent"
+    "photogradeName": "DrapedHalfCent",
+    "denomination": 0.005
   },
   {
     "name": "Classic Head Half Cent",
-    "photogradeName": "ClassicHalfCent"
+    "photogradeName": "ClassicHalfCent",
+    "denomination": 0.005
   },
   {
     "name": "Braided Hair Half Cent",
-    "photogradeName": "BraidedHalfCent"
+    "photogradeName": "BraidedHalfCent",
+    "denomination": 0.005
   },
   {
     "name": "Chain Cent",
     "greysheetName": "Flowing Hair Large Cents",
-    "photogradeName": "ChainCent"
+    "photogradeName": "ChainCent",
+    "denomination": 0.01
   },
   {
     "name": "Wreath Cent",
     "greysheetName": "Flowing Hair Large Cents",
-    "photogradeName": "WreathCent"
+    "photogradeName": "WreathCent",
+    "denomination": 0.01
   },
   {
     "name": "Liberty Cap Large Cent",
     "greysheetName": "Flowing Hair Large Cents",
-    "photogradeName": "LibertyCapCent"
+    "photogradeName": "LibertyCapCent",
+    "denomination": 0.01
   },
   {
     "name": "Draped Bust Large Cent",
-    "photogradeName": "DrapedBustCent"
+    "photogradeName": "DrapedBustCent",
+    "denomination": 0.01
   },
   {
     "name": "Classic Head Large Cent",
-    "photogradeName": "ClassicCent"
+    "photogradeName": "ClassicCent",
+    "denomination": 0.01
   },
   {
     "name": "Coronet Head Large Cent",
-    "photogradeName": "CoronetCent"
+    "photogradeName": "CoronetCent",
+    "denomination": 0.01
   },
   {
     "name": "Braided Hair Large Cent",
-    "photogradeName": "BraidedCent"
+    "photogradeName": "BraidedCent",
+    "denomination": 0.01
   },
   {
     "name": "Flying Eagle Cent",
-    "photogradeName": "Flyings"
+    "photogradeName": "Flyings",
+    "denomination": 0.01
   },
   {
     "name": "Indian Cent",
-    "photogradeName": "Indian"
+    "photogradeName": "Indian",
+    "denomination": 0.01
   },
   {
     "name": "Lincoln Cent (Wheat)",
     "greysheetName": "Lincoln Cents - Wheat Reverse",
-    "photogradeName": "Lincoln"
+    "photogradeName": "Lincoln",
+    "denomination": 0.01
   },
   {
     "name": "Lincoln Cent (Memorial)",
     "greysheetName": "Lincoln Cents - Memorial Reverse",
-    "photogradeName": "Lincoln"
+    "photogradeName": "Lincoln",
+    "denomination": 0.01
   },
   { 
     "name": "Two Cent Piece",
     "greysheetName": "2-Cent Pieces",
-    "photogradeName": "TwoCent"
+    "photogradeName": "TwoCent",
+    "denomination": 0.02
   },
   {
     "name": "Three Cent Silver",
     "greysheetName": "3-Cent Silver",
-    "photogradeName": "3CentSil"
+    "photogradeName": "3CentSil",
+    "denomination": 0.03
   },
   {
     "name": "Three Cent Nickel",
     "greysheetName": "3-Cent Nickels",
-    "photogradeName": "3CentNic"
+    "photogradeName": "3CentNic",
+    "denomination": 0.03
   },
   {
     "name": "Shield Nickel",
-    "photogradeName": "ShieldNic"
+    "photogradeName": "ShieldNic",
+    "denomination": 0.05
   },
   {
     "name": "Liberty Nickel",
     "greysheetName": "V-Nickels",
-    "photogradeName": "LibNic"
+    "photogradeName": "LibNic",
+    "denomination": 0.05
   },
   {
     "name": "Buffalo Nickel",
-    "photogradeName": "Buffalo"
+    "photogradeName": "Buffalo",
+    "denomination": 0.05
   },
   {
     "name": "Jefferson Nickel",
-    "photogradeName": "Jefferson"
+    "photogradeName": "Jefferson",
+    "denomination": 0.05
   },
   {
     "name": "Flowing Hair Half Dime",
-    "photogradeName": "FlowingHalfDime"
+    "photogradeName": "FlowingHalfDime",
+    "denomination": 0.05
   },
   {
     "name": "Draped Bust Half Dime (Small Eagle)",
     "greysheetName": "Draped Bust Half Dimes",
-    "photogradeName": "DrapedHalfDime"
+    "photogradeName": "DrapedHalfDime",
+    "denomination": 0.05
   },
   {
     "name": "Draped Bust Half Dime (Large Eagle)",
     "greysheetName": "Draped Bust Half Dimes",
-    "photogradeName": "DrapedHalfDimeLE"
+    "photogradeName": "DrapedHalfDimeLE",
+    "denomination": 0.05
   },
   {
     "name": "Capped Bust Half Dime",
-    "photogradeName": "CappedHalfDime"
+    "photogradeName": "CappedHalfDime",
+    "denomination": 0.05
   },
   {
     "name": "Liberty Seated Half Dime",
-    "photogradeName": "Seated-Half-Dime"
+    "photogradeName": "Seated-Half-Dime",
+    "denomination": 0.05
   },
   {
     "name": "Draped Bust Dime (Small Eagle)",
     "greysheetName": "Draped Bust Dimes",
-    "photogradeName": "Draped10SE"
+    "photogradeName": "Draped10SE",
+    "denomination": 0.10
   },
   {
     "name": "Draped Bust Dime (Large Eagle)",
     "greysheetName": "Draped Bust Dimes",
-    "photogradeName": "Draped10LE"
+    "photogradeName": "Draped10LE",
+    "denomination": 0.10
   },
   {
     "name": "Capped Bust Dime",
-    "photogradeName": "Capped10Lg"
+    "photogradeName": "Capped10Lg",
+    "denomination": 0.10
   },
   {
     "name": "Liberty Seated Dime",
-    "photogradeName": "Seated10"
+    "photogradeName": "Seated10",
+    "denomination": 0.10
   },
   {
     "name": "Barber Dime",
-    "photogradeName": "Barber10"
+    "photogradeName": "Barber10",
+    "denomination": 0.10
   },
   {
     "name": "Mercury Dime",
-    "photogradeName": "Mercury"
+    "photogradeName": "Mercury",
+    "denomination": 0.10
   },
   {
     "name": "Roosevelt Dime",
-    "photogradeName": "Roosevelt"
+    "photogradeName": "Roosevelt",
+    "denomination": 0.10
   },
   {
     "name": "Twenty Cent Piece",
     "greysheetName": "20-Cent Pieces",
-    "photogradeName": "Twenty"
+    "photogradeName": "Twenty",
+    "denomination": 0.20
   },
   {
     "name": "Draped Bust Quarter (Small Eagle)",
     "greysheetName": "Draped Bust Quarters",
-    "photogradeName": "Draped25SE"
+    "photogradeName": "Draped25SE",
+    "denomination": 0.25
   },
   {
     "name": "Draped Bust Quarter (Large Eagle)",
     "greysheetName": "Draped Bust Quarters",
-    "photogradeName": "Draped25LE"
+    "photogradeName": "Draped25LE",
+    "denomination": 0.25
   },
   {
     "name": "Capped Bust Quarter",
-    "photogradeName": "Capped25Lg"
+    "photogradeName": "Capped25Lg",
+    "denomination": 0.25
   },
   {
     "name": "Liberty Seated Quarter",
-    "photogradeName": "Seated25"
+    "photogradeName": "Seated25",
+    "denomination": 0.25
   },
   {
     "name": "Barber Quarter",
-    "photogradeName": "Barber25"
+    "photogradeName": "Barber25",
+    "denomination": 0.25
   },
   {
     "name": "Standing Liberty Quarter",
-    "photogradeName": "SLQT1"
+    "photogradeName": "SLQT1",
+    "denomination": 0.25
   },
   {
     "name": "Washington Quarter",
     "greysheetName": "Washington Quarters (1932-98)",
-    "photogradeName": "Washington"
+    "photogradeName": "Washington",
+    "denomination": 0.25
   },
   {
     "name": "Flowing Hair Half Dollar",
-    "photogradeName": "FlowingHalf"
+    "photogradeName": "FlowingHalf",
+    "denomination": 0.50
   },
   {
     "name": "Draped Bust Half Dollar (Small Eagle)",
     "greysheetName": "Draped Bust Half Dollars",
-    "photogradeName": "Draped50SE"
+    "photogradeName": "Draped50SE",
+    "denomination": 0.50
   },
   {
     "name": "Draped Bust Half Dollar {Large Eagle}",
     "greysheetName": "Draped Bust Half Dollars",
-    "photogradeName": "Draped50LE"
+    "photogradeName": "Draped50LE",
+    "denomination": 0.50
   },
   {
     "name": "Capped Bust Half Dollar",
-    "photogradeName": "Capped50"
+    "photogradeName": "Capped50",
+    "denomination": 0.50
   },
   {
     "name": "Liberty Seated Half Dollar",
-    "photogradeName": "Seated50"
+    "photogradeName": "Seated50",
+    "denomination": 0.50
   },
   {
     "name": "Barber Half Dollar",
     "greysheetName": "Barber Halves",
-    "photogradeName": "Barber50"
+    "photogradeName": "Barber50",
+    "denomination": 0.50
   },
   {
     "name": "Walking Liberty Half Dollar",
     "greysheetName": "Walking Liberty Halves",
-    "photogradeName": "Walker"
+    "photogradeName": "Walker",
+    "denomination": 0.50
   },
   {
     "name": "Franklin Half Dollar",
     "greysheetName": "Franklin Halves",
-    "photogradeName": "Franklin"
+    "photogradeName": "Franklin",
+    "denomination": 0.50
   },
   {
     "name": "Kennedy Half Dollar",
     "greysheetName": "Kennedy Halves",
-    "photogradeName": "Kennedy"
+    "photogradeName": "Kennedy",
+    "denomination": 0.50
   },
   {
     "name": "Flowing Hair Dollar",
-    "photogradeName": "FlowingDol"
+    "photogradeName": "FlowingDol",
+    "denomination": 1.00
   },
   {
     "name": "Draped Bust Dollar (Small Eagle)",
     "greysheetName": "Draped Bust Dollars",
-    "photogradeName": "DrapedDolLE"
+    "photogradeName": "DrapedDolLE",
+    "denomination": 1.00
   },
   {
     "name": "Draped Bust Dollar (Large Eagle)",
     "greysheetName": "Draped Bust Dollars",
-    "photogradeName": "DrapedDolLE"
+    "photogradeName": "DrapedDolLE",
+    "denomination": 1.00
   },
   {
     "name": "Liberty Seated Dollar",
     "greysheetName": "Seated Dollars",
-    "photogradeName": "SeatedDol"
+    "photogradeName": "SeatedDol",
+    "denomination": 1.00
   },
   {
     "name": "Trade Dollar",
-    "photogradeName": "Trade"
+    "photogradeName": "Trade",
+    "denomination": 1.00
   },
   {
     "name": "Morgan Dollar",
-    "photogradeName": "Morgan"
+    "photogradeName": "Morgan",
+    "denomination": 1.00
   },
   {
     "name": "Peace Dollar",
-    "photogradeName": "Peace"
+    "photogradeName": "Peace",
+    "denomination": 1.00
   },
   {
     "name": "Eisenhower Dollar",
-    "photogradeName": "Ike"
+    "photogradeName": "Ike",
+    "denomination": 1.00
   },
   {
     "name": "Susan B. Anthony Dollar",
-    "photogradeName": "SBA"
+    "photogradeName": "SBA",
+    "denomination": 1.00
   },
   {
     "name": "Sacagawea Dollar",
     "greysheetName": "Sacagawea & Native American Dollars (2000-Present)",
-    "photogradeName": "SAC"
+    "photogradeName": "SAC",
+    "denomination": 1.00
   },
   {
     "name": "One Dollar Gold (Type 1)",
     "greysheetName": "$1 Gold - Type 1",
-    "photogradeName": "GoldDollar1"
+    "photogradeName": "GoldDollar1",
+    "denomination": 1.00
   },
   {
     "name": "One Dollar Gold (Type 2)",
     "greysheetName": "$1 Gold - Type 2",
-    "photogradeName": "GoldDollar2"
+    "photogradeName": "GoldDollar2",
+    "denomination": 1.00
   },
   {
     "name": "One Dollar Gold (Type 3)",
     "greysheetName": "$1 Gold - Type 3",
-    "photogradeName": "GoldDollar3"
+    "photogradeName": "GoldDollar3",
+    "denomination": 1.00
   },
   {
     "name": "Draped Bust Quarter Eagle",
     "greysheetName": "$2.50 Draped Bust Gold",
-    "photogradeName": "DrapedBustR2.5LE"
+    "photogradeName": "DrapedBustR2.5LE",
+    "denomination": 2.50
   },
   {
     "name": "Capped Bust Quarter Eagle",
     "greysheetName": "$2.50 Capped Bust Gold",
-    "photogradeName": "Capped2.5"
+    "photogradeName": "Capped2.5",
+    "denomination": 2.50
   },
   {
     "name": "Classic Head Quarter Eagle",
     "greysheetName": "$2.50 Classic Head Gold",
-    "photogradeName": "Classic2.5"
+    "photogradeName": "Classic2.5",
+    "denomination": 2.50
   },
   {
     "name": "Liberty Head Quarter Eagle",
     "greysheetName": "$2.50 Liberty Gold",
-    "photogradeName": "2.5Lib"
+    "photogradeName": "2.5Lib",
+    "denomination": 2.50
   },
   {
     "name": "Indian Head Quarter Eagle",
     "greysheetName": "$2.50 Indian Gold",
-    "photogradeName": "2.5Ind"
+    "photogradeName": "2.5Ind",
+    "denomination": 2.50
   },
   {
     "name": "Princess Head Three Dollars",
     "greysheetName": "$3 Princess Head Gold",
-    "photogradeName": "3Gold"
+    "photogradeName": "3Gold",
+    "denomination": 3.00
   },
   {
     "name": "Draped Bust Half Eagle (Small Eagle)",
     "greysheetName": "$5 Draped Bust Gold",
-    "photogradeName": "DrapedBust5SE"
+    "photogradeName": "DrapedBust5SE",
+    "denomination": 5.00
   },
   {
     "name": "Draped Bust Half Eagle (Large Eagle)",
     "greysheetName": "$5 Draped Bust Gold",
-    "photogradeName": "DrapedBust5LE"
+    "photogradeName": "DrapedBust5LE",
+    "denomination": 5.00
   },
   {
     "name": "Capped Bust Half Eagle",
     "greysheetName": "$5 Capped Bust Gold",
-    "photogradeName": "CappedBust5"
+    "photogradeName": "CappedBust5",
+    "denomination": 5.00
   },
   {
     "name": "Capped Head Half Eagle",
     "greysheetName": "$5 Capped Bust Gold",
-    "photogradeName": "CappedHead5"
+    "photogradeName": "CappedHead5",
+    "denomination": 5.00
   },
   {
     "name": "Classic Head Half Eagle",
     "greysheetName": "$5 Classic Head Gold",
-    "photogradeName": "CappedHead5"
+    "photogradeName": "CappedHead5",
+    "denomination": 2.50
   },
   {
     "name": "Liberty Head Half Eagle",
     "greysheetName": "$5 Liberty Gold",
-    "photogradeName": "5Lib"
+    "photogradeName": "5Lib",
+    "denomination": 5.00
   },
   {
     "name": "Indian Head Half Eagle",
     "greysheetName": "$5 Indian Gold",
-    "photogradeName": "5Ind"
+    "photogradeName": "5Ind",
+    "denomination": 5.00
   },
   {
     "name": "Draped Bust Eagle (Small Eagle)",
     "greysheetName": "$10 Draped Bust Gold",
-    "photogradeName": "DrapedBust10SE"
+    "photogradeName": "DrapedBust10SE",
+    "denomination": 10.00
   },
   {
     "name": "Draped Bust Eagle (Large Eagle)",
     "greysheetName": "$10 Draped Bust Gold",
-    "photogradeName": "DrapedBust10LE"
+    "photogradeName": "DrapedBust10LE",
+    "denomination": 10.00
   },
   {
     "name": "Liberty Head Eagle",
     "greysheetName": "$10 Liberty Gold",
-    "photogradeName": "10Lib"
+    "photogradeName": "10Lib",
+    "denomination": 10.00
   },
   {
     "name": "Indian Eagle",
     "greysheetName": "$10 Indian Gold",
-    "photogradeName": "10Ind"
+    "photogradeName": "10Ind",
+    "denomination": 10.00
   },
   {
     "name": "Liberty Head Double Eagle (Type 1)",
     "greysheetName": "$20 Liberty Gold - Type 1",
-    "photogradeName": "20Lib"
+    "photogradeName": "20Lib",
+    "denomination": 20.00
   },
   {
     "name": "Liberty Head Double Eagle (Type 2)",
     "greysheetName": "$20 Liberty Gold - Type 2",
-    "photogradeName": "20Lib"
+    "photogradeName": "20Lib",
+    "denomination": 20.00
   },
   {
     "name": "Liberty Head Double Eagle (Type 30",
     "greysheetName": "$20 Liberty Gold - Type 3",
-    "photogradeName": "20Lib"
+    "photogradeName": "20Lib",
+    "denomination": 20.00
   },
   {
     "name": "Saint Gaudens Double Eagle",
     "greysheetName": "$20 Saint Gaudens Gold",
-    "photogradeName": "20Saint"
+    "photogradeName": "20Saint",
+    "denomination": 20.00
   },
   {
     "name": "Silver Eagle",
     "greysheetName": "$1-silver-eagles",
-    "photogradeName": "SilEag"
+    "photogradeName": "SilEag",
+    "denomination": 1.00
   },
   {
     "name": "Gold Eagle Five Dollars",
     "greysheetName": "$5-gold-eagles",
-    "photogradeName": "GldEag"
+    "photogradeName": "GldEag",
+    "denomination": 5.00
   },
   {
     "name": "Gold Eagle Ten Dollars",
     "greysheetName": "$10-gold-eagles",
-    "photogradeName": "GldEag"
+    "photogradeName": "GldEag",
+    "denomination": 10.00
   },
   {
     "name": "Gold Eagle Twenty Five Dollars",
     "greysheetName": "$25-gold-eagles",
-    "photogradeName": "GldEag"
+    "photogradeName": "GldEag",
+    "denomination": 25.00
   },
   {
     "name": "Gold Eagle Fifty Dollars",
     "greysheetName": "$50-gold-eagles",
-    "photogradeName": "GldEag"
+    "photogradeName": "GldEag",
+    "denomination": 50.00
   }
 ]

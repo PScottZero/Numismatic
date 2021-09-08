@@ -103,12 +103,18 @@ class Coin {
   String get fullType {
     if (hasYear()) {
       final year = variation.value?.split(' ')[0];
-      final noYearVariation = variation.value?.replaceAll(year ?? '', '');
-      return '$year ${type.value ?? ''} $noYearVariation';
+      var noYearVariation = variation.value?.replaceAll(year ?? '', '').trim();
+      if (noYearVariation == '') {
+        noYearVariation = null;
+      }
+      return '$year ${type.value ?? ''}${noYearVariation != null ? ' ($noYearVariation)' : ''}';
     } else {
-      return '${type.value ?? ''} ${variation.value ?? ''}';
+      return '${type.value ?? ''}${variation.value != null ? ' (${variation.value})' : ''}';
     }
   }
+
+  double? get denomination =>
+      CoinType.coinTypeFromString(type.value ?? '')?.denomination;
 
   hasYear() =>
       HelperFunctions.yearAndMintMarkFromVariation(variation.value ?? '')
