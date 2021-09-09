@@ -24,7 +24,8 @@ class AutocompleteInput extends StatelessWidget {
     this.refresh,
     this.required = false,
     this.padding = true,
-  }) {
+    Key? key,
+  }) : super(key: key) {
     _typeAheadController.text = reference.value ?? '';
   }
 
@@ -37,14 +38,14 @@ class AutocompleteInput extends StatelessWidget {
           children: [
             label != null ? Text(label!) : Container(),
             required
-                ? Text(
+                ? const Text(
                     "*",
                     style: TextStyle(color: Colors.red),
                   )
                 : Container()
           ],
         ),
-        padding ? SizedBox(height: ViewConstants.gapSmall) : Container(),
+        padding ? const SizedBox(height: ViewConstants.gapSmall) : Container(),
         TypeAheadField<String>(
           animationDuration: Duration.zero,
           suggestionsCallback: (pattern) {
@@ -55,7 +56,7 @@ class AutocompleteInput extends StatelessWidget {
               (element) =>
                   element.toLowerCase().contains(pattern.toLowerCase()),
             );
-            if (matching.length > 0) {
+            if (matching.isNotEmpty) {
               return matching.toList();
             }
             return [pattern];
@@ -69,7 +70,7 @@ class AutocompleteInput extends StatelessWidget {
               child: Text(suggestion.toString()),
             );
           },
-          noItemsFoundBuilder: (context) => Padding(
+          noItemsFoundBuilder: (context) => const Padding(
             padding: ViewConstants.paddingAllSmall,
             child: Text(
               'Not Found',
@@ -96,7 +97,7 @@ class AutocompleteInput extends StatelessWidget {
             },
           ),
         ),
-        padding ? SizedBox(height: ViewConstants.gapLarge) : Container(),
+        padding ? const SizedBox(height: ViewConstants.gapLarge) : Container(),
       ],
     );
   }

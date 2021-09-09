@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class CoinGridView extends StatefulWidget {
   final bool isWantlist;
 
-  const CoinGridView({this.isWantlist = false});
+  const CoinGridView({this.isWantlist = false, Key? key}) : super(key: key);
 
   @override
   _CoinGridViewState createState() => _CoinGridViewState();
@@ -39,7 +39,7 @@ class _CoinGridViewState extends State<CoinGridView> {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         _model = model;
-        return coins.length > 0 || searchStringNonEmpty
+        return coins.isNotEmpty || searchStringNonEmpty
             ? GridView.count(
                 crossAxisCount: ViewConstants.gridColumnCount,
                 mainAxisSpacing: ViewConstants.gapLarge,

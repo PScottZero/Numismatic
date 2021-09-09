@@ -10,7 +10,8 @@ class CoinDataTextField extends StatefulWidget {
     this.label,
     this.initialValue,
     required this.onChanged,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _CoinDataTextFieldState createState() => _CoinDataTextFieldState();
@@ -37,16 +38,16 @@ class _CoinDataTextFieldState extends State<CoinDataTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         widget.label != null ? Text(widget.label!) : Container(),
-        SizedBox(height: ViewConstants.gapSmall),
+        const SizedBox(height: ViewConstants.gapSmall),
         TextField(
           controller: _controller,
           onChanged: widget.onChanged,
-          style: TextStyle(fontSize: ViewConstants.fontMedium),
+          style: const TextStyle(fontSize: ViewConstants.fontMedium),
           decoration: ViewConstants.decorationInput(
             MediaQuery.of(context).platformBrightness,
           ),
         ),
-        SizedBox(height: ViewConstants.gapLarge),
+        const SizedBox(height: ViewConstants.gapLarge),
       ],
     );
   }

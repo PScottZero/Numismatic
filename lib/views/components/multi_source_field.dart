@@ -15,7 +15,8 @@ class MultiSourceField<T> extends StatefulWidget {
     required this.initialDataSource,
     required this.manualChild,
     required this.onRadioChanged,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _MultiSourceFieldState createState() => _MultiSourceFieldState();
@@ -43,9 +44,9 @@ class _MultiSourceFieldState extends State<MultiSourceField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(widget.label),
-        SizedBox(height: ViewConstants.gapSmall),
+        const SizedBox(height: ViewConstants.gapSmall),
         Padding(
-          padding: EdgeInsets.only(bottom: ViewConstants.gapSmall),
+          padding: const EdgeInsets.only(bottom: ViewConstants.gapSmall),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -72,7 +73,7 @@ class _MultiSourceFieldState extends State<MultiSourceField> {
         ),
         _source == DataSource.manual
             ? widget.manualChild
-            : SizedBox(height: ViewConstants.gapSmall),
+            : const SizedBox(height: ViewConstants.gapSmall),
       ],
     );
   }

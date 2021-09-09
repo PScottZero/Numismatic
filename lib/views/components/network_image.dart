@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NetworkImage extends StatelessWidget {
   final String url;
 
-  const NetworkImage(this.url);
+  const NetworkImage(this.url, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class NetworkImage extends StatelessWidget {
         );
       },
       errorBuilder: (context, exception, stackTrace) {
-        return Image(
+        return const Image(
           image: AssetImage('assets/images/no-image.png'),
         );
       },

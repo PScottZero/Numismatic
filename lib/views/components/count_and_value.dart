@@ -6,7 +6,7 @@ class CountAndValue extends StatelessWidget {
   final List<Coin> coins;
 
   String get totalValue {
-    if (coins.length > 0) {
+    if (coins.isNotEmpty) {
       var sum = coins
           .map(
             (e) => double.tryParse(
@@ -20,7 +20,7 @@ class CountAndValue extends StatelessWidget {
     return '\$0.00';
   }
 
-  const CountAndValue(this.coins);
+  const CountAndValue(this.coins, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +37,13 @@ class CountAndValue extends StatelessWidget {
             Text(
               'Count: ${coins.length.toString()}',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: ViewConstants.fontSmall),
+              style: const TextStyle(fontSize: ViewConstants.fontSmall),
             ),
-            SizedBox(height: ViewConstants.gapSmall),
+            const SizedBox(height: ViewConstants.gapSmall),
             Text(
               'Total Value:\n$totalValue',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: ViewConstants.fontSmall),
+              style: const TextStyle(fontSize: ViewConstants.fontSmall),
             ),
           ],
         ),

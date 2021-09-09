@@ -11,7 +11,8 @@ class DeletableImage extends StatelessWidget {
   const DeletableImage({
     required this.image,
     required this.onDelete,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class DeletableImage extends StatelessWidget {
         IconButton(
           color: Colors.red,
           onPressed: onDelete,
-          icon: Icon(Icons.delete, size: 30),
+          icon: const Icon(Icons.delete, size: 30),
         )
       ],
     );

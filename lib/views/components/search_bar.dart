@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class SearchBar extends StatefulWidget {
   final bool viewingWantlist;
 
-  const SearchBar(this.viewingWantlist);
+  const SearchBar(this.viewingWantlist, {Key? key}) : super(key: key);
 
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -25,7 +25,7 @@ class _SearchBarState extends State<SearchBar> {
       builder: (context, model, child) {
         _model = model;
         return Padding(
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
@@ -37,20 +37,21 @@ class _SearchBarState extends State<SearchBar> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.blueGrey[600],
-                  contentPadding: EdgeInsets.fromLTRB(50, 10, 10, 10),
+                  contentPadding: const EdgeInsets.fromLTRB(50, 10, 10, 10),
                   border: OutlineInputBorder(
                     borderRadius: ViewConstants.borderRadiusMedium,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
                     ),
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Icon(
                   Icons.search,
+                  color: Colors.white,
                   size: 30,
                 ),
               ),

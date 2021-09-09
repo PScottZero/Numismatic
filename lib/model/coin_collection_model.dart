@@ -12,7 +12,7 @@ import 'coin.dart';
 import 'coin_comparator.dart';
 import 'coin_type.dart';
 
-const String ALL_COINS_KEY = 'coins';
+const String allCoinsKey = 'coins';
 
 class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
   List<Coin> allCoins = [];

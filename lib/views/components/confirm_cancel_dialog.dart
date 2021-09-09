@@ -12,7 +12,8 @@ class ConfirmCancelDialog extends StatelessWidget {
     required this.message,
     required this.confirmAction,
     required this.onConfirmed,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ConfirmCancelDialog extends StatelessWidget {
       title: Text(title),
       content: Text(
         message,
-        style: TextStyle(
+        style: const TextStyle(
           height: ViewConstants.spacingDouble,
         ),
       ),

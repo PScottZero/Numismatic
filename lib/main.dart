@@ -14,7 +14,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => CoinCollectionModel(),
-      child: NumismaticApp(),
+      child: const NumismaticApp(),
     ),
   );
 }
@@ -24,9 +24,8 @@ class NumismaticApp extends StatelessWidget {
         brightness: brightness,
         primarySwatch: Colors.blueGrey,
         primaryColor: ViewConstants.colorPrimary,
-        accentColor: ViewConstants.colorPrimary,
         textTheme: GoogleFonts.quicksandTextTheme(
-          TextTheme(
+          const TextTheme(
             bodyText2: TextStyle(
               fontSize: ViewConstants.fontMedium,
               height: ViewConstants.spacing1_5,
@@ -35,6 +34,8 @@ class NumismaticApp extends StatelessWidget {
         ),
       );
 
+  const NumismaticApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,12 +43,14 @@ class NumismaticApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: themeOfBrightness(Brightness.light),
       darkTheme: themeOfBrightness(Brightness.dark),
-      home: Navigation(),
+      home: const Navigation(),
     );
   }
 }
 
 class Navigation extends StatefulWidget {
+  const Navigation({Key? key}) : super(key: key);
+
   @override
   _NavigationState createState() => _NavigationState();
 }
@@ -55,8 +58,8 @@ class Navigation extends StatefulWidget {
 class _NavigationState extends State<Navigation> {
   late PageController _pageController;
   final _options = <Widget>[
-    CoinGridView(),
-    CoinGridView(isWantlist: true),
+    const CoinGridView(),
+    const CoinGridView(isWantlist: true),
   ];
   var _selectedIndex = 0;
 
@@ -67,7 +70,7 @@ class _NavigationState extends State<Navigation> {
       _selectedIndex = index;
       _pageController.animateToPage(
         index,
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
       );
     });
@@ -92,7 +95,7 @@ class _NavigationState extends State<Navigation> {
         return Scaffold(
           appBar: AppBar(
             title: Padding(
-              padding: EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5),
               child: Text(
                 'Numismatic',
                 style: GoogleFonts.quicksand(
@@ -110,12 +113,12 @@ class _NavigationState extends State<Navigation> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.only(right: 10),
                 child: SortMenu(model.setSortMethod),
               ),
             ],
             bottom: PreferredSize(
-              preferredSize: Size(double.infinity, 70),
+              preferredSize: const Size(double.infinity, 70),
               child: SearchBar(viewingWantlist),
             ),
           ),
@@ -158,7 +161,7 @@ class _NavigationState extends State<Navigation> {
                 ),
               );
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
         );
       },

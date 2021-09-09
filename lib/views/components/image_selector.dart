@@ -14,17 +14,23 @@ class ImageSelector extends StatefulWidget {
   final List<String> existingImages;
   final Function(List<String>) callback;
 
-  const ImageSelector({required this.existingImages, required this.callback});
+  const ImageSelector({
+    required this.existingImages,
+    required this.callback,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _ImageSelectorState createState() => _ImageSelectorState(existingImages);
+  _ImageSelectorState createState() => _ImageSelectorState();
 }
 
 class _ImageSelectorState extends State<ImageSelector> {
   CoinCollectionModel? modelRef;
-  List<String> _images = [];
+  late List<String> _images;
 
-  _ImageSelectorState(this._images);
+  _ImageSelectorState() {
+    _images = widget.existingImages;
+  }
 
   _addImage() async {
     if (await Permission.photosAddOnly.request().isGranted) {
@@ -49,9 +55,9 @@ class _ImageSelectorState extends State<ImageSelector> {
         modelRef = model;
         return Column(
           children: [
-            SizedBox(height: ViewConstants.gapSmall),
-            _images.length > 0
-                ? Container(
+            const SizedBox(height: ViewConstants.gapSmall),
+            _images.isNotEmpty
+                ? SizedBox(
                     height: 180,
                     child: ReorderableListView(
                       scrollDirection: Axis.horizontal,
@@ -70,7 +76,8 @@ class _ImageSelectorState extends State<ImageSelector> {
                           return Container(
                             key: Key('$index'),
                             margin: _images.indexOf(image) != _images.length - 1
-                                ? EdgeInsets.only(right: ViewConstants.gapSmall)
+                                ? const EdgeInsets.only(
+                                    right: ViewConstants.gapSmall)
                                 : EdgeInsets.zero,
                             child: DeletableImage(
                               image: base64Decode(image),
@@ -86,12 +93,12 @@ class _ImageSelectorState extends State<ImageSelector> {
                       ).toList(),
                     ),
                   )
-                : Text('No Images'),
+                : const Text('No Images'),
             RoundedButton(
               label: 'Upload Images',
               onPressed: _addImage,
             ),
-            SizedBox(height: ViewConstants.gapLarge),
+            const SizedBox(height: ViewConstants.gapLarge),
           ],
         );
       },

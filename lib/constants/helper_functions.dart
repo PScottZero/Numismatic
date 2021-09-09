@@ -12,7 +12,7 @@ class HelperFunctions {
       if (yearAndMintMark.length == 2) {
         return Tuple2(yearAndMintMark.first, yearAndMintMark.last);
       } else {
-        return Tuple2(null, null);
+        return const Tuple2(null, null);
       }
     } else {
       return Tuple2(year, null);

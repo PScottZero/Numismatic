@@ -5,7 +5,7 @@ class ViewConstants {
 
   // colors
   static final Color colorButton = Colors.blue[400]!;
-  static final Color colorCardTitle = Color(0x77000000);
+  static const Color colorCardTitle = Color(0x77000000);
   static final Color colorInactiveLight = Colors.grey[300]!;
   static final Color colorInactiveDark = Colors.grey[500]!;
   static final Color colorPrimary = Colors.blueGrey[400]!;
@@ -23,14 +23,15 @@ class ViewConstants {
   static final borderRadiusLarge = BorderRadius.circular(20);
   static final borderRadiusMedium = BorderRadius.circular(15);
   static final borderRadiusSmall = BorderRadius.circular(10);
-  static final borderWidthFocused = 2.0;
-  static final borderWidthUnfocused = 1.0;
-  static final cardTitleMargin = EdgeInsets.all(10);
+  static const borderWidthFocused = 2.0;
+  static const borderWidthUnfocused = 1.0;
+  static const cardTitleMargin = EdgeInsets.all(10);
   static const cardTitleMaxHeight = 100.0;
-  static final cardTitlePadding = EdgeInsets.fromLTRB(10, 5, 10, 5);
+  static const cardTitlePadding = EdgeInsets.fromLTRB(10, 5, 10, 5);
   static decorationInput(Brightness brightness) => InputDecoration(
         filled: true,
-        fillColor: Colors.grey[800]!,
+        fillColor:
+            brightness == Brightness.dark ? Colors.grey[800] : Colors.grey[300],
         contentPadding: ViewConstants.paddingAllMedium,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
@@ -40,7 +41,7 @@ class ViewConstants {
           borderRadius: ViewConstants.borderRadiusMedium,
         ),
         border: OutlineInputBorder(
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             width: 0,
             style: BorderStyle.none,
           ),

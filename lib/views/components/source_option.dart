@@ -9,12 +9,13 @@ class SourceOption extends StatelessWidget {
   final DataSource groupValue;
   final Function(DataSource?) onChanged;
 
-  SourceOption({
+  const SourceOption({
     required this.label,
     required this.value,
     required this.groupValue,
     required this.onChanged,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,10 @@ class SourceOption extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: ViewConstants.gapSmall),
+          padding: const EdgeInsets.only(left: ViewConstants.gapSmall),
           child: Text(
             label,
-            style: TextStyle(fontSize: ViewConstants.fontSmall),
+            style: const TextStyle(fontSize: ViewConstants.fontSmall),
           ),
         ),
       ],

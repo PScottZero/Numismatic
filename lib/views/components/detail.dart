@@ -10,7 +10,8 @@ class Detail extends StatelessWidget {
     required this.name,
     required this.value,
     this.topMargin = true,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class Detail extends StatelessWidget {
               top: topMargin ? ViewConstants.gapLarge : 0,
             ),
             width: double.infinity,
-            padding: EdgeInsets.fromLTRB(15, 15, 15, 18),
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 18),
             decoration: BoxDecoration(
               color: ViewConstants.colorPrimary,
               borderRadius: ViewConstants.borderRadiusMedium,
@@ -29,7 +30,7 @@ class Detail extends StatelessWidget {
               child: Text(
                 '$name: $value',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: ViewConstants.fontMedium,
                   color: Colors.white,
                 ),

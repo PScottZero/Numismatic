@@ -15,7 +15,7 @@ import 'components/detail.dart';
 class CoinDetailsView extends StatefulWidget {
   final Coin coin;
 
-  const CoinDetailsView(this.coin);
+  const CoinDetailsView(this.coin, {Key? key}) : super(key: key);
 
   @override
   _CoinDetailsViewState createState() => _CoinDetailsViewState();
@@ -56,7 +56,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -70,7 +70,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       ),
                     );
                   },
-                  child: Icon(Icons.edit),
+                  child: const Icon(Icons.edit),
                 ),
               ),
             ],
@@ -87,12 +87,12 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Text(
                         widget.coin.fullType,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: ViewConstants.fontLarge,
                           fontWeight: FontWeight.bold,
                           height: ViewConstants.spacing1_5,

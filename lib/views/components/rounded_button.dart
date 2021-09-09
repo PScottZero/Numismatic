@@ -9,12 +9,13 @@ class RoundedButton extends StatelessWidget {
   final Color? color;
   final bool topMargin;
 
-  RoundedButton({
+  const RoundedButton({
     required this.label,
     required this.onPressed,
     this.color,
     this.topMargin = true,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class RoundedButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
       ),
     );

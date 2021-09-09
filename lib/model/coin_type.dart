@@ -22,18 +22,18 @@ class CoinType {
   });
 
   String getGreysheetName() {
-    if (this.greysheetName == null) {
+    if (greysheetName == null) {
       return "${name}s";
     } else {
-      return this.greysheetName!;
+      return greysheetName!;
     }
   }
 
   String getPhotogradeName() {
-    if (this.photogradeName == null) {
+    if (photogradeName == null) {
       return name.replaceAll(' ', '');
     } else {
-      return this.photogradeName!;
+      return photogradeName!;
     }
   }
 

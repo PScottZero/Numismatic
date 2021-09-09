@@ -11,7 +11,7 @@ import '../coin_details_view.dart';
 class CoinCard extends StatelessWidget {
   final Coin coin;
 
-  CoinCard(this.coin);
+  const CoinCard(this.coin, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +37,11 @@ class CoinCard extends StatelessWidget {
             children: [
               coin.images != null && coin.images![0] != 'no-image.png'
                   ? Image.memory(base64Decode(coin.images![0]))
-                  : Image(
+                  : const Image(
                       image: AssetImage('assets/images/no-image.png'),
                     ),
               ConstrainedBox(
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxHeight: ViewConstants.cardTitleMaxHeight,
                   minHeight: 0,
                 ),
@@ -56,7 +56,7 @@ class CoinCard extends StatelessWidget {
                   child: Text(
                     coin.fullType,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: ViewConstants.fontMini,
                       color: Colors.white,
                     ),
