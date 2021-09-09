@@ -4,9 +4,10 @@ part 'reference.g.dart';
 
 @JsonSerializable()
 class StringReference {
-  String? value;
+  String value;
+  String? get valueNullable => value != '' ? value : null;
 
-  StringReference([this.value]);
+  StringReference([this.value = '']);
 
   factory StringReference.fromJson(Map<String, dynamic> json) =>
       _$StringReferenceFromJson(json);

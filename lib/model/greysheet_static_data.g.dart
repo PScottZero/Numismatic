@@ -6,12 +6,11 @@ part of 'greysheet_static_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GreysheetStaticData _$GreysheetStaticDataFromJson(Map<String, dynamic> json) {
-  return GreysheetStaticData(
-    json['url'] as String,
-    mintage: json['mintage'] as String?,
-  );
-}
+GreysheetStaticData _$GreysheetStaticDataFromJson(Map<String, dynamic> json) =>
+    GreysheetStaticData(
+      json['url'] as String,
+      mintage: json['mintage'] as String?,
+    );
 
 Map<String, dynamic> _$GreysheetStaticDataToJson(
         GreysheetStaticData instance) =>

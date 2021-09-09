@@ -26,7 +26,10 @@ class DeletableImage extends StatelessWidget {
         IconButton(
           color: Colors.red,
           onPressed: onDelete,
-          icon: const Icon(Icons.delete, size: 30),
+          icon: const Icon(
+            Icons.delete,
+            size: ViewConstants.iconSize,
+          ),
         )
       ],
     );

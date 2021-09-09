@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 import 'package:numismatic/views/coin_grid_view.dart';
-import 'package:numismatic/views/components/search_bar.dart';
-import 'package:numismatic/views/components/sort_menu.dart';
 import 'package:provider/provider.dart';
 
+import 'components/search_bar.dart';
+import 'components/sort_menu.dart';
 import 'model/coin_collection_model.dart';
 import 'model/coin_comparator.dart';
 
@@ -22,9 +22,8 @@ void main() {
 class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blueGrey,
+          primarySwatch: ViewConstants.colorPrimarySwatch,
         ).copyWith(
-          //primary: ViewConstants.colorPrimary,
           secondary: ViewConstants.colorPrimary,
           brightness: brightness,
         ),
@@ -97,7 +96,7 @@ class _NavigationState extends State<Navigation> {
             backgroundColor: ViewConstants.colorPrimary,
             foregroundColor: Colors.white,
             title: Padding(
-              padding: const EdgeInsets.only(left: 5),
+              padding: ViewConstants.leftPaddingSmall,
               child: Text(
                 'Numismatic',
                 style: GoogleFonts.quicksand(
@@ -115,12 +114,12 @@ class _NavigationState extends State<Navigation> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: ViewConstants.rightPaddingLarge,
                 child: SortMenu(model.setSortMethod),
               ),
             ],
             bottom: PreferredSize(
-              preferredSize: const Size(double.infinity, 70),
+              preferredSize: ViewConstants.searchBarPreferredSize,
               child: SearchBar(viewingWantlist),
             ),
           ),
@@ -136,6 +135,7 @@ class _NavigationState extends State<Navigation> {
           bottomNavigationBar: BottomNavigationBar(
             onTap: _onTap,
             currentIndex: _selectedIndex,
+            selectedItemColor: ViewConstants.colorPrimary,
             items: [
               BottomNavigationBarItem(
                 icon: Icon(
@@ -156,10 +156,11 @@ class _NavigationState extends State<Navigation> {
               'Add Coin',
               style: TextStyle(
                 fontSize: ViewConstants.fontSmall,
+                color: Colors.white,
               ),
             ),
             isExtended: true,
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.add, color: Colors.white),
             onPressed: () {
               Navigator.push(
                 context,

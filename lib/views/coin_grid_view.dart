@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:numismatic/components/coin_card.dart';
+import 'package:numismatic/components/count_and_value.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
-import 'package:numismatic/views/components/coin_card.dart';
-import 'package:numismatic/views/components/count_and_value.dart';
 import 'package:provider/provider.dart';
 
 class CoinGridView extends StatefulWidget {
@@ -31,8 +32,7 @@ class _CoinGridViewState extends State<CoinGridView> {
               .toList() ??
           [];
 
-  bool get searchStringNonEmpty =>
-      (_model?.searchString.value?.length ?? 0) > 0;
+  bool get searchStringNonEmpty => (_model?.searchString.value.length ?? 0) > 0;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _CoinGridViewState extends State<CoinGridView> {
                 crossAxisCount: ViewConstants.gridColumnCount,
                 mainAxisSpacing: ViewConstants.gapLarge,
                 crossAxisSpacing: ViewConstants.gapLarge,
-                padding: ViewConstants.paddingAllLarge(),
+                padding: ViewConstants.paddingAllLarge,
                 childAspectRatio: 1,
                 children: (searchStringNonEmpty
                         ? <Widget>[]
@@ -52,7 +52,7 @@ class _CoinGridViewState extends State<CoinGridView> {
                     coins.map((e) => CoinCard(e)).toList(),
               )
             : Container(
-                padding: ViewConstants.paddingAllLarge(),
+                padding: ViewConstants.paddingAllLarge,
                 child: Center(
                   child: Text(
                     'Press + to add a coin to your ${widget.isWantlist ? 'wantlist' : 'collection'}',

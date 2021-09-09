@@ -21,4 +21,6 @@ class HelperFunctions {
 
   static MaterialStateProperty<T> msp<T>(T property) =>
       MaterialStateProperty.all<T>(property);
+
+  static String? nullIfEmpty(String? str) => str != '' ? str : null;
 }

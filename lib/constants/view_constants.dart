@@ -4,12 +4,12 @@ class ViewConstants {
   static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/';
 
   // colors
-  static final Color colorButton = Colors.blue[400]!;
-  static const Color colorCardTitle = Color(0x77000000);
-  static final Color colorInactiveLight = Colors.grey[300]!;
-  static final Color colorInactiveDark = Colors.grey[500]!;
-  static final Color colorPrimary = Colors.blueGrey[400]!;
-  static final Color colorWarning = Colors.red[400]!;
+  static const colorCardTitle = Color(0x77000000);
+  static final colorPrimary = Colors.teal[600]!;
+  static final colorPrimarySwatch = Colors.lightBlue;
+  static final colorSearchBar = Colors.teal[400]!;
+  static const colorShadow = Color(0x77000000);
+  static final colorWarning = Colors.red[400]!;
 
   // text sizing
   static const fontLarge = 28.0;
@@ -23,11 +23,33 @@ class ViewConstants {
   static final borderRadiusLarge = BorderRadius.circular(20);
   static final borderRadiusMedium = BorderRadius.circular(15);
   static final borderRadiusSmall = BorderRadius.circular(10);
-  static const borderWidthFocused = 2.0;
-  static const borderWidthUnfocused = 1.0;
+  static const cardElevation = 5.0;
   static const cardTitleMargin = EdgeInsets.all(10);
   static const cardTitleMaxHeight = 100.0;
   static const cardTitlePadding = EdgeInsets.fromLTRB(10, 5, 10, 5);
+  static const detailPadding = EdgeInsets.fromLTRB(15, 15, 15, 18);
+  static const gapLarge = 20.0;
+  static const gapSmall = 10.0;
+  static const gridColumnCount = 2;
+  static const iconSize = 30.0;
+  static const imageNumberPadding = EdgeInsets.fromLTRB(10, 0, 10, 5);
+  static const imageSelectorHeight = 180.0;
+  static const leftPaddingLarge = EdgeInsets.only(left: 10);
+  static const leftPaddingSmall = EdgeInsets.only(left: 5);
+  static const loadingDialogTextHeight = 160.0;
+  static const paddingAllLarge = EdgeInsets.all(20);
+  static const paddingAllLargeNoTop = EdgeInsets.fromLTRB(20, 0, 20, 20);
+  static const paddingAllMedium = EdgeInsets.all(15);
+  static const paddingAllSmall = EdgeInsets.all(10);
+  static const progressIndicatorSize = 40.0;
+  static const radioButtonSize = 18.0;
+  static const rightPaddingLarge = EdgeInsets.only(right: 10);
+  static const searchBarContentPadding = EdgeInsets.fromLTRB(50, 10, 10, 10);
+  static const searchBarPadding = EdgeInsets.fromLTRB(20, 10, 20, 10);
+  static const searchBarPreferredSize = Size(double.infinity, 70);
+  static const shadowBlurRadius = 8.0;
+
+  // decorations
   static decorationInput(Brightness brightness) => InputDecoration(
         filled: true,
         fillColor:
@@ -36,7 +58,7 @@ class ViewConstants {
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: ViewConstants.colorPrimary,
-            width: ViewConstants.borderWidthFocused,
+            width: 2.0,
           ),
           borderRadius: ViewConstants.borderRadiusMedium,
         ),
@@ -48,16 +70,4 @@ class ViewConstants {
           borderRadius: ViewConstants.borderRadiusMedium,
         ),
       );
-  static const dotSize = 8.0;
-  static const dotSpacing = 8.0;
-  static const gapLarge = 20.0;
-  static const gapMedium = 15.0;
-  static const gapSmall = 10.0;
-  static const gridColumnCount = 2;
-  static const gridGap = 10.0;
-  static paddingAllLarge({bool top = true}) =>
-      EdgeInsets.fromLTRB(20, top ? 20 : 0, 20, 20);
-  static const paddingAllMedium = EdgeInsets.all(15);
-  static const paddingAllSmall = EdgeInsets.all(10);
-  static const radioButtonSize = 18.0;
 }

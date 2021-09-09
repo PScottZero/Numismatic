@@ -6,31 +6,29 @@ part of 'coin.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Coin _$CoinFromJson(Map<String, dynamic> json) {
-  return Coin(
-    StringReference.fromJson(json['type'] as Map<String, dynamic>),
-    json['year'] as String?,
-    json['mintMark'] as String?,
-    StringReference.fromJson(json['variation'] as Map<String, dynamic>),
-    json['mintage'] as String?,
-    StringReference.fromJson(json['grade'] as Map<String, dynamic>),
-    json['retailPrice'] as String?,
-    (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
-    json['notes'] as String?,
-    json['inCollection'] as bool,
-    _$enumDecode(_$DataSourceEnumMap, json['imagesSource']),
-    _$enumDecode(_$DataSourceEnumMap, json['mintageSource']),
-    _$enumDecode(_$DataSourceEnumMap, json['retailPriceSource']),
-    json['photogradeName'] as String?,
-    json['photogradeGrade'] as String?,
-    json['dateAdded'] == null
-        ? null
-        : DateTime.parse(json['dateAdded'] as String),
-    json['retailPriceLastUpdated'] == null
-        ? null
-        : DateTime.parse(json['retailPriceLastUpdated'] as String),
-  );
-}
+Coin _$CoinFromJson(Map<String, dynamic> json) => Coin(
+      StringReference.fromJson(json['type'] as Map<String, dynamic>),
+      json['year'] as String?,
+      json['mintMark'] as String?,
+      StringReference.fromJson(json['variation'] as Map<String, dynamic>),
+      json['mintage'] as String?,
+      StringReference.fromJson(json['grade'] as Map<String, dynamic>),
+      json['retailPrice'] as String?,
+      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['notes'] as String?,
+      json['inCollection'] as bool,
+      _$enumDecode(_$DataSourceEnumMap, json['imagesSource']),
+      _$enumDecode(_$DataSourceEnumMap, json['mintageSource']),
+      _$enumDecode(_$DataSourceEnumMap, json['retailPriceSource']),
+      json['photogradeName'] as String?,
+      json['photogradeGrade'] as String?,
+      json['dateAdded'] == null
+          ? null
+          : DateTime.parse(json['dateAdded'] as String),
+      json['retailPriceLastUpdated'] == null
+          ? null
+          : DateTime.parse(json['retailPriceLastUpdated'] as String),
+    );
 
 Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
       'type': instance.type,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
-import 'package:numismatic/views/components/autocomplete_input.dart';
 import 'package:provider/provider.dart';
+
+import 'autocomplete_input.dart';
 
 class SearchBar extends StatefulWidget {
   final bool viewingWantlist;
@@ -25,7 +26,7 @@ class _SearchBarState extends State<SearchBar> {
       builder: (context, model, child) {
         _model = model;
         return Padding(
-          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+          padding: ViewConstants.searchBarPadding,
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
@@ -36,8 +37,8 @@ class _SearchBarState extends State<SearchBar> {
                 refresh: model.refresh,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.blueGrey[600],
-                  contentPadding: const EdgeInsets.fromLTRB(50, 10, 10, 10),
+                  fillColor: ViewConstants.colorSearchBar,
+                  contentPadding: ViewConstants.searchBarContentPadding,
                   border: OutlineInputBorder(
                     borderRadius: ViewConstants.borderRadiusMedium,
                     borderSide: const BorderSide(
@@ -48,11 +49,11 @@ class _SearchBarState extends State<SearchBar> {
                 ),
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 10),
+                padding: ViewConstants.leftPaddingLarge,
                 child: Icon(
                   Icons.search,
                   color: Colors.white,
-                  size: 30,
+                  size: ViewConstants.iconSize,
                 ),
               ),
             ],

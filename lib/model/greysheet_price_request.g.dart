@@ -7,13 +7,12 @@ part of 'greysheet_price_request.dart';
 // **************************************************************************
 
 GreysheetPriceRequest _$GreysheetPriceRequestFromJson(
-    Map<String, dynamic> json) {
-  return GreysheetPriceRequest(
-    json['type'] as String,
-    json['variant'] as String,
-    json['grade'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    GreysheetPriceRequest(
+      json['type'] as String,
+      json['variant'] as String,
+      json['grade'] as String,
+    );
 
 Map<String, dynamic> _$GreysheetPriceRequestToJson(
         GreysheetPriceRequest instance) =>

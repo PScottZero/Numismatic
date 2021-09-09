@@ -37,13 +37,19 @@ class CountAndValue extends StatelessWidget {
             Text(
               'Count: ${coins.length.toString()}',
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: ViewConstants.fontSmall),
+              style: const TextStyle(
+                fontSize: ViewConstants.fontSmall,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: ViewConstants.gapSmall),
             Text(
               'Total Value:\n$totalValue',
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: ViewConstants.fontSmall),
+              style: const TextStyle(
+                fontSize: ViewConstants.fontSmall,
+                color: Colors.white,
+              ),
             ),
           ],
         ),

@@ -92,33 +92,32 @@ class Coin {
   }
 
   String get typeId {
-    var coinType = CoinType.coinTypeFromString(type.value ?? '');
+    var coinType = CoinType.coinTypeFromString(type.value);
     if (coinType != null) {
       return coinType.getGreysheetName();
     } else {
-      return type.value ?? '';
+      return type.value;
     }
   }
 
   String get fullType {
     if (hasYear()) {
-      final year = variation.value?.split(' ')[0];
-      var noYearVariation = variation.value?.replaceAll(year ?? '', '').trim();
+      final year = variation.value.split(' ')[0];
+      String? noYearVariation = variation.value.replaceAll(year, '').trim();
       if (noYearVariation == '') {
         noYearVariation = null;
       }
-      return '$year ${type.value ?? ''}${noYearVariation != null ? ' ($noYearVariation)' : ''}';
+      return '$year ${type.value}${noYearVariation != null ? ' ($noYearVariation)' : ''}';
     } else {
-      return '${type.value ?? ''}${variation.value != null ? ' (${variation.value})' : ''}';
+      return '${type.value}${variation.valueNullable != null ? ' (${variation.value})' : ''}';
     }
   }
 
   double? get denomination =>
-      CoinType.coinTypeFromString(type.value ?? '')?.denomination;
+      CoinType.coinTypeFromString(type.value)?.denomination;
 
   hasYear() =>
-      HelperFunctions.yearAndMintMarkFromVariation(variation.value ?? '')
-          .item1 !=
+      HelperFunctions.yearAndMintMarkFromVariation(variation.value).item1 !=
       null;
 
   factory Coin.fromJson(Map<String, dynamic> json) => _$CoinFromJson(json);

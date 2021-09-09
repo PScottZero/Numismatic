@@ -22,7 +22,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
       allCoins.where((element) => !element.inCollection).toList();
   List<CoinType> coinTypes = [];
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
-  StringReference searchString = StringReference('');
+  StringReference searchString = StringReference();
 
   @override
   void dispose() {
@@ -32,7 +32,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
 
   CoinCollectionModel() {
     WidgetsBinding.instance?.addObserver(this);
-    CoinComparator.setSortMethod(SortMethod.type);
+    CoinComparator.setSortMethod(SortMethod.denomination);
     loadTypes();
     loadGreysheetStaticData();
     loadCoins();

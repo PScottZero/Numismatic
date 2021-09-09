@@ -26,7 +26,7 @@ class AutocompleteInput extends StatelessWidget {
     this.padding = true,
     Key? key,
   }) : super(key: key) {
-    _typeAheadController.text = reference.value ?? '';
+    _typeAheadController.text = reference.value;
   }
 
   @override

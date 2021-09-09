@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:numismatic/components/confirm_cancel_dialog.dart';
+import 'package:numismatic/components/detail.dart';
+import 'package:numismatic/components/image_carousel.dart';
+import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/data_source.dart';
 import 'package:numismatic/views/add_coin_view.dart';
-import 'package:numismatic/views/components/confirm_cancel_dialog.dart';
-import 'package:numismatic/views/components/image_carousel.dart';
-import 'package:numismatic/views/components/rounded_button.dart';
 import 'package:provider/provider.dart';
-
-import 'components/detail.dart';
 
 class CoinDetailsView extends StatefulWidget {
   final Coin coin;
@@ -58,7 +57,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: ViewConstants.paddingAllSmall,
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -83,9 +82,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                   ? ImageCarousel(widget.coin.images)
                   : Container(),
               Container(
-                padding: ViewConstants.paddingAllLarge(
-                  top: widget.coin.images == null,
-                ),
+                padding: widget.coin.images == null
+                    ? ViewConstants.paddingAllLarge
+                    : ViewConstants.paddingAllLargeNoTop,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -101,7 +100,8 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                         ),
                       ),
                     ),
-                    Detail(name: 'Grade', value: widget.coin.grade.value),
+                    Detail(
+                        name: 'Grade', value: widget.coin.grade.valueNullable),
                     Detail(
                       name: 'Mintage',
                       value: widget.coin.mintageSource != DataSource.none
@@ -122,6 +122,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       label:
                           'Move to ${widget.coin.inCollection ? 'Wantlist' : 'Collection'}',
                       onPressed: () => model.toggleInCollection(widget.coin),
+                      color: Colors.cyan,
                     ),
                     RoundedButton(
                       label: 'Delete',

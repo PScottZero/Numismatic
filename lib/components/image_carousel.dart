@@ -18,8 +18,17 @@ class ImageCarousel extends StatelessWidget {
         children: (images ?? ['no-image.png']).map(
           (image) {
             var index = (images?.indexOf(image) ?? 0) + 1;
-            return Padding(
-              padding: ViewConstants.paddingAllLarge(),
+            return Container(
+              margin: ViewConstants.paddingAllLarge,
+              decoration: BoxDecoration(
+                borderRadius: ViewConstants.borderRadiusLarge,
+                boxShadow: const [
+                  BoxShadow(
+                    color: ViewConstants.colorShadow,
+                    blurRadius: ViewConstants.shadowBlurRadius,
+                  ),
+                ],
+              ),
               child: ClipRRect(
                 borderRadius: ViewConstants.borderRadiusLarge,
                 child: Stack(
@@ -37,7 +46,7 @@ class ImageCarousel extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
+                      padding: ViewConstants.imageNumberPadding,
                       margin: ViewConstants.paddingAllSmall,
                       decoration: BoxDecoration(
                         color: ViewConstants.colorCardTitle,
@@ -47,6 +56,7 @@ class ImageCarousel extends StatelessWidget {
                         '$index/${images?.length ?? 1}',
                         style: const TextStyle(
                           fontSize: ViewConstants.fontSmall,
+                          color: Colors.white,
                         ),
                       ),
                     )

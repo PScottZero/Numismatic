@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/views/coin_details_view.dart';
 import 'package:provider/provider.dart';
-
-import '../coin_details_view.dart';
 
 class CoinCard extends StatelessWidget {
   final Coin coin;
@@ -26,7 +25,7 @@ class CoinCard extends StatelessWidget {
           ),
         },
         child: Card(
-          elevation: 5,
+          elevation: ViewConstants.cardElevation,
           margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: ViewConstants.borderRadiusLarge,

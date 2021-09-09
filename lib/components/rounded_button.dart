@@ -31,9 +31,9 @@ class RoundedButton extends StatelessWidget {
             ),
           ),
           backgroundColor: HelperFunctions.msp(
-            color ?? ViewConstants.colorButton,
+            color ?? ViewConstants.colorPrimary,
           ),
-          padding: HelperFunctions.msp(ViewConstants.paddingAllLarge()),
+          padding: HelperFunctions.msp(ViewConstants.paddingAllLarge),
           textStyle: HelperFunctions.msp(
             GoogleFonts.quicksand(fontSize: ViewConstants.fontMedium),
           ),

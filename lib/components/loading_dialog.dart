@@ -13,13 +13,13 @@ class LoadingDialog extends StatelessWidget {
       content: Row(
         children: [
           Container(
-            height: 40,
-            width: 40,
+            height: ViewConstants.progressIndicatorSize,
+            width: ViewConstants.progressIndicatorSize,
             margin: const EdgeInsets.only(right: ViewConstants.gapLarge),
             child: const CircularProgressIndicator(),
           ),
           const SizedBox(
-            width: 160,
+            width: ViewConstants.loadingDialogTextHeight,
             child: Text(
               'Loading coin data...',
               style: TextStyle(

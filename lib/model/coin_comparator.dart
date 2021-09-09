@@ -4,7 +4,7 @@ import 'coin.dart';
 
 class CoinComparator {
   static SortMethod sortMethod = SortMethod.denomination;
-  static bool ascending = true;
+  static bool ascending = false;
   static List<int Function(Coin, Coin, int)> _compareFuncs = [];
 
   static setSortMethod(SortMethod sortMethod) {

@@ -6,11 +6,10 @@ part of 'reference.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-StringReference _$StringReferenceFromJson(Map<String, dynamic> json) {
-  return StringReference(
-    json['value'] as String?,
-  );
-}
+StringReference _$StringReferenceFromJson(Map<String, dynamic> json) =>
+    StringReference(
+      json['value'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$StringReferenceToJson(StringReference instance) =>
     <String, dynamic>{
