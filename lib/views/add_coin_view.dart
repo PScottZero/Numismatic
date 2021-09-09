@@ -12,7 +12,6 @@ import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/coin_type.dart';
 import 'package:numismatic/model/data_source.dart';
 import 'package:numismatic/model/grades.dart';
-import 'package:numismatic/model/reference.dart';
 import 'package:numismatic/scraper/greysheet_scraper.dart';
 import 'package:numismatic/views/components/autocomplete_input.dart';
 import 'package:numismatic/views/components/coin_data_text_field.dart';
@@ -40,14 +39,16 @@ class AddCoinView extends StatefulWidget {
 }
 
 class _AddCoinViewState extends State<AddCoinView> {
-  Coin? _coin;
+  Coin _coin = Coin.empty();
   List<String> get _variations =>
-      _model?.greysheetStaticData?[_coin?.typeId]?.keys.toList() ?? [];
+      _model?.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
   CoinCollectionModel? _model;
 
   String get title => widget.addToWantlist ? 'Wantlist' : 'Collection';
 
-  _AddCoinViewState() {
+  @override
+  void initState() {
+    super.initState();
     _coin = (widget.coin != null && widget.edit)
         ? Coin.copyOf(widget.coin!)
         : Coin.empty(inCollection: !widget.addToWantlist);
@@ -58,10 +59,10 @@ class _AddCoinViewState extends State<AddCoinView> {
     String? manualGrade,
   ) async {
     var photogradeType = manualName ??
-        CoinType.coinTypeFromString(_coin?.type.value ?? '')
+        CoinType.coinTypeFromString(_coin.type.value ?? '')
             ?.getPhotogradeName() ??
         '';
-    var grade = manualGrade ?? gradeToNumber(_coin?.grade.value ?? '');
+    var grade = manualGrade ?? gradeToNumber(_coin.grade.value ?? '');
     var urls = [
       '${ViewConstants.pcgsUrl}$photogradeType-${grade}o.jpg',
       '${ViewConstants.pcgsUrl}$photogradeType-${grade}r.jpg',
@@ -97,8 +98,8 @@ class _AddCoinViewState extends State<AddCoinView> {
   }
 
   addCoin() async {
-    if (_coin?.type.value != '') {
-      if (_coin?.variation.value != null) {
+    if (_coin.type.value != '') {
+      if (_coin.variation.value != null) {
         showDialog(
           context: context,
           builder: (context) {
@@ -106,44 +107,44 @@ class _AddCoinViewState extends State<AddCoinView> {
           },
         );
         await handleDataSource(
-          _coin?.mintageSource,
-          () async => _coin?.mintage = _model
+          _coin.mintageSource,
+          () async => _coin.mintage = _model
               ?.greysheetStaticData![
-                  CoinType.coinTypeFromString(_coin?.type.value ?? '')
+                  CoinType.coinTypeFromString(_coin.type.value ?? '')
                           ?.getGreysheetName() ??
-                      _coin?.type.value]?[_coin?.variation.value]
+                      _coin.type.value]?[_coin.variation.value]
               ?.mintage,
         );
         await handleDataSource(
-          _coin?.retailPriceSource,
+          _coin.retailPriceSource,
           () async {
-            _coin?.retailPrice =
-                await GreysheetScraper.retailPriceForCoin(_coin!);
-            _coin?.retailPriceLastUpdated = DateTime.now();
+            _coin.retailPrice =
+                await GreysheetScraper.retailPriceForCoin(_coin);
+            _coin.retailPriceLastUpdated = DateTime.now();
           },
         );
       }
       await handleDataSource(
-        _coin?.imagesSource,
-        () async => _coin?.images = await getImagesFromPCGS(
-          _coin?.photogradeName,
-          _coin?.photogradeGrade,
+        _coin.imagesSource,
+        () async => _coin.images = await getImagesFromPCGS(
+          _coin.photogradeName,
+          _coin.photogradeGrade,
         ),
       );
-      if ((_coin?.images?.length ?? -1) == 0) {
-        _coin?.images = null;
+      if ((_coin.images?.length ?? -1) == 0) {
+        _coin.images = null;
       }
       var yearAndMintMark = HelperFunctions.yearAndMintMarkFromVariation(
-        _coin?.variation.value ?? '',
+        _coin.variation.value ?? '',
       );
-      _coin?.year = yearAndMintMark.item1;
-      _coin?.mintMark = yearAndMintMark.item2;
-      _coin?.retailPrice = formatRetailPrice(_coin?.retailPrice);
+      _coin.year = yearAndMintMark.item1;
+      _coin.mintMark = yearAndMintMark.item2;
+      _coin.retailPrice = formatRetailPrice(_coin.retailPrice);
       if (widget.edit) {
-        _model?.overwriteCoin(widget.coin!, _coin!);
+        _model?.overwriteCoin(widget.coin!, _coin);
       } else {
-        _coin?.dateAdded = DateTime.now();
-        _model?.addCoin(_coin!);
+        _coin.dateAdded = DateTime.now();
+        _model?.addCoin(_coin);
       }
       Navigator.of(context).pop();
       Navigator.of(context).pop();
@@ -166,6 +167,8 @@ class _AddCoinViewState extends State<AddCoinView> {
         _model = model;
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: ViewConstants.colorPrimary,
+            foregroundColor: Colors.white,
             centerTitle: true,
             title: Text(
               '${widget.edit ? 'Edit' : 'Add'} Coin',
@@ -177,7 +180,7 @@ class _AddCoinViewState extends State<AddCoinView> {
             children: [
               AutocompleteInput(
                 label: 'Coin Type',
-                reference: _coin?.type ?? StringReference(),
+                reference: _coin.type,
                 options: model.allCoinTypes,
                 decoration: ViewConstants.decorationInput(
                   MediaQuery.of(context).platformBrightness,
@@ -187,7 +190,7 @@ class _AddCoinViewState extends State<AddCoinView> {
               ),
               AutocompleteInput(
                 label: 'Variation',
-                reference: _coin?.variation ?? StringReference(),
+                reference: _coin.variation,
                 options: _variations,
                 decoration: ViewConstants.decorationInput(
                   MediaQuery.of(context).platformBrightness,
@@ -196,7 +199,7 @@ class _AddCoinViewState extends State<AddCoinView> {
               ),
               AutocompleteInput(
                 label: 'Grade',
-                reference: _coin?.grade ?? StringReference(),
+                reference: _coin.grade,
                 options: grades,
                 decoration: ViewConstants.decorationInput(
                   MediaQuery.of(context).platformBrightness,
@@ -204,43 +207,43 @@ class _AddCoinViewState extends State<AddCoinView> {
               ),
               MultiSourceField<String>(
                 label: 'Mintage',
-                initialDataSource: _coin?.mintageSource ?? DataSource.auto,
+                initialDataSource: _coin.mintageSource,
                 manualChild: CoinDataTextField(
-                  initialValue: _coin?.mintage,
-                  onChanged: (mintage) => _coin?.mintage = nullIfEmpty(mintage),
+                  initialValue: _coin.mintage,
+                  onChanged: (mintage) => _coin.mintage = nullIfEmpty(mintage),
                 ),
                 onRadioChanged: (source) {
-                  _coin?.mintageSource = source ?? DataSource.auto;
+                  _coin.mintageSource = source ?? DataSource.auto;
                 },
               ),
               MultiSourceField<String>(
                 label: 'Retail Price',
-                initialDataSource: _coin?.retailPriceSource ?? DataSource.auto,
+                initialDataSource: _coin.retailPriceSource,
                 manualChild: CoinDataTextField(
-                  initialValue: _coin?.retailPrice,
-                  onChanged: (price) => _coin?.retailPrice = nullIfEmpty(price),
+                  initialValue: _coin.retailPrice,
+                  onChanged: (price) => _coin.retailPrice = nullIfEmpty(price),
                 ),
                 onRadioChanged: (source) {
-                  _coin?.retailPriceSource = source ?? DataSource.auto;
+                  _coin.retailPriceSource = source ?? DataSource.auto;
                 },
               ),
               MultiSourceField<List<String>>(
                 label: 'Images',
-                initialDataSource: _coin?.imagesSource ?? DataSource.manual,
+                initialDataSource: _coin.imagesSource,
                 manualChild: ImageSelector(
-                  existingImages: _coin?.images ?? [],
+                  existingImages: _coin.images ?? [],
                   callback: (images) {
-                    _coin?.images = images.isNotEmpty ? images : null;
+                    _coin.images = images.isNotEmpty ? images : null;
                   },
                 ),
                 onRadioChanged: (source) {
-                  _coin?.imagesSource = source ?? DataSource.auto;
+                  _coin.imagesSource = source ?? DataSource.auto;
                 },
               ),
               CoinDataTextField(
                 label: 'Notes',
-                initialValue: _coin?.notes,
-                onChanged: (notes) => _coin?.notes = nullIfEmpty(notes),
+                initialValue: _coin.notes,
+                onChanged: (notes) => _coin.notes = nullIfEmpty(notes),
               ),
               ExpansionTile(
                 tilePadding: EdgeInsets.zero,
@@ -253,15 +256,15 @@ class _AddCoinViewState extends State<AddCoinView> {
                 children: [
                   CoinDataTextField(
                     label: 'Photograde Name',
-                    initialValue: _coin?.photogradeName,
+                    initialValue: _coin.photogradeName,
                     onChanged: (name) =>
-                        _coin?.photogradeName = nullIfEmpty(name),
+                        _coin.photogradeName = nullIfEmpty(name),
                   ),
                   CoinDataTextField(
                     label: 'Photograde Grade',
-                    initialValue: _coin?.photogradeGrade,
+                    initialValue: _coin.photogradeGrade,
                     onChanged: (grade) =>
-                        _coin?.photogradeGrade = nullIfEmpty(grade),
+                        _coin.photogradeGrade = nullIfEmpty(grade),
                   ),
                 ],
               ),

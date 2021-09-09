@@ -21,9 +21,13 @@ void main() {
 
 class NumismaticApp extends StatelessWidget {
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
-        brightness: brightness,
-        primarySwatch: Colors.blueGrey,
-        primaryColor: ViewConstants.colorPrimary,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blueGrey,
+        ).copyWith(
+          //primary: ViewConstants.colorPrimary,
+          secondary: ViewConstants.colorPrimary,
+          brightness: brightness,
+        ),
         textTheme: GoogleFonts.quicksandTextTheme(
           const TextTheme(
             bodyText2: TextStyle(
@@ -56,7 +60,7 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  late PageController _pageController;
+  final PageController _pageController;
   final _options = <Widget>[
     const CoinGridView(),
     const CoinGridView(isWantlist: true),
@@ -64,6 +68,8 @@ class _NavigationState extends State<Navigation> {
   var _selectedIndex = 0;
 
   bool get viewingWantlist => _selectedIndex == 1;
+
+  _NavigationState() : _pageController = PageController();
 
   void _onTap(int index) {
     setState(() {
@@ -74,12 +80,6 @@ class _NavigationState extends State<Navigation> {
         curve: Curves.easeInOut,
       );
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
   }
 
   @override
@@ -94,6 +94,8 @@ class _NavigationState extends State<Navigation> {
       builder: (context, model, child) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: ViewConstants.colorPrimary,
+            foregroundColor: Colors.white,
             title: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Text(
@@ -149,7 +151,15 @@ class _NavigationState extends State<Navigation> {
               ),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton.extended(
+            label: const Text(
+              'Add Coin',
+              style: TextStyle(
+                fontSize: ViewConstants.fontSmall,
+              ),
+            ),
+            isExtended: true,
+            icon: const Icon(Icons.add),
             onPressed: () {
               Navigator.push(
                 context,
@@ -161,7 +171,6 @@ class _NavigationState extends State<Navigation> {
                 ),
               );
             },
-            child: const Icon(Icons.add),
           ),
         );
       },

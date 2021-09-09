@@ -18,12 +18,12 @@ class CoinDataTextField extends StatefulWidget {
 }
 
 class _CoinDataTextFieldState extends State<CoinDataTextField> {
-  late TextEditingController _controller;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController()..text = widget.initialValue ?? '';
+    _controller.text = widget.initialValue ?? '';
   }
 
   @override

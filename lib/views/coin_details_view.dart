@@ -48,6 +48,8 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
         _modelRef = model;
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: ViewConstants.colorPrimary,
+            foregroundColor: Colors.white,
             centerTitle: true,
             title: Text(
               widget.coin.fullType,

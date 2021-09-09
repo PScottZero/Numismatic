@@ -26,9 +26,11 @@ class ImageSelector extends StatefulWidget {
 
 class _ImageSelectorState extends State<ImageSelector> {
   CoinCollectionModel? modelRef;
-  late List<String> _images;
+  List<String> _images = [];
 
-  _ImageSelectorState() {
+  @override
+  void initState() {
+    super.initState();
     _images = widget.existingImages;
   }
 
