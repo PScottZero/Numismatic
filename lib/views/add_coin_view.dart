@@ -196,7 +196,7 @@ class _AddCoinViewState extends State<AddCoinView> {
             padding: ViewConstants.paddingAllLarge,
             children: [
               AutocompleteInput(
-                label: 'Coin Type',
+                label: 'Type',
                 reference: _coin.type,
                 options: model.allCoinTypes,
                 decoration: ViewConstants.decorationInput(

@@ -6,7 +6,7 @@ class ViewConstants {
   // colors
   static const colorCardTitle = Color(0x77000000);
   static final colorPrimary = Colors.teal[600]!;
-  static final colorPrimarySwatch = Colors.lightBlue;
+  static final colorPrimarySwatch = Colors.teal;
   static final colorSearchBar = Colors.teal[400]!;
   static const colorShadow = Color(0x77000000);
   static final colorWarning = Colors.red[400]!;

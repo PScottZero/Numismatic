@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import 'deletable_image.dart';
@@ -35,15 +34,13 @@ class _ImageSelectorState extends State<ImageSelector> {
   }
 
   _addImage() async {
-    if (await Permission.photosAddOnly.request().isGranted) {
-      var image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        var base64 = base64Encode(await image.readAsBytes());
-        setState(() {
-          _images.add(base64);
-          widget.callback(_images);
-        });
-      }
+    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      var base64 = base64Encode(await image.readAsBytes());
+      setState(() {
+        _images.add(base64);
+        widget.callback(_images);
+      });
     }
   }
 
