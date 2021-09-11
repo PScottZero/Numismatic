@@ -21,7 +21,7 @@ class CoinDetailsView extends StatefulWidget {
 }
 
 class _CoinDetailsViewState extends State<CoinDetailsView> {
-  CoinCollectionModel? _modelRef;
+  CoinCollectionModel? _model;
 
   _showDeleteCoinDialog() async {
     return showDialog(
@@ -32,7 +32,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
           message: 'Are you sure you want to delete this coin?',
           confirmAction: 'Delete',
           onConfirmed: () {
-            _modelRef?.deleteCoin(widget.coin);
+            _model?.deleteCoin(widget.coin);
             Navigator.of(context).popUntil((route) => route.isFirst);
           },
         );
@@ -43,8 +43,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
+      child: ImageCarousel(widget.coin.images),
       builder: (context, model, child) {
-        _modelRef = model;
+        _model = model;
         return Scaffold(
           appBar: AppBar(
             backgroundColor: ViewConstants.colorPrimary,
@@ -78,9 +79,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
           ),
           body: ListView(
             children: [
-              widget.coin.images != null
-                  ? ImageCarousel(widget.coin.images)
-                  : Container(),
+              widget.coin.images != null ? child ?? Container() : Container(),
               Container(
                 padding: widget.coin.images == null
                     ? ViewConstants.paddingAllLarge

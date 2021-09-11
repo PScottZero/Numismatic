@@ -23,6 +23,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
       coins.where((element) => !element.inCollection).toList();
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
   StringReference searchString = StringReference();
+  int imageIndex = 0;
 
   @override
   void dispose() {

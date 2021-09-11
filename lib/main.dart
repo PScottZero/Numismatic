@@ -1,8 +1,10 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/views/add_coin_view.dart';
+import 'package:numismatic/model/action_button.dart';
+import 'package:numismatic/views/camera_view.dart';
 import 'package:numismatic/views/coin_grid_view.dart';
 import 'package:provider/provider.dart';
 
@@ -10,17 +12,22 @@ import 'components/search_bar.dart';
 import 'components/sort_menu.dart';
 import 'model/coin_collection_model.dart';
 import 'model/coin_comparator.dart';
+import 'model/navigation_bar.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
   runApp(
     ChangeNotifierProvider(
       create: (context) => CoinCollectionModel(),
-      child: const NumismaticApp(),
+      child: NumismaticApp(cameras.isNotEmpty ? cameras.first : null),
     ),
   );
 }
 
 class NumismaticApp extends StatelessWidget {
+  final CameraDescription? _camera;
+
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: ViewConstants.colorPrimarySwatch,
@@ -38,7 +45,7 @@ class NumismaticApp extends StatelessWidget {
         ),
       );
 
-  const NumismaticApp({Key? key}) : super(key: key);
+  const NumismaticApp(this._camera, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +54,15 @@ class NumismaticApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: themeOfBrightness(Brightness.light),
       darkTheme: themeOfBrightness(Brightness.dark),
-      home: const Navigation(),
+      home: Navigation(_camera),
     );
   }
 }
 
 class Navigation extends StatefulWidget {
-  const Navigation({Key? key}) : super(key: key);
+  final CameraDescription? _camera;
+
+  const Navigation(this._camera, {Key? key}) : super(key: key);
 
   @override
   _NavigationState createState() => _NavigationState();
@@ -61,13 +70,19 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   final PageController _pageController;
-  final _options = <Widget>[
-    const CoinGridView(),
-    const CoinGridView(isWantlist: true),
-  ];
   var _selectedIndex = 0;
 
+  List<Widget> get _options => [
+        const CoinGridView(),
+        const CoinGridView(isWantlist: true),
+        widget._camera != null
+            ? CameraView(camera: widget._camera!)
+            : Container(),
+      ];
+
+  bool get viewingCollection => _selectedIndex == 0;
   bool get viewingWantlist => _selectedIndex == 1;
+  bool get viewingCamera => _selectedIndex == 2;
 
   _NavigationState() : _pageController = PageController();
 
@@ -133,47 +148,12 @@ class _NavigationState extends State<Navigation> {
             },
             children: _options,
           ),
-          bottomNavigationBar: BottomNavigationBar(
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: _selectedIndex,
             onTap: _onTap,
-            currentIndex: _selectedIndex,
-            selectedItemColor: ViewConstants.colorPrimary,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  _selectedIndex == 0 ? Icons.grid_view_sharp : Icons.grid_view,
-                ),
-                label: 'Collection',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  viewingWantlist ? Icons.favorite : Icons.favorite_border,
-                ),
-                label: 'Wantlist',
-              ),
-            ],
+            cameraIsInitialized: widget._camera != null,
           ),
-          floatingActionButton: FloatingActionButton.extended(
-            label: const Text(
-              'Add Coin',
-              style: TextStyle(
-                fontSize: ViewConstants.fontMedium,
-                color: Colors.white,
-              ),
-            ),
-            isExtended: true,
-            icon: const Icon(Icons.add, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddCoinView(
-                    addToWantlist: viewingWantlist,
-                    edit: false,
-                  ),
-                ),
-              );
-            },
-          ),
+          floatingActionButton: ActionButton(_selectedIndex),
         );
       },
     );
