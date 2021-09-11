@@ -225,7 +225,7 @@
   },
   {
     "name": "Flying Eagle Cent",
-    "photogradeName": "Flyings",
+    "photogradeName": "Flying",
     "denomination": 0.01
   },
   {
@@ -643,31 +643,31 @@
   },
   {
     "name": "Silver Eagle",
-    "greysheetName": "$1-silver-eagles",
+    "greysheetName": "$1 Silver Eagles",
     "photogradeName": "SilEag",
     "denomination": 1.00
   },
   {
     "name": "Gold Eagle Five Dollars",
-    "greysheetName": "$5-gold-eagles",
+    "greysheetName": "$5 Gold Eagles",
     "photogradeName": "GldEag",
     "denomination": 5.00
   },
   {
     "name": "Gold Eagle Ten Dollars",
-    "greysheetName": "$10-gold-eagles",
+    "greysheetName": "$10 Gold Eagles",
     "photogradeName": "GldEag",
     "denomination": 10.00
   },
   {
     "name": "Gold Eagle Twenty Five Dollars",
-    "greysheetName": "$25-gold-eagles",
+    "greysheetName": "$25 Gold Eagles",
     "photogradeName": "GldEag",
     "denomination": 25.00
   },
   {
     "name": "Gold Eagle Fifty Dollars",
-    "greysheetName": "$50-gold-eagles",
+    "greysheetName": "$50 Gold Eagles",
     "photogradeName": "GldEag",
     "denomination": 50.00
   }

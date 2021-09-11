@@ -96,7 +96,7 @@ class Coin {
   String get typeId {
     var coinType = CoinType.coinTypeFromString(type.value);
     if (coinType != null) {
-      return coinType.getGreysheetName();
+      return coinType.getGreysheetName(isProof);
     } else {
       return type.value;
     }
@@ -114,6 +114,8 @@ class Coin {
       return '${type.value}${variation.valueNullable != null ? ' (${variation.value})' : ''}';
     }
   }
+
+  bool get isProof => grade.value.contains('PR');
 
   double? get denomination =>
       CoinType.coinTypeFromString(type.value)?.denomination;

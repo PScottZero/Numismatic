@@ -21,11 +21,11 @@ class CoinType {
     required this.denomination,
   });
 
-  String getGreysheetName() {
+  String getGreysheetName([bool isProof = false]) {
     if (greysheetName == null) {
-      return "${name}s";
+      return "${name}s${isProof ? ' (Proof)' : ''}";
     } else {
-      return greysheetName!;
+      return '$greysheetName${isProof ? ' (Proof)' : ''}';
     }
   }
 
@@ -43,6 +43,7 @@ class CoinType {
           .where((element) =>
               element.name == type ||
               element.getGreysheetName() == type ||
+              element.getGreysheetName() == type.replaceAll(' (Proof)', '') ||
               element.photogradeName == type)
           .first;
     } catch (_) {

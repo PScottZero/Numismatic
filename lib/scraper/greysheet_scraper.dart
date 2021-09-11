@@ -10,8 +10,7 @@ class GreysheetScraper {
   static Future<String?> retailPriceForCoin(Coin coin) =>
       _scrapeRetailPriceFromGreysheet(
         staticData?[CoinType.coinTypeFromString(coin.type.value)
-                        ?.getGreysheetName() ??
-                    coin.type.value]?[coin.variation.value]
+                    ?.getGreysheetName(coin.isProof)]?[coin.variation.value]
                 ?.pricesUrl ??
             '',
         coin.grade.value.replaceAll('-', ''),
@@ -21,7 +20,10 @@ class GreysheetScraper {
     String route,
     String grade,
   ) async {
-    if (await scraper.loadWebPage(route)) {
+    if (await scraper
+        .loadWebPage(route)
+        .timeout(const Duration(seconds: 5))
+        .onError((error, stackTrace) => false)) {
       var grades = scraper
           .getElement('p.entry-title', [])
           .map((e) => e['title'].toString().trim())
@@ -36,7 +38,7 @@ class GreysheetScraper {
                 .trim(),
           )
           .toList();
-      if (grades.length == prices.length) {
+      if (grades.length == prices.length && prices.isNotEmpty) {
         return prices[grades.indexOf(grade)];
       }
       return null;

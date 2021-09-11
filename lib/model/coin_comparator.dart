@@ -83,9 +83,9 @@ class CoinComparator {
     if (first == null && second == null) {
       return 0;
     } else if (second == null) {
-      return (ascending && index == 0) || index != 0 ? 1 : -1;
+      return 1;
     } else if (first == null) {
-      return (ascending && index == 0) || index != 0 ? -1 : 1;
+      return -1;
     } else {
       if (first is String && second is String) {
         return first.compareTo(second) *

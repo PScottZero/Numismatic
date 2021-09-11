@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:numismatic/components/autocomplete_input.dart';
 import 'package:numismatic/components/coin_data_text_field.dart';
 import 'package:numismatic/components/image_selector.dart';
@@ -67,7 +68,10 @@ class _AddCoinViewState extends State<AddCoinView> {
     ];
     List<String> images = [];
     for (var url in urls) {
-      var response = await http.get(Uri.parse(url));
+      var response = await http
+          .get(Uri.parse(url))
+          .timeout(const Duration(seconds: 5))
+          .onError((error, stackTrace) => Response('Error', 500));
       if (response.statusCode == 200) {
         images.add(base64Encode(response.bodyBytes));
       }
@@ -109,7 +113,7 @@ class _AddCoinViewState extends State<AddCoinView> {
           () async => _coin.mintage = _model
               ?.greysheetStaticData![
                   CoinType.coinTypeFromString(_coin.type.value)
-                          ?.getGreysheetName() ??
+                          ?.getGreysheetName(_coin.isProof) ??
                       _coin.type.value]?[_coin.variation.value]
               ?.mintage,
           () => _coin.mintage = null,
@@ -170,7 +174,11 @@ class _AddCoinViewState extends State<AddCoinView> {
 
   static String gradeToNumber(String grade) {
     var gradeSplit = grade.split('-');
-    return gradeSplit.length > 1 ? gradeSplit[1] : '';
+    if (gradeSplit.length > 1) {
+      var grade = int.tryParse(gradeSplit[1]);
+      return grade != null ? grade.toString().padLeft(2, '0') : '';
+    }
+    return '';
   }
 
   @override
