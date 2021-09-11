@@ -50,6 +50,12 @@ class CoinType {
     }
   }
 
+  static List<String> get allCoinTypes {
+    var types = coinTypes.map((e) => e.name).toList();
+    types.sort();
+    return types;
+  }
+
   static Future<List<CoinType>> get coinTypesFromJson async => (jsonDecode(
         await rootBundle.loadString('assets/json/coin-types.json'),
       ) as List<dynamic>)

@@ -170,11 +170,7 @@ class _AddCoinViewState extends State<AddCoinView> {
 
   static String gradeToNumber(String grade) {
     var gradeSplit = grade.split('-');
-    if (gradeSplit.length > 1) {
-      return gradeSplit[1];
-    } else {
-      return '';
-    }
+    return gradeSplit.length > 1 ? gradeSplit[1] : '';
   }
 
   @override
@@ -198,7 +194,7 @@ class _AddCoinViewState extends State<AddCoinView> {
               AutocompleteInput(
                 label: 'Type',
                 reference: _coin.type,
-                options: model.allCoinTypes,
+                options: CoinType.allCoinTypes,
                 decoration: ViewConstants.decorationInput(
                   MediaQuery.of(context).platformBrightness,
                 ),

@@ -49,7 +49,7 @@ class _SearchBarState extends State<SearchBar> {
                 ),
               ),
               const Padding(
-                padding: ViewConstants.leftPaddingLarge,
+                padding: ViewConstants.paddingLeftLarge,
                 child: Icon(
                   Icons.search,
                   color: Colors.white,

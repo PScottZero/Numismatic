@@ -12,15 +12,15 @@ import 'coin.dart';
 import 'coin_comparator.dart';
 import 'coin_type.dart';
 
-const String allCoinsKey = 'coins';
+const String coinKeysKey = 'coinKeys';
 
 class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
-  List<Coin> allCoins = [];
+  List<String> _coinKeys = [];
+  List<Coin> coins = [];
   List<Coin> get collection =>
-      allCoins.where((element) => element.inCollection).toList();
+      coins.where((element) => element.inCollection).toList();
   List<Coin> get wantlist =>
-      allCoins.where((element) => !element.inCollection).toList();
-  List<CoinType> coinTypes = [];
+      coins.where((element) => !element.inCollection).toList();
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
   StringReference searchString = StringReference();
 
@@ -38,15 +38,8 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     loadCoins();
   }
 
-  List<String> get allCoinTypes {
-    var types = coinTypes.map((e) => e.name).toList();
-    types.sort();
-    return types;
-  }
-
   loadTypes() async {
-    coinTypes = await CoinType.coinTypesFromJson;
-    CoinType.coinTypes = coinTypes;
+    CoinType.coinTypes = await CoinType.coinTypesFromJson;
     notifyListeners();
   }
 
@@ -70,45 +63,59 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
 
   loadCoins() async {
     var preferences = await SharedPreferences.getInstance();
-    allCoins = jsonDecode(preferences.getString('coins') ?? '[]')
-        .map<Coin>((e) => Coin.fromJson(e))
-        .toList() as List<Coin>;
+    _coinKeys = preferences.getStringList(coinKeysKey) ?? [];
+    for (var key in _coinKeys) {
+      var json = preferences.getString(key);
+      if (json != null) {
+        coins.add(Coin.fromJson(jsonDecode(json)));
+      }
+    }
     _sortCoins();
     notifyListeners();
   }
 
-  saveCoins() async {
+  saveCoinKeys() async {
     var preferences = await SharedPreferences.getInstance();
-    preferences.setString(
-      'coins',
-      jsonEncode(allCoins.map((e) => e.toJson()).toList()),
-    );
+    preferences.setStringList(coinKeysKey, _coinKeys);
+  }
+
+  saveCoin(Coin coin) async {
+    var preferences = await SharedPreferences.getInstance();
+    preferences.setString(coin.id, jsonEncode(coin));
+  }
+
+  deleteCoinById(String id) async {
+    var preferences = await SharedPreferences.getInstance();
+    preferences.remove(id);
   }
 
   overwriteCoin(Coin destination, Coin source) {
     Coin.set(destination, source);
+    saveCoin(destination);
     _sortCoins();
-    saveCoins();
     notifyListeners();
   }
 
   addCoin(Coin coin) {
-    allCoins.add(coin);
+    coins.add(coin);
+    _coinKeys.add(coin.id);
     _sortCoins();
-    saveCoins();
+    saveCoin(coin);
+    saveCoinKeys();
     notifyListeners();
   }
 
   deleteCoin(Coin coin) {
-    allCoins.remove(coin);
-    _sortCoins();
-    saveCoins();
+    coins.remove(coin);
+    _coinKeys.remove(coin.id);
+    deleteCoinById(coin.id);
+    saveCoinKeys();
     notifyListeners();
   }
 
   toggleInCollection(Coin coin) {
     coin.inCollection = !coin.inCollection;
-    saveCoins();
+    saveCoin(coin);
     notifyListeners();
   }
 
@@ -124,7 +131,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     notifyListeners();
   }
 
-  _sortCoins() => allCoins.sort(CoinComparator.comparator);
+  _sortCoins() => coins.sort(CoinComparator.comparator);
 
   refresh() => notifyListeners();
 }

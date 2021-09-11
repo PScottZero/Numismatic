@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/model/coin_type.dart';
 import 'package:numismatic/model/reference.dart';
+import 'package:uuid/uuid.dart';
 
 import 'data_source.dart';
 
@@ -9,6 +10,7 @@ part 'coin.g.dart';
 
 @JsonSerializable()
 class Coin {
+  String id = const Uuid().v1().toString();
   StringReference type = StringReference();
   String? year;
   String? mintMark;

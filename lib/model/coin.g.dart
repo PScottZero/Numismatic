@@ -28,9 +28,10 @@ Coin _$CoinFromJson(Map<String, dynamic> json) => Coin(
       json['retailPriceLastUpdated'] == null
           ? null
           : DateTime.parse(json['retailPriceLastUpdated'] as String),
-    );
+    )..id = json['id'] as String;
 
 Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
+      'id': instance.id,
       'type': instance.type,
       'year': instance.year,
       'mintMark': instance.mintMark,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/views/add_coin_view.dart';
@@ -96,7 +97,7 @@ class _NavigationState extends State<Navigation> {
             backgroundColor: ViewConstants.colorPrimary,
             foregroundColor: Colors.white,
             title: Padding(
-              padding: ViewConstants.leftPaddingSmall,
+              padding: ViewConstants.paddingLeftSmall,
               child: Text(
                 'Numismatic',
                 style: GoogleFonts.quicksand(
@@ -114,7 +115,7 @@ class _NavigationState extends State<Navigation> {
                 ),
               ),
               Padding(
-                padding: ViewConstants.rightPaddingLarge,
+                padding: ViewConstants.paddingRightLarge,
                 child: SortMenu(model.setSortMethod),
               ),
             ],
@@ -155,7 +156,7 @@ class _NavigationState extends State<Navigation> {
             label: const Text(
               'Add Coin',
               style: TextStyle(
-                fontSize: ViewConstants.fontSmall,
+                fontSize: ViewConstants.fontMedium,
                 color: Colors.white,
               ),
             ),
