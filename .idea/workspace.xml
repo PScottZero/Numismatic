@@ -10,14 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/json/coin-types.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/json/coin-types.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/coin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/coin_comparator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_comparator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/coin_type.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_type.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/scraper/greysheet_scraper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/scraper/greysheet_scraper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/add_coin_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
