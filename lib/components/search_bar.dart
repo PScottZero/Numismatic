@@ -35,12 +35,13 @@ class _SearchBarState extends State<SearchBar> {
                 options: _searchOptions,
                 padding: false,
                 refresh: model.refresh,
+                fontColor: ViewConstants.colorAccent,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: ViewConstants.colorSearchBar,
+                  fillColor: ViewConstants.colorPrimary,
                   contentPadding: ViewConstants.searchBarContentPadding,
                   border: OutlineInputBorder(
-                    borderRadius: ViewConstants.borderRadiusMedium,
+                    borderRadius: BorderRadius.circular(100),
                     borderSide: const BorderSide(
                       width: 0,
                       style: BorderStyle.none,
@@ -52,7 +53,7 @@ class _SearchBarState extends State<SearchBar> {
                 padding: ViewConstants.paddingLeftLarge,
                 child: Icon(
                   Icons.search,
-                  color: Colors.white,
+                  color: ViewConstants.colorAccent,
                   size: ViewConstants.iconSize,
                 ),
               ),

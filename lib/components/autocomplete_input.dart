@@ -9,6 +9,7 @@ class AutocompleteInput extends StatelessWidget {
   final List<String> options;
   final InputDecoration decoration;
   final double fontSize;
+  final Color? fontColor;
   final VoidCallback? refresh;
   final bool required;
   final bool padding;
@@ -21,6 +22,7 @@ class AutocompleteInput extends StatelessWidget {
     required this.options,
     required this.decoration,
     this.fontSize = ViewConstants.fontMedium,
+    this.fontColor,
     this.refresh,
     this.required = false,
     this.padding = true,
@@ -63,9 +65,10 @@ class AutocompleteInput extends StatelessWidget {
           },
           suggestionsBoxDecoration: SuggestionsBoxDecoration(
             borderRadius: ViewConstants.borderRadiusMedium,
+            color: ViewConstants.colorBackgroundAccent,
           ),
           itemBuilder: (context, suggestion) {
-            return Padding(
+            return Container(
               padding: ViewConstants.paddingAllMedium,
               child: Text(suggestion.toString()),
             );
@@ -79,20 +82,29 @@ class AutocompleteInput extends StatelessWidget {
           ),
           onSuggestionSelected: (suggestion) {
             reference.value = suggestion;
-            if (refresh != null) refresh!();
+            if (refresh != null) {
+              refresh!();
+            }
           },
           textFieldConfiguration: TextFieldConfiguration(
             controller: _typeAheadController,
-            style: TextStyle(fontSize: fontSize),
+            style: TextStyle(
+              fontSize: fontSize,
+              color: fontColor,
+            ),
             decoration: decoration,
             onSubmitted: (value) {
               reference.value = value;
-              if (refresh != null) refresh!();
+              if (refresh != null) {
+                refresh!();
+              }
             },
             onChanged: (value) {
               reference.value = value;
               if (value == '') {
-                if (refresh != null) refresh!();
+                if (refresh != null) {
+                  refresh!();
+                }
               }
             },
           ),

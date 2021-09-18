@@ -7,6 +7,10 @@ class LoadingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor:
+          MediaQuery.of(context).platformBrightness == Brightness.dark
+              ? ViewConstants.colorBackgroundAccent
+              : Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: ViewConstants.borderRadiusMedium,
       ),
@@ -27,7 +31,7 @@ class LoadingDialog extends StatelessWidget {
                 height: ViewConstants.spacing1_5,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

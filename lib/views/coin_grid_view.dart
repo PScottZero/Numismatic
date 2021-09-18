@@ -55,7 +55,7 @@ class _CoinGridViewState extends State<CoinGridView> {
                 padding: ViewConstants.paddingAllLarge,
                 child: Center(
                   child: Text(
-                    'Press + to add a coin to your ${widget.isWantlist ? 'wantlist' : 'collection'}',
+                    'No coins in your ${widget.isWantlist ? 'wantlist' : 'collection'}',
                     textAlign: TextAlign.center,
                   ),
                 ),

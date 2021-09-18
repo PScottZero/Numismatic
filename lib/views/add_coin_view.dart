@@ -3,11 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:numismatic/components/autocomplete_input.dart';
 import 'package:numismatic/components/coin_data_text_field.dart';
+import 'package:numismatic/components/custom_scaffold.dart';
 import 'package:numismatic/components/image_selector.dart';
 import 'package:numismatic/components/loading_dialog.dart';
 import 'package:numismatic/components/multi_source_field.dart';
@@ -186,16 +187,8 @@ class _AddCoinViewState extends State<AddCoinView> {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         _model = model;
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: ViewConstants.colorPrimary,
-            foregroundColor: Colors.white,
-            centerTitle: true,
-            title: Text(
-              '${widget.edit ? 'Edit' : 'Add'} Coin',
-              style: GoogleFonts.quicksand(),
-            ),
-          ),
+        return CustomScaffold(
+          appBarTitle: '${widget.edit ? 'Edit' : 'Add'} Coin',
           body: ListView(
             padding: ViewConstants.paddingAllLarge,
             children: [

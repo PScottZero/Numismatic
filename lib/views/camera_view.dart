@@ -57,13 +57,15 @@ class _CameraViewState extends State<CameraView> {
                                 width: MediaQuery.of(context).size.width - 100,
                                 height: MediaQuery.of(context).size.width - 100,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(500),
+                                  borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.width - 100,
+                                  ),
                                   border: Border.all(
                                     color: Colors.white,
-                                    width: 8,
+                                    width: ViewConstants.cameraCircleWidth,
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

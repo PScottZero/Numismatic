@@ -7,12 +7,14 @@ class RoundedButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final Color? color;
+  final Color? textColor;
   final bool topMargin;
 
   const RoundedButton({
     required this.label,
     required this.onPressed,
     this.color,
+    this.textColor,
     this.topMargin = true,
     Key? key,
   }) : super(key: key);
@@ -41,7 +43,10 @@ class RoundedButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: textColor ?? ViewConstants.colorAccent,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

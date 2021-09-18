@@ -32,7 +32,8 @@ class Detail extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: ViewConstants.fontMedium,
-                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  color: ViewConstants.colorAccent,
                 ),
               ),
             ),

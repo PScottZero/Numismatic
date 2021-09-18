@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import 'package:numismatic/components/confirm_cancel_dialog.dart';
+import 'package:numismatic/components/custom_scaffold.dart';
 import 'package:numismatic/components/detail.dart';
 import 'package:numismatic/components/image_carousel.dart';
 import 'package:numismatic/components/rounded_button.dart';
@@ -46,40 +47,31 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
       child: ImageCarousel(widget.coin.images),
       builder: (context, model, child) {
         _model = model;
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: ViewConstants.colorPrimary,
-            foregroundColor: Colors.white,
-            centerTitle: true,
-            title: Text(
-              widget.coin.fullType,
-              style: GoogleFonts.quicksand(),
-              textAlign: TextAlign.center,
-            ),
-            actions: [
-              Padding(
-                padding: ViewConstants.paddingAllSmall,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddCoinView(
-                          coin: widget.coin,
-                          addToWantlist: widget.coin.inCollection,
-                          edit: true,
-                        ),
+        return CustomScaffold(
+          appBarTitle: widget.coin.fullType,
+          appBarActions: [
+            Padding(
+              padding: ViewConstants.paddingAllSmall,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddCoinView(
+                        coin: widget.coin,
+                        addToWantlist: widget.coin.inCollection,
+                        edit: true,
                       ),
-                    );
-                  },
-                  child: const Icon(Icons.edit),
-                ),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.edit),
               ),
-            ],
-          ),
+            ),
+          ],
           body: ListView(
             children: [
-              widget.coin.images != null ? child ?? Container() : Container(),
+              widget.coin.images != null ? (child ?? Container()) : Container(),
               Container(
                 padding: widget.coin.images == null
                     ? ViewConstants.paddingAllLarge
@@ -121,12 +113,14 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       label:
                           'Move to ${widget.coin.inCollection ? 'Wantlist' : 'Collection'}',
                       onPressed: () => model.toggleInCollection(widget.coin),
-                      color: Colors.cyan,
+                      color: Colors.cyan[600],
+                      textColor: ViewConstants.colorMoveToAccent,
                     ),
                     RoundedButton(
                       label: 'Delete',
                       onPressed: _showDeleteCoinDialog,
                       color: ViewConstants.colorWarning,
+                      textColor: ViewConstants.colorWarningAccent,
                     ),
                   ],
                 ),

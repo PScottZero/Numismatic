@@ -10,9 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/views/camera_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/autocomplete_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/autocomplete_input.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/image_carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/image_carousel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/loading_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/loading_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/sort_menu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/sort_menu.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/constants/view_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/view_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/action_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/navigation_bar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/camera_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/camera_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/numismatic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/numismatic.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +69,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="ScreenshotViewer.SavePath" value="$USER_HOME$/Desktop" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />

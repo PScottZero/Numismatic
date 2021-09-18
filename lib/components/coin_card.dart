@@ -24,11 +24,10 @@ class CoinCard extends StatelessWidget {
             ),
           ),
         },
-        child: Card(
-          elevation: ViewConstants.cardElevation,
-          margin: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
+        child: Container(
+          decoration: BoxDecoration(
             borderRadius: ViewConstants.borderRadiusLarge,
+            boxShadow: ViewConstants.boxShadow,
           ),
           clipBehavior: Clip.antiAlias,
           child: Stack(
@@ -46,7 +45,7 @@ class CoinCard extends StatelessWidget {
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: ViewConstants.borderRadiusSmall,
+                    borderRadius: ViewConstants.borderRadiusLarge,
                     color: ViewConstants.colorCardTitle,
                   ),
                   width: double.infinity,

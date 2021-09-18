@@ -13,13 +13,19 @@ class ActionButton extends StatelessWidget {
       label: Text(
         _selectedIndex == 2 ? 'Take Photo' : 'Add Coin',
         style: const TextStyle(
-          fontSize: ViewConstants.fontMedium,
-          color: Colors.white,
+          fontSize: ViewConstants.fontSmall,
+          color: ViewConstants.colorAccent,
+          fontWeight: FontWeight.bold,
         ),
       ),
       isExtended: true,
-      icon: Icon(_selectedIndex == 2 ? Icons.camera : Icons.add,
-          color: Colors.white, size: 30),
+      icon: Icon(
+        _selectedIndex == 2 ? Icons.camera : Icons.add,
+        color: ViewConstants.colorAccent,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: ViewConstants.borderRadiusMedium,
+      ),
       onPressed: () {
         Navigator.push(
           context,

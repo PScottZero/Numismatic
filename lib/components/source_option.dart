@@ -25,7 +25,7 @@ class SourceOption extends StatelessWidget {
           width: ViewConstants.radioButtonSize,
           height: ViewConstants.radioButtonSize,
           child: Radio<DataSource>(
-            fillColor: HelperFunctions.msp(ViewConstants.colorPrimary),
+            fillColor: HelperFunctions.msp(ViewConstants.colorAccent),
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,

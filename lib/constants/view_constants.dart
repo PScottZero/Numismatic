@@ -4,12 +4,29 @@ class ViewConstants {
   static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/';
 
   // colors
+  static const colorAccent = Color(0xff62f0e2);
+  static const colorBackground = Color(0xff1a1f24);
+  static const colorBackgroundAccent = Color(0xff262d33);
+  static final colorBackgroundAccentLight = Colors.teal[100]!;
+  static const colorBackgroundLight = Color(0xffffffff);
   static const colorCardTitle = Color(0x77000000);
+  static final colorMoveTo = Colors.cyan[600]!;
+  static final colorMoveToAccent = Colors.cyan[100]!;
   static final colorPrimary = Colors.teal[600]!;
-  static final colorPrimarySwatch = Colors.teal;
-  static final colorSearchBar = Colors.teal[400]!;
-  static const colorShadow = Color(0x77000000);
-  static final colorWarning = Colors.red[400]!;
+  static const colorPrimarySwatch = MaterialColor(0xff62f0e2, {
+    50: Color(0xff62f0e2),
+    100: Color(0xff62f0e2),
+    200: Color(0xff62f0e2),
+    300: Color(0xff62f0e2),
+    400: Color(0xff62f0e2),
+    500: Color(0xff62f0e2),
+    600: Color(0xff62f0e2),
+    700: Color(0xff62f0e2),
+    800: Color(0xff62f0e2),
+    900: Color(0xff62f0e2),
+  });
+  static final colorWarning = Colors.red[500]!;
+  static final colorWarningAccent = Colors.red[100]!;
 
   // text sizing
   static const fontLarge = 28.0;
@@ -23,6 +40,7 @@ class ViewConstants {
   static final borderRadiusLarge = BorderRadius.circular(20);
   static final borderRadiusMedium = BorderRadius.circular(15);
   static final borderRadiusSmall = BorderRadius.circular(10);
+  static const cameraCircleWidth = 8.0;
   static const cardElevation = 5.0;
   static const cardTitleMargin = EdgeInsets.all(10);
   static const cardTitleMaxHeight = 100.0;
@@ -52,8 +70,9 @@ class ViewConstants {
   // decorations
   static decorationInput(Brightness brightness) => InputDecoration(
         filled: true,
-        fillColor:
-            brightness == Brightness.dark ? Colors.grey[800] : Colors.grey[300],
+        fillColor: brightness == Brightness.dark
+            ? ViewConstants.colorBackgroundAccent
+            : Colors.blueGrey[100],
         contentPadding: ViewConstants.paddingAllMedium,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
@@ -70,4 +89,11 @@ class ViewConstants {
           borderRadius: ViewConstants.borderRadiusMedium,
         ),
       );
+  static const boxShadow = [
+    BoxShadow(
+      color: Color(0x77000000),
+      spreadRadius: 0,
+      blurRadius: 2,
+    )
+  ];
 }

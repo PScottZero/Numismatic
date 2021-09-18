@@ -22,12 +22,7 @@ class ImageCarousel extends StatelessWidget {
               margin: ViewConstants.paddingAllLarge,
               decoration: BoxDecoration(
                 borderRadius: ViewConstants.borderRadiusLarge,
-                boxShadow: const [
-                  BoxShadow(
-                    color: ViewConstants.colorShadow,
-                    blurRadius: ViewConstants.shadowBlurRadius,
-                  ),
-                ],
+                boxShadow: ViewConstants.boxShadow,
               ),
               child: ClipRRect(
                 borderRadius: ViewConstants.borderRadiusLarge,
@@ -53,13 +48,13 @@ class ImageCarousel extends StatelessWidget {
                         borderRadius: ViewConstants.borderRadiusSmall,
                       ),
                       child: Text(
-                        '$index/${images?.length ?? 1}',
+                        '$index of ${images?.length ?? 1}',
                         style: const TextStyle(
-                          fontSize: ViewConstants.fontSmall,
+                          fontSize: ViewConstants.fontMini,
                           color: Colors.white,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

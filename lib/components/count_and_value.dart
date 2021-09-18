@@ -27,7 +27,8 @@ class CountAndValue extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: ViewConstants.colorPrimary,
-        borderRadius: ViewConstants.borderRadiusMedium,
+        borderRadius: ViewConstants.borderRadiusLarge,
+        boxShadow: ViewConstants.boxShadow,
       ),
       padding: ViewConstants.paddingAllSmall,
       child: Center(
@@ -39,7 +40,8 @@ class CountAndValue extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: ViewConstants.fontSmall,
-                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                color: ViewConstants.colorAccent,
               ),
             ),
             const SizedBox(height: ViewConstants.gapSmall),
@@ -48,7 +50,8 @@ class CountAndValue extends StatelessWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: ViewConstants.fontSmall,
-                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                color: ViewConstants.colorAccent,
               ),
             ),
           ],
