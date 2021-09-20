@@ -29,7 +29,7 @@ class RoundedButton extends StatelessWidget {
           elevation: HelperFunctions.msp(0),
           shape: HelperFunctions.msp(
             RoundedRectangleBorder(
-              borderRadius: ViewConstants.borderRadiusMedium,
+              borderRadius: ViewConstants.borderRadiusLarge,
             ),
           ),
           backgroundColor: HelperFunctions.msp(

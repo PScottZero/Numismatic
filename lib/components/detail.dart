@@ -24,7 +24,7 @@ class Detail extends StatelessWidget {
             padding: ViewConstants.detailPadding,
             decoration: BoxDecoration(
               color: ViewConstants.colorPrimary,
-              borderRadius: ViewConstants.borderRadiusMedium,
+              borderRadius: ViewConstants.borderRadiusLarge,
             ),
             child: Center(
               child: Text(

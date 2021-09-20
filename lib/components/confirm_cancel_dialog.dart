@@ -18,6 +18,7 @@ class ConfirmCancelDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: ViewConstants.colorBackgroundAccent,
       title: Text(title),
       content: Text(
         message,
@@ -38,11 +39,11 @@ class ConfirmCancelDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(
+          child: const Text(
             'Cancel',
             style: TextStyle(
               fontSize: ViewConstants.fontSmall,
-              color: ViewConstants.colorPrimary,
+              color: ViewConstants.colorAccent,
             ),
           ),
         ),

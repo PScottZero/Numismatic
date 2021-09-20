@@ -41,6 +41,9 @@ class CoinComparator {
           _compareMintMarks,
         ];
         break;
+      case SortMethod.dateAdded:
+        ascending = false;
+        _compareFuncs = [_compareDates];
     }
   }
 
@@ -78,6 +81,12 @@ class CoinComparator {
         ),
         index,
       );
+
+  static int _compareDates(Coin c1, Coin c2, int index) => ascending
+      ? (c1.dateAdded ?? DateTime.now())
+          .compareTo(c2.dateAdded ?? DateTime.now())
+      : (c2.dateAdded ?? DateTime.now())
+          .compareTo(c1.dateAdded ?? DateTime.now());
 
   static int _compareNullable<T>(T? first, T? second, int index) {
     if (first == null && second == null) {

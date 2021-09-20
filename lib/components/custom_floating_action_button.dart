@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/views/add_coin_view.dart';
 
-class ActionButton extends StatelessWidget {
+class CustomFloatingActionButton extends StatelessWidget {
   final int _selectedIndex;
 
-  const ActionButton(this._selectedIndex, {Key? key}) : super(key: key);
+  const CustomFloatingActionButton(this._selectedIndex, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

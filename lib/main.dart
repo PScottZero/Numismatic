@@ -43,6 +43,9 @@ class NumismaticApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: ViewConstants.colorBackgroundAccent,
+    ));
     return MaterialApp(
       title: 'Numismatic',
       debugShowCheckedModeBanner: false,

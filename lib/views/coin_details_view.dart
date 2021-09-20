@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:numismatic/components/confirm_cancel_dialog.dart';
 import 'package:numismatic/components/custom_scaffold.dart';
 import 'package:numismatic/components/detail.dart';
@@ -24,8 +23,8 @@ class CoinDetailsView extends StatefulWidget {
 class _CoinDetailsViewState extends State<CoinDetailsView> {
   CoinCollectionModel? _model;
 
-  _showDeleteCoinDialog() async {
-    return showDialog(
+  _showDeleteCoinDialog() {
+    showDialog(
       context: context,
       builder: (context) {
         return ConfirmCancelDialog(

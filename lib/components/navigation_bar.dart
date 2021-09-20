@@ -43,7 +43,7 @@ class NavigationBar extends StatelessWidget {
               activeIcon: Icons.grid_view_sharp,
             ),
             YouNavBarItem.generate(
-              label: 'Collection',
+              label: 'Wantlist',
               icon: Icons.favorite_outline,
               activeIcon: Icons.favorite,
             ),
@@ -56,7 +56,14 @@ class NavigationBar extends StatelessWidget {
                     activeIcon: Icons.camera,
                   ),
                 ]
-              : []),
+              : []) +
+          [
+            YouNavBarItem.generate(
+              label: 'Settings',
+              icon: Icons.settings_outlined,
+              activeIcon: Icons.settings,
+            ),
+          ],
     );
   }
 }

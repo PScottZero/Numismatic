@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:numismatic/components/action_button.dart';
+import 'package:numismatic/components/custom_floating_action_button.dart';
 import 'package:numismatic/components/custom_scaffold.dart';
 import 'package:numismatic/components/navigation_bar.dart';
 import 'package:numismatic/components/search_bar.dart';
@@ -9,6 +8,7 @@ import 'package:numismatic/components/sort_menu.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
 import 'package:numismatic/model/coin_comparator.dart';
+import 'package:numismatic/views/settings_view.dart';
 import 'package:provider/provider.dart';
 
 import 'camera_view.dart';
@@ -24,45 +24,40 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  final PageController _pageController;
   var _selectedIndex = 0;
 
-  List<Widget> get _options => [
-        const CoinGridView(),
-        const CoinGridView(isWantlist: true),
-        widget._camera != null
-            ? CameraView(camera: widget._camera!)
-            : Container(),
-      ];
+  List<Widget> get _options {
+    var options = <Widget>[
+      const CoinGridView(),
+      const CoinGridView(isWantlist: true),
+    ];
+    if (widget._camera != null) {
+      options.add(CameraView(camera: widget._camera!));
+    }
+    options.add(const SettingsView());
+    return options;
+  }
 
   bool get viewingCollection => _selectedIndex == 0;
   bool get viewingWantlist => _selectedIndex == 1;
   bool get viewingCamera => _selectedIndex == 2;
 
-  _MainViewState() : _pageController = PageController();
-
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-      );
     });
   }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+  bool _onLastPage() =>
+      (_options.length == 3 && _selectedIndex != 2) ||
+      (_options.length == 4 && _selectedIndex != 3);
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         return CustomScaffold(
+          hasAppBar: _selectedIndex < 2,
           appBarTitle: 'Numismatic',
           appBarActions: [
             IconButton(
@@ -82,21 +77,15 @@ class _MainViewState extends State<MainView> {
             preferredSize: ViewConstants.searchBarPreferredSize,
             child: SearchBar(viewingWantlist),
           ),
-          body: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            children: _options,
-          ),
+          appBarColor: Colors.transparent,
+          body: _options[_selectedIndex],
           bottomNavigationBar: NavigationBar(
             selectedIndex: _selectedIndex,
             onTap: _onTap,
             cameraIsInitialized: widget._camera != null,
           ),
-          floatingActionButton: ActionButton(_selectedIndex),
+          floatingActionButton:
+              _onLastPage() ? CustomFloatingActionButton(_selectedIndex) : null,
         );
       },
     );

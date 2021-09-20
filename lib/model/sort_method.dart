@@ -1,4 +1,4 @@
-enum SortMethod { type, year, denomination, retailPrice }
+enum SortMethod { dateAdded, denomination, retailPrice, type, year }
 
 extension SortMethodExtension on SortMethod {
   String string() {
@@ -11,6 +11,8 @@ extension SortMethodExtension on SortMethod {
         return 'Denomination';
       case SortMethod.retailPrice:
         return 'Retail Price';
+      case SortMethod.dateAdded:
+        return 'Date Added';
     }
   }
 }
