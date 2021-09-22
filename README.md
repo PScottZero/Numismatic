@@ -1,16 +1,24 @@
 # Numismatic
 
-A new Flutter project.
+A coin collecting app created using Flutter
 
-## Getting Started
+## Implemented Features
+* Add coins to colection/wantlist
+* Edit coins in collection/wantlist
+* Automatically retrieve images, mintage, and retial price of coins
+  * Images from PCGS Photograde
+  * Retail prices and mintages from Greysheet
+* Sort collection based on coin type, date added, denomination, retail price, and year
+* Backup and restore coin collection (need to fix memory limit issue)
 
-This project is a starting point for a Flutter application.
+## Future Features
+* Identify coin information from image, including
+  * Type (limited to US coins), will likely use TensorFlow
+  * Year of mintage, will likely use, will likely use Tesseract
+  * Condition (may be too hard!)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+![Home Screen](https://i.imgur.com/n6NrNa2.png)
+![Coin Details Screen](https://i.imgur.com/jTLZ2b6.png)
+![Add/Edit Coin Screen](https://i.imgur.com/3sQdir7.png)
+![Home Screen (Light)](https://i.imgur.com/UNgWSt9.png)
