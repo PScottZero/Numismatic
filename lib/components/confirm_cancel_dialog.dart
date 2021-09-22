@@ -18,7 +18,7 @@ class ConfirmCancelDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: ViewConstants.colorBackgroundAccent,
+      backgroundColor: ViewConstants.colorBackgroundAccent(context),
       title: Text(title),
       content: Text(
         message,

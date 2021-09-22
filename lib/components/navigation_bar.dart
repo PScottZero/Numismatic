@@ -21,10 +21,7 @@ class NavigationBar extends StatelessWidget {
       onTap: onTap,
       currentIndex: selectedIndex,
       type: BottomNavigationBarType.fixed,
-      backgroundColor:
-          MediaQuery.of(context).platformBrightness == Brightness.dark
-              ? ViewConstants.colorBackgroundAccent
-              : ViewConstants.colorBackgroundAccentLight,
+      backgroundColor: ViewConstants.colorBackgroundAccent(context),
       selectedFontSize: 14,
       unselectedFontSize: 14,
       fixedColor: MediaQuery.of(context).platformBrightness == Brightness.dark

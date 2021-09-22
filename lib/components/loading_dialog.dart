@@ -9,7 +9,7 @@ class LoadingDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor:
           MediaQuery.of(context).platformBrightness == Brightness.dark
-              ? ViewConstants.colorBackgroundAccent
+              ? ViewConstants.colorBackgroundAccent(context)
               : Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: ViewConstants.borderRadiusMedium,

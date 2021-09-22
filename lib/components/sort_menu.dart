@@ -16,7 +16,7 @@ class SortMenu extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: ViewConstants.borderRadiusMedium,
       ),
-      color: ViewConstants.colorBackgroundAccent,
+      color: ViewConstants.colorBackgroundAccent(context),
       itemBuilder: (context) {
         return <PopupMenuItem<SortMethod>>[
               const PopupMenuItem(

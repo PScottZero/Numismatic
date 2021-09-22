@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:numismatic/components/custom_floating_action_button.dart';
 import 'package:numismatic/components/custom_scaffold.dart';
 import 'package:numismatic/components/navigation_bar.dart';
@@ -54,6 +55,10 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: ViewConstants.colorBackgroundAccent(context),
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         return CustomScaffold(

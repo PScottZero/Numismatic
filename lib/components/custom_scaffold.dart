@@ -27,15 +27,12 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          MediaQuery.of(context).platformBrightness == Brightness.dark
-              ? ViewConstants.colorBackground
-              : ViewConstants.colorBackgroundLight,
+      backgroundColor: ViewConstants.colorBackground(context),
       appBar: hasAppBar
           ? AppBar(
               elevation: 0,
               backgroundColor:
-                  appBarColor ?? ViewConstants.colorBackgroundAccent,
+                  appBarColor ?? ViewConstants.colorBackgroundAccent(context),
               foregroundColor:
                   MediaQuery.of(context).platformBrightness == Brightness.dark
                       ? Colors.white

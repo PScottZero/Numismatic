@@ -4,11 +4,17 @@ class ViewConstants {
   static const String pcgsUrl = 'https://i.pcgs.com/s3/cu-pcgs/Photograde/500/';
 
   // colors
+  static Color colorBackground(BuildContext context) =>
+      MediaQuery.of(context).platformBrightness == Brightness.dark
+          ? const Color(0xff1a1f24)
+          : const Color(0xffffffff);
+
+  static Color colorBackgroundAccent(BuildContext context) =>
+      MediaQuery.of(context).platformBrightness == Brightness.dark
+          ? const Color(0xff262d33)
+          : Colors.teal[100]!;
+
   static const colorAccent = Color(0xff62f0e2);
-  static const colorBackground = Color(0xff1a1f24);
-  static const colorBackgroundAccent = Color(0xff262d33);
-  static final colorBackgroundAccentLight = Colors.teal[100]!;
-  static const colorBackgroundLight = Color(0xffffffff);
   static const colorCardTitle = Color(0x77000000);
   static final colorMoveTo = Colors.cyan[600]!;
   static final colorMoveToAccent = Colors.cyan[100]!;
@@ -68,11 +74,11 @@ class ViewConstants {
   static const shadowBlurRadius = 8.0;
 
   // decorations
-  static decorationInput(Brightness brightness) => InputDecoration(
+  static decorationInput(BuildContext context) => InputDecoration(
         filled: true,
-        fillColor: brightness == Brightness.dark
-            ? ViewConstants.colorBackgroundAccent
-            : Colors.blueGrey[100],
+        fillColor: MediaQuery.of(context).platformBrightness == Brightness.dark
+            ? ViewConstants.colorBackgroundAccent(context)
+            : Colors.blueGrey[50],
         contentPadding: ViewConstants.paddingAllMedium,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(

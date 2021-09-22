@@ -10,29 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="89a21a3a-dfa2-4798-adf6-12fae798c57c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/action_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/custom_floating_action_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/confirm_cancel_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/confirm_cancel_dialog.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/custom_scaffold.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/custom_scaffold.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/detail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/navigation_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/components/rounded_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/rounded_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/coin_comparator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_comparator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/sort_method.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/sort_method.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/add_coin_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/coin_details_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/views/main_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/main_view.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

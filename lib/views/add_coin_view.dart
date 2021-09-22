@@ -195,9 +195,7 @@ class _AddCoinViewState extends State<AddCoinView> {
                 label: 'Type',
                 reference: _coin.type,
                 options: CoinType.allCoinTypes,
-                decoration: ViewConstants.decorationInput(
-                  MediaQuery.of(context).platformBrightness,
-                ),
+                decoration: ViewConstants.decorationInput(context),
                 refresh: () => setState(() {}),
                 required: true,
               ),
@@ -205,18 +203,14 @@ class _AddCoinViewState extends State<AddCoinView> {
                 label: 'Variation',
                 reference: _coin.variation,
                 options: _variations,
-                decoration: ViewConstants.decorationInput(
-                  MediaQuery.of(context).platformBrightness,
-                ),
+                decoration: ViewConstants.decorationInput(context),
                 required: true,
               ),
               AutocompleteInput(
                 label: 'Grade',
                 reference: _coin.grade,
                 options: grades,
-                decoration: ViewConstants.decorationInput(
-                  MediaQuery.of(context).platformBrightness,
-                ),
+                decoration: ViewConstants.decorationInput(context),
               ),
               MultiSourceField<String>(
                 label: 'Mintage',

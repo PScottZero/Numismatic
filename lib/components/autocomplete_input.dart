@@ -65,7 +65,9 @@ class AutocompleteInput extends StatelessWidget {
           },
           suggestionsBoxDecoration: SuggestionsBoxDecoration(
             borderRadius: ViewConstants.borderRadiusMedium,
-            color: ViewConstants.colorBackgroundAccent,
+            color: MediaQuery.of(context).platformBrightness == Brightness.dark
+                ? ViewConstants.colorBackgroundAccent(context)
+                : Colors.white,
           ),
           itemBuilder: (context, suggestion) {
             return Container(
