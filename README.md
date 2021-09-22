@@ -18,7 +18,4 @@ A coin collecting app created using Flutter
   * Condition (may be too hard!)
 
 ## Screenshots
-![Home Screen](https://i.imgur.com/n6NrNa2.png)
-![Coin Details Screen](https://i.imgur.com/jTLZ2b6.png)
-![Add/Edit Coin Screen](https://i.imgur.com/3sQdir7.png)
-![Home Screen (Light)](https://i.imgur.com/UNgWSt9.png)
+<img src="https://i.imgur.com/n6NrNa2.png" alt="Home Screen" width="300"> <img src="https://i.imgur.com/UNgWSt9.png" alt="Home Screen (Light)" width="300"> <img src="https://i.imgur.com/jTLZ2b6.png" alt="Coin Details Screen" width="300"> <img src="https://i.imgur.com/3sQdir7.png" alt="Add/Edit Coin Screen" width="300">
