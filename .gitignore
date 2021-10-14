@@ -19,3 +19,5 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+coin_classifier/images/
+*/.DS_Store

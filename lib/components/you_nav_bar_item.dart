@@ -15,14 +15,14 @@ class YouNavBarItem {
       activeIcon: Container(
         width: 70,
         decoration: BoxDecoration(
-          color: ViewConstants.colorPrimary,
+          color: ViewConstants.primaryColor,
           borderRadius: BorderRadius.circular(100),
         ),
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Icon(
             activeIcon,
-            color: ViewConstants.colorAccent,
+            color: ViewConstants.accentColor,
           ),
         ),
       ),

@@ -3,22 +3,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
 import 'package:numismatic/model/reference.dart';
 import 'package:numismatic/model/sort_method.dart';
-import 'package:numismatic/scraper/greysheet_scraper.dart';
+import 'package:numismatic/services/greysheet_scraper.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../services/coin_comparator.dart';
 import 'coin.dart';
-import 'coin_comparator.dart';
 import 'coin_type.dart';
 
-const String coinKeysKey = 'coinKeys';
-
 class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
-  List<String> _coinKeys = [];
   List<Coin> coins = [];
   List<Coin> get collection =>
       coins.where((element) => element.inCollection).toList();
@@ -26,7 +22,9 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
       coins.where((element) => !element.inCollection).toList();
   Map<String, Map<String, GreysheetStaticData>>? greysheetStaticData;
   StringReference searchString = StringReference();
+  bool isLoading = true;
   int imageIndex = 0;
+  BuildContext snackBarContext;
 
   @override
   void dispose() {
@@ -34,7 +32,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     super.dispose();
   }
 
-  CoinCollectionModel() {
+  CoinCollectionModel(this.snackBarContext) {
     WidgetsBinding.instance?.addObserver(this);
     CoinComparator.setSortMethod(SortMethod.denomination);
     loadTypes();
@@ -66,31 +64,37 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   loadCoins() async {
-    var preferences = await SharedPreferences.getInstance();
-    _coinKeys = preferences.getStringList(coinKeysKey) ?? [];
-    for (var key in _coinKeys) {
-      var json = preferences.getString(key);
-      if (json != null) {
-        coins.add(Coin.fromJson(jsonDecode(json)));
+    final appDirectory = (await getApplicationDocumentsDirectory()).path;
+    final coinsDirectory = Directory('$appDirectory/coins/');
+    if (coinsDirectory.existsSync()) {
+      var coinFiles = coinsDirectory.listSync();
+      if (coinFiles.isNotEmpty) {
+        for (var coinFile in coinFiles) {
+          final coin = File(coinFile.path);
+          coins.add(Coin.fromJson(jsonDecode(coin.readAsStringSync())));
+        }
       }
+    } else {
+      coinsDirectory.createSync();
     }
+    isLoading = false;
     _sortCoins();
     notifyListeners();
   }
 
-  saveCoinKeys() async {
-    var preferences = await SharedPreferences.getInstance();
-    preferences.setStringList(coinKeysKey, _coinKeys);
-  }
-
   saveCoin(Coin coin) async {
-    var preferences = await SharedPreferences.getInstance();
-    preferences.setString(coin.id, jsonEncode(coin));
+    final directory = (await getApplicationDocumentsDirectory()).path;
+    final file = File('$directory/coins/${coin.id}.json');
+    if (!file.existsSync()) {
+      file.createSync();
+    }
+    file.writeAsStringSync(jsonEncode(coin));
   }
 
   deleteCoinById(String id) async {
-    var preferences = await SharedPreferences.getInstance();
-    preferences.remove(id);
+    final directory = (await getApplicationDocumentsDirectory()).path;
+    final file = File('$directory/coins/$id.json');
+    file.deleteSync();
   }
 
   overwriteCoin(Coin destination, Coin source) {
@@ -100,21 +104,21 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     notifyListeners();
   }
 
-  addCoin(Coin coin) {
+  addCoin(Coin coin, [bool notify = true]) async {
     coins.add(coin);
-    _coinKeys.add(coin.id);
     _sortCoins();
-    saveCoin(coin);
-    saveCoinKeys();
-    notifyListeners();
+    await saveCoin(coin);
+    if (notify) {
+      notifyListeners();
+    }
   }
 
-  deleteCoin(Coin coin) {
+  deleteCoin(Coin coin, [bool notify = true]) async {
     coins.remove(coin);
-    _coinKeys.remove(coin.id);
-    deleteCoinById(coin.id);
-    saveCoinKeys();
-    notifyListeners();
+    await deleteCoinById(coin.id);
+    if (notify) {
+      notifyListeners();
+    }
   }
 
   toggleInCollection(Coin coin) {
@@ -135,61 +139,49 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     notifyListeners();
   }
 
-  backupCoins(BuildContext context) async {
+  Future<String> backupCoins() async {
     if (await Permission.manageExternalStorage.request().isGranted) {
-      final file =
-          File('/storage/emulated/0/Documents/NumismaticBU/manifest.json');
-      if (!file.existsSync()) {
-        file.create(recursive: true);
+      final directory =
+          Directory('/storage/emulated/0/Documents/NumismaticBU/');
+      if (directory.existsSync()) {
+        directory.deleteSync(recursive: true);
       }
-      file.writeAsString(jsonEncode(_coinKeys));
+      directory.createSync();
       for (var coin in coins) {
-        final file = File(
-            '/storage/emulated/0/Documents/NumismaticBU/coins/${coin.id}.json');
-        if (!file.existsSync()) {
-          file.create(recursive: true);
-        }
-        file.writeAsString(jsonEncode(coin));
-      }
-      _notify('Successfully backed up coins', context);
-    }
-  }
-
-  restoreCoins(BuildContext context) async {
-    if (await Permission.manageExternalStorage.request().isGranted) {
-      final file =
-          File('/storage/emulated/0/Documents/NumismaticBU/manifest.json');
-      if (!file.existsSync()) {
-        _notify('No backup found', context);
-        return;
-      }
-      final coinKeys = List<String>.from(jsonDecode(file.readAsStringSync()));
-      coins = [];
-      for (var key in coinKeys) {
         final file =
-            File('/storage/emulated/0/Documents/NumismaticBU/coins/$key.json');
-        if (!file.existsSync()) {
-          file.create(recursive: true);
-        }
-        addCoin(Coin.fromJson(jsonDecode(file.readAsStringSync())));
+            File('/storage/emulated/0/Documents/NumismaticBU/${coin.id}.json');
+        file.createSync();
+        file.writeAsStringSync(jsonEncode(coin));
       }
-      _notify('Successfully restored coins', context);
-      notifyListeners();
+      return 'Successfully backed up coins';
     }
+    return 'Permissions error';
   }
 
-  _notify(String message, BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: ViewConstants.fontSmall,
-          ),
-        ),
-      ),
-    );
+  Future<String> restoreCoins() async {
+    if (await Permission.manageExternalStorage.request().isGranted) {
+      final backupDirectory =
+          Directory('/storage/emulated/0/Documents/NumismaticBU/');
+      if (!backupDirectory.existsSync()) {
+        return 'No backup found';
+      }
+      while (coins.isNotEmpty) {
+        await deleteCoin(coins[0]);
+      }
+      var coinFiles = backupDirectory.listSync();
+      if (coinFiles.isNotEmpty) {
+        for (var coinFile in coinFiles) {
+          final coin = File(coinFile.path);
+          await addCoin(
+            Coin.fromJson(jsonDecode(coin.readAsStringSync())),
+            false,
+          );
+        }
+      }
+      notifyListeners();
+      return 'Successfully restored coins';
+    }
+    return 'Permissions error';
   }
 
   _sortCoins() => coins.sort(CoinComparator.comparator);

@@ -24,7 +24,6 @@ class Coin {
   DataSource imagesSource = DataSource.manual;
   DataSource mintageSource = DataSource.auto;
   DataSource retailPriceSource = DataSource.auto;
-  String? photogradeName;
   String? photogradeGrade;
   DateTime? dateAdded;
   DateTime? retailPriceLastUpdated;
@@ -43,7 +42,6 @@ class Coin {
     this.imagesSource,
     this.mintageSource,
     this.retailPriceSource,
-    this.photogradeName,
     this.photogradeGrade,
     this.dateAdded,
     this.retailPriceLastUpdated,
@@ -66,7 +64,6 @@ class Coin {
       coin.imagesSource,
       coin.mintageSource,
       coin.retailPriceSource,
-      coin.photogradeName,
       coin.photogradeGrade,
       coin.dateAdded,
       coin.retailPriceLastUpdated,
@@ -87,7 +84,6 @@ class Coin {
     destination.imagesSource = source.imagesSource;
     destination.mintageSource = source.mintageSource;
     destination.retailPriceSource = source.retailPriceSource;
-    destination.photogradeName = source.photogradeName;
     destination.photogradeGrade = source.photogradeGrade;
     destination.dateAdded = source.dateAdded;
     destination.retailPriceLastUpdated = source.retailPriceLastUpdated;

@@ -54,7 +54,7 @@ class _ImageSelectorState extends State<ImageSelector> {
             const SizedBox(height: ViewConstants.gapSmall),
             _images.isNotEmpty
                 ? SizedBox(
-                    height: ViewConstants.imageSelectorHeight,
+                    height: 180,
                     child: ReorderableListView(
                       scrollDirection: Axis.horizontal,
                       onReorder: (oldIndex, newIndex) {

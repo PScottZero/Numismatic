@@ -21,7 +21,7 @@ class AutocompleteInput extends StatelessWidget {
     required this.reference,
     required this.options,
     required this.decoration,
-    this.fontSize = ViewConstants.fontMedium,
+    this.fontSize = ViewConstants.largeFont,
     this.fontColor,
     this.refresh,
     this.required = false,
@@ -49,6 +49,8 @@ class AutocompleteInput extends StatelessWidget {
         ),
         padding ? const SizedBox(height: ViewConstants.gapSmall) : Container(),
         TypeAheadField<String>(
+          hideOnEmpty: true,
+          hideOnError: true,
           animationDuration: Duration.zero,
           suggestionsCallback: (pattern) {
             if (pattern == '') {
@@ -64,19 +66,19 @@ class AutocompleteInput extends StatelessWidget {
             return [pattern];
           },
           suggestionsBoxDecoration: SuggestionsBoxDecoration(
-            borderRadius: ViewConstants.borderRadiusMedium,
+            borderRadius: ViewConstants.mediumBorderRadius,
             color: MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? ViewConstants.colorBackgroundAccent(context)
+                ? ViewConstants.backgroundAccentColorFromContext(context)
                 : Colors.white,
           ),
           itemBuilder: (context, suggestion) {
             return Container(
-              padding: ViewConstants.paddingAllMedium,
+              padding: ViewConstants.mediumPadding,
               child: Text(suggestion.toString()),
             );
           },
           noItemsFoundBuilder: (context) => const Padding(
-            padding: ViewConstants.paddingAllSmall,
+            padding: ViewConstants.smallPadding,
             child: Text(
               'Not Found',
               style: TextStyle(fontStyle: FontStyle.italic),

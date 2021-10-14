@@ -1,6 +1,6 @@
 import 'package:numismatic/model/sort_method.dart';
 
-import 'coin.dart';
+import '../model/coin.dart';
 
 class CoinComparator {
   static SortMethod sortMethod = SortMethod.denomination;

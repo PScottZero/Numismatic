@@ -20,7 +20,7 @@ class DeletableImage extends StatelessWidget {
       alignment: Alignment.bottomRight,
       children: [
         ClipRRect(
-          borderRadius: ViewConstants.borderRadiusMedium,
+          borderRadius: ViewConstants.mediumBorderRadius,
           child: Image.memory(image),
         ),
         IconButton(

@@ -24,8 +24,9 @@ class _SettingsViewState extends State<SettingsView> {
           message: 'Are you sure you want to backup your coin data? '
               'Existing backup data will be lost.',
           confirmAction: 'Backup',
-          onConfirmed: () {
-            _model?.backupCoins(context);
+          onConfirmed: () async {
+            var result = await _model?.backupCoins() ?? 'Internal error';
+            _snackBar(result);
             Navigator.of(context).popUntil((route) => route.isFirst);
           },
         );
@@ -42,12 +43,27 @@ class _SettingsViewState extends State<SettingsView> {
           message: 'Are you sure you want to restore your coin data? '
               'Existing coin data will be lost.',
           confirmAction: 'Restore',
-          onConfirmed: () {
-            _model?.restoreCoins(context);
+          onConfirmed: () async {
+            var result = await _model?.restoreCoins() ?? 'Internal error';
+            _snackBar(result);
             Navigator.of(context).popUntil((route) => route.isFirst);
           },
         );
       },
+    );
+  }
+
+  _snackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: ViewConstants.mediumFont,
+          ),
+        ),
+      ),
     );
   }
 
@@ -57,7 +73,7 @@ class _SettingsViewState extends State<SettingsView> {
       builder: (context, model, child) {
         _model = model;
         return Container(
-          padding: ViewConstants.paddingAllLarge,
+          padding: ViewConstants.largePadding,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -67,8 +83,8 @@ class _SettingsViewState extends State<SettingsView> {
               ),
               RoundedButton(
                 label: 'Restore Coins',
-                color: ViewConstants.colorWarning,
-                textColor: ViewConstants.colorWarningAccent,
+                color: ViewConstants.warningColor,
+                textColor: ViewConstants.warningAccentColor,
                 onPressed: _showRestoreDialog,
               ),
             ],

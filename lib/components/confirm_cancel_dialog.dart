@@ -18,13 +18,11 @@ class ConfirmCancelDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: ViewConstants.colorBackgroundAccent(context),
+      backgroundColor: ViewConstants.backgroundAccentColorFromContext(context),
       title: Text(title),
       content: Text(
         message,
-        style: const TextStyle(
-          height: ViewConstants.spacingDouble,
-        ),
+        style: const TextStyle(height: 2),
       ),
       actions: [
         TextButton(
@@ -32,8 +30,8 @@ class ConfirmCancelDialog extends StatelessWidget {
           child: Text(
             confirmAction,
             style: TextStyle(
-              fontSize: ViewConstants.fontSmall,
-              color: ViewConstants.colorWarning,
+              fontSize: ViewConstants.mediumFont,
+              color: ViewConstants.warningColor,
             ),
           ),
         ),
@@ -42,8 +40,8 @@ class ConfirmCancelDialog extends StatelessWidget {
           child: const Text(
             'Cancel',
             style: TextStyle(
-              fontSize: ViewConstants.fontSmall,
-              color: ViewConstants.colorAccent,
+              fontSize: ViewConstants.mediumFont,
+              color: ViewConstants.accentColor,
             ),
           ),
         ),

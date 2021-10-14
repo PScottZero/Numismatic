@@ -21,19 +21,19 @@ class Detail extends StatelessWidget {
               top: topMargin ? ViewConstants.gapLarge : 0,
             ),
             width: double.infinity,
-            padding: ViewConstants.detailPadding,
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 18),
             decoration: BoxDecoration(
-              color: ViewConstants.colorPrimary,
-              borderRadius: ViewConstants.borderRadiusLarge,
+              color: ViewConstants.primaryColor,
+              borderRadius: ViewConstants.largeBorderRadius,
             ),
             child: Center(
               child: Text(
                 '$name: $value',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  fontSize: ViewConstants.fontMedium,
+                  fontSize: ViewConstants.largeFont,
                   fontWeight: FontWeight.bold,
-                  color: ViewConstants.colorAccent,
+                  color: ViewConstants.accentColor,
                 ),
               ),
             ),

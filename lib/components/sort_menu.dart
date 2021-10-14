@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin_comparator.dart';
 import 'package:numismatic/model/sort_method.dart';
+import 'package:numismatic/services/coin_comparator.dart';
 
 class SortMenu extends StatelessWidget {
   final Function(SortMethod) setSortMethod;
@@ -14,9 +14,9 @@ class SortMenu extends StatelessWidget {
       icon: const Icon(Icons.sort),
       onSelected: setSortMethod,
       shape: RoundedRectangleBorder(
-        borderRadius: ViewConstants.borderRadiusMedium,
+        borderRadius: ViewConstants.mediumBorderRadius,
       ),
-      color: ViewConstants.colorBackgroundAccent(context),
+      color: ViewConstants.backgroundAccentColorFromContext(context),
       itemBuilder: (context) {
         return <PopupMenuItem<SortMethod>>[
               const PopupMenuItem(
@@ -31,7 +31,7 @@ class SortMenu extends StatelessWidget {
                       e.string(),
                       style: TextStyle(
                         color: CoinComparator.sortMethod == e
-                            ? ViewConstants.colorAccent
+                            ? ViewConstants.accentColor
                             : null,
                       ),
                     ),

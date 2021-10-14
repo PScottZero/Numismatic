@@ -26,7 +26,7 @@ class _SearchBarState extends State<SearchBar> {
       builder: (context, model, child) {
         _model = model;
         return Padding(
-          padding: ViewConstants.searchBarPadding,
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
@@ -35,11 +35,11 @@ class _SearchBarState extends State<SearchBar> {
                 options: _searchOptions,
                 padding: false,
                 refresh: model.refresh,
-                fontColor: ViewConstants.colorAccent,
+                fontColor: ViewConstants.accentColor,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: ViewConstants.colorPrimary,
-                  contentPadding: ViewConstants.searchBarContentPadding,
+                  fillColor: ViewConstants.primaryColor,
+                  contentPadding: const EdgeInsets.fromLTRB(50, 10, 10, 10),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(100),
                     borderSide: const BorderSide(
@@ -50,10 +50,10 @@ class _SearchBarState extends State<SearchBar> {
                 ),
               ),
               const Padding(
-                padding: ViewConstants.paddingLeftLarge,
+                padding: EdgeInsets.only(left: 10),
                 child: Icon(
                   Icons.search,
-                  color: ViewConstants.colorAccent,
+                  color: ViewConstants.accentColor,
                   size: ViewConstants.iconSize,
                 ),
               ),

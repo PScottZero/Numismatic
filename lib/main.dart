@@ -13,7 +13,7 @@ void main() async {
   final cameras = await availableCameras();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => CoinCollectionModel(),
+      create: (context) => CoinCollectionModel(context),
       child: NumismaticApp(cameras.isNotEmpty ? cameras.first : null),
     ),
   );
@@ -24,16 +24,30 @@ class NumismaticApp extends StatelessWidget {
 
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: ViewConstants.colorPrimarySwatch,
+          primarySwatch: const MaterialColor(
+            0xff62f0e2,
+            {
+              50: Color(0xff62f0e2),
+              100: Color(0xff62f0e2),
+              200: Color(0xff62f0e2),
+              300: Color(0xff62f0e2),
+              400: Color(0xff62f0e2),
+              500: Color(0xff62f0e2),
+              600: Color(0xff62f0e2),
+              700: Color(0xff62f0e2),
+              800: Color(0xff62f0e2),
+              900: Color(0xff62f0e2),
+            },
+          ),
         ).copyWith(
-          secondary: ViewConstants.colorPrimary,
+          secondary: ViewConstants.primaryColor,
           brightness: brightness,
         ),
         textTheme: GoogleFonts.quicksandTextTheme(
           const TextTheme(
             bodyText2: TextStyle(
-              fontSize: ViewConstants.fontMedium,
-              height: ViewConstants.spacing1_5,
+              fontSize: ViewConstants.largeFont,
+              height: 1.5,
             ),
           ),
         ),

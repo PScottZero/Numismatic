@@ -8,7 +8,7 @@ import 'package:numismatic/components/search_bar.dart';
 import 'package:numismatic/components/sort_menu.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin_collection_model.dart';
-import 'package:numismatic/model/coin_comparator.dart';
+import 'package:numismatic/services/coin_comparator.dart';
 import 'package:numismatic/views/settings_view.dart';
 import 'package:provider/provider.dart';
 
@@ -55,10 +55,24 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: ViewConstants.colorBackgroundAccent(context),
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor:
+            ViewConstants.backgroundAccentColorFromContext(context),
+        systemNavigationBarIconBrightness:
+            MediaQuery.of(context).platformBrightness == Brightness.dark
+                ? Brightness.light
+                : Brightness.dark,
+        statusBarColor:
+            MediaQuery.of(context).platformBrightness == Brightness.dark
+                ? ViewConstants.backgroundColorFromContext(context)
+                : Colors.white,
+        statusBarIconBrightness:
+            MediaQuery.of(context).platformBrightness == Brightness.dark
+                ? Brightness.light
+                : Brightness.dark,
+      ),
+    );
     return Consumer<CoinCollectionModel>(
       builder: (context, model, child) {
         return CustomScaffold(
@@ -74,12 +88,12 @@ class _MainViewState extends State<MainView> {
               ),
             ),
             Padding(
-              padding: ViewConstants.paddingRightLarge,
+              padding: const EdgeInsets.only(right: 10),
               child: SortMenu(model.setSortMethod),
             ),
           ],
           appBarBottom: PreferredSize(
-            preferredSize: ViewConstants.searchBarPreferredSize,
+            preferredSize: const Size(double.infinity, 70),
             child: SearchBar(viewingWantlist),
           ),
           appBarColor: Colors.transparent,

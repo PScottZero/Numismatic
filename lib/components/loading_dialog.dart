@@ -9,26 +9,26 @@ class LoadingDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor:
           MediaQuery.of(context).platformBrightness == Brightness.dark
-              ? ViewConstants.colorBackgroundAccent(context)
+              ? ViewConstants.backgroundAccentColorFromContext(context)
               : Colors.white,
       shape: RoundedRectangleBorder(
-        borderRadius: ViewConstants.borderRadiusMedium,
+        borderRadius: ViewConstants.mediumBorderRadius,
       ),
       content: Row(
         children: [
           Container(
-            height: ViewConstants.progressIndicatorSize,
-            width: ViewConstants.progressIndicatorSize,
+            height: 40,
+            width: 40,
             margin: const EdgeInsets.only(right: ViewConstants.gapLarge),
             child: const CircularProgressIndicator(),
           ),
           const SizedBox(
-            width: ViewConstants.loadingDialogTextHeight,
+            width: 160,
             child: Text(
               'Loading coin data...',
               style: TextStyle(
-                fontSize: ViewConstants.fontMedium,
-                height: ViewConstants.spacing1_5,
+                fontSize: ViewConstants.largeFont,
+                height: 1.5,
               ),
             ),
           ),

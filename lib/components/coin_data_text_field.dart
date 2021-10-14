@@ -42,7 +42,7 @@ class _CoinDataTextFieldState extends State<CoinDataTextField> {
         TextField(
           controller: _controller,
           onChanged: widget.onChanged,
-          style: const TextStyle(fontSize: ViewConstants.fontMedium),
+          style: const TextStyle(fontSize: ViewConstants.largeFont),
           decoration: ViewConstants.decorationInput(context),
         ),
         const SizedBox(height: ViewConstants.gapLarge),

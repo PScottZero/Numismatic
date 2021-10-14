@@ -20,7 +20,6 @@ Coin _$CoinFromJson(Map<String, dynamic> json) => Coin(
       _$enumDecode(_$DataSourceEnumMap, json['imagesSource']),
       _$enumDecode(_$DataSourceEnumMap, json['mintageSource']),
       _$enumDecode(_$DataSourceEnumMap, json['retailPriceSource']),
-      json['photogradeName'] as String?,
       json['photogradeGrade'] as String?,
       json['dateAdded'] == null
           ? null
@@ -45,7 +44,6 @@ Map<String, dynamic> _$CoinToJson(Coin instance) => <String, dynamic>{
       'imagesSource': _$DataSourceEnumMap[instance.imagesSource],
       'mintageSource': _$DataSourceEnumMap[instance.mintageSource],
       'retailPriceSource': _$DataSourceEnumMap[instance.retailPriceSource],
-      'photogradeName': instance.photogradeName,
       'photogradeGrade': instance.photogradeGrade,
       'dateAdded': instance.dateAdded?.toIso8601String(),
       'retailPriceLastUpdated':

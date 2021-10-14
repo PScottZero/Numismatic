@@ -38,9 +38,9 @@ class _CameraViewState extends State<CameraView> {
             child: Transform.scale(
               scale: 1,
               child: Padding(
-                padding: ViewConstants.paddingAllLarge,
+                padding: ViewConstants.largePadding,
                 child: ClipRRect(
-                  borderRadius: ViewConstants.borderRadiusLarge,
+                  borderRadius: ViewConstants.largeBorderRadius,
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: OverflowBox(
@@ -62,7 +62,7 @@ class _CameraViewState extends State<CameraView> {
                                   ),
                                   border: Border.all(
                                     color: Colors.white,
-                                    width: ViewConstants.cameraCircleWidth,
+                                    width: 8.0,
                                   ),
                                 ),
                               ),

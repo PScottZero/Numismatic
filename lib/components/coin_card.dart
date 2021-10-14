@@ -26,7 +26,7 @@ class CoinCard extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: ViewConstants.borderRadiusLarge,
+            borderRadius: ViewConstants.largeBorderRadius,
             boxShadow: ViewConstants.boxShadow,
           ),
           clipBehavior: Clip.antiAlias,
@@ -34,28 +34,30 @@ class CoinCard extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             children: [
               coin.images != null && coin.images![0] != 'no-image.png'
-                  ? Image.memory(base64Decode(coin.images![0]))
+                  ? Image.memory(
+                      base64Decode(coin.images![0]),
+                    )
                   : const Image(
                       image: AssetImage('assets/images/no-image.png'),
                     ),
               ConstrainedBox(
                 constraints: const BoxConstraints(
-                  maxHeight: ViewConstants.cardTitleMaxHeight,
+                  maxHeight: 100,
                   minHeight: 0,
                 ),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: ViewConstants.borderRadiusLarge,
-                    color: ViewConstants.colorCardTitle,
+                    borderRadius: ViewConstants.smallBorderRadius,
+                    color: ViewConstants.imageTextBackgroundColor,
                   ),
                   width: double.infinity,
-                  padding: ViewConstants.cardTitlePadding,
-                  margin: ViewConstants.cardTitleMargin,
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  margin: const EdgeInsets.all(10),
                   child: Text(
                     coin.fullType,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: ViewConstants.fontMini,
+                      fontSize: ViewConstants.smallFont,
                       color: Colors.white,
                     ),
                   ),

@@ -59,7 +59,8 @@
   },
   {
     "name": "North American Token",
-    "greysheetName": "Other Colonial & Post-Colonial Coinage"
+    "greysheetName": "Other Colonial & Post-Colonial Coinage",
+    "photogradeName": "NorthAmericaToken"
   },
   {
     "name": "Mott Token",
@@ -137,7 +138,7 @@
   {
     "name": "Washington President Cent",
     "greysheetName": "George Washington Pieces",
-    "photogradeName": "WashingtonCent",
+    "photogradeName": "WashingtonPresident",
     "denomination": 0.01
   },
   {
@@ -148,7 +149,7 @@
   {
     "name": "Washington Liberty & Security",
     "greysheetName": "George Washington Pieces",
-    "photogradeName": "LibAndSec"
+    "photogradeName": "LibertyandSecurity"
   },
   {
     "name": "Fugio Cent",
@@ -404,7 +405,7 @@
     "denomination": 0.50
   },
   {
-    "name": "Draped Bust Half Dollar {Large Eagle}",
+    "name": "Draped Bust Half Dollar (Large Eagle)",
     "greysheetName": "Draped Bust Half Dollars",
     "photogradeName": "Draped50LE",
     "denomination": 0.50
@@ -578,8 +579,8 @@
   {
     "name": "Classic Head Half Eagle",
     "greysheetName": "$5 Classic Head Gold",
-    "photogradeName": "CappedHead5",
-    "denomination": 2.50
+    "photogradeName": "Classic5",
+    "denomination": 5.00
   },
   {
     "name": "Liberty Head Half Eagle",
@@ -630,7 +631,7 @@
     "denomination": 20.00
   },
   {
-    "name": "Liberty Head Double Eagle (Type 30",
+    "name": "Liberty Head Double Eagle (Type 3)",
     "greysheetName": "$20 Liberty Gold - Type 3",
     "photogradeName": "20Lib",
     "denomination": 20.00

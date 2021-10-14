@@ -41,10 +41,10 @@ class _CoinGridViewState extends State<CoinGridView> {
         _model = model;
         return coins.isNotEmpty || searchStringNonEmpty
             ? GridView.count(
-                crossAxisCount: ViewConstants.gridColumnCount,
+                crossAxisCount: 2,
                 mainAxisSpacing: ViewConstants.gapLarge,
                 crossAxisSpacing: ViewConstants.gapLarge,
-                padding: ViewConstants.paddingAllLarge,
+                padding: ViewConstants.largePadding,
                 childAspectRatio: 1,
                 children: (searchStringNonEmpty
                         ? <Widget>[]
@@ -52,10 +52,12 @@ class _CoinGridViewState extends State<CoinGridView> {
                     coins.map((e) => CoinCard(e)).toList(),
               )
             : Container(
-                padding: ViewConstants.paddingAllLarge,
+                padding: ViewConstants.largePadding,
                 child: Center(
                   child: Text(
-                    'No coins in your ${widget.isWantlist ? 'wantlist' : 'collection'}',
+                    model.isLoading
+                        ? 'Loading ${widget.isWantlist ? 'wantlist' : 'collection'}...'
+                        : 'No coins in ${widget.isWantlist ? 'wantlist' : 'collection'}',
                     textAlign: TextAlign.center,
                   ),
                 ),

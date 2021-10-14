@@ -14,18 +14,18 @@ class CustomFloatingActionButton extends StatelessWidget {
       label: Text(
         _selectedIndex == 2 ? 'Take Photo' : 'Add Coin',
         style: const TextStyle(
-          fontSize: ViewConstants.fontSmall,
-          color: ViewConstants.colorAccent,
+          fontSize: ViewConstants.mediumFont,
+          color: ViewConstants.accentColor,
           fontWeight: FontWeight.bold,
         ),
       ),
       isExtended: true,
       icon: Icon(
         _selectedIndex == 2 ? Icons.camera : Icons.add,
-        color: ViewConstants.colorAccent,
+        color: ViewConstants.accentColor,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: ViewConstants.borderRadiusMedium,
+        borderRadius: ViewConstants.mediumBorderRadius,
       ),
       onPressed: () {
         Navigator.push(

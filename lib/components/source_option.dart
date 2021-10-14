@@ -22,10 +22,10 @@ class SourceOption extends StatelessWidget {
     return Row(
       children: [
         SizedBox(
-          width: ViewConstants.radioButtonSize,
-          height: ViewConstants.radioButtonSize,
+          width: 18,
+          height: 18,
           child: Radio<DataSource>(
-            fillColor: HelperFunctions.msp(ViewConstants.colorAccent),
+            fillColor: HelperFunctions.msp(ViewConstants.accentColor),
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,
@@ -35,7 +35,7 @@ class SourceOption extends StatelessWidget {
           padding: const EdgeInsets.only(left: ViewConstants.gapSmall),
           child: Text(
             label,
-            style: const TextStyle(fontSize: ViewConstants.fontSmall),
+            style: const TextStyle(fontSize: ViewConstants.mediumFont),
           ),
         ),
       ],

@@ -29,22 +29,22 @@ class RoundedButton extends StatelessWidget {
           elevation: HelperFunctions.msp(0),
           shape: HelperFunctions.msp(
             RoundedRectangleBorder(
-              borderRadius: ViewConstants.borderRadiusLarge,
+              borderRadius: ViewConstants.largeBorderRadius,
             ),
           ),
           backgroundColor: HelperFunctions.msp(
-            color ?? ViewConstants.colorPrimary,
+            color ?? ViewConstants.primaryColor,
           ),
-          padding: HelperFunctions.msp(ViewConstants.paddingAllLarge),
+          padding: HelperFunctions.msp(ViewConstants.largePadding),
           textStyle: HelperFunctions.msp(
-            GoogleFonts.quicksand(fontSize: ViewConstants.fontMedium),
+            GoogleFonts.quicksand(fontSize: ViewConstants.largeFont),
           ),
         ),
         onPressed: onPressed,
         child: Text(
           label,
           style: TextStyle(
-            color: textColor ?? ViewConstants.colorAccent,
+            color: textColor ?? ViewConstants.accentColor,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -19,13 +19,13 @@ class ImageCarousel extends StatelessWidget {
           (image) {
             var index = (images?.indexOf(image) ?? 0) + 1;
             return Container(
-              margin: ViewConstants.paddingAllLarge,
+              margin: ViewConstants.largePadding,
               decoration: BoxDecoration(
-                borderRadius: ViewConstants.borderRadiusLarge,
+                borderRadius: ViewConstants.largeBorderRadius,
                 boxShadow: ViewConstants.boxShadow,
               ),
               child: ClipRRect(
-                borderRadius: ViewConstants.borderRadiusLarge,
+                borderRadius: ViewConstants.largeBorderRadius,
                 child: Stack(
                   alignment: Alignment.bottomRight,
                   children: [
@@ -41,16 +41,16 @@ class ImageCarousel extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: ViewConstants.imageNumberPadding,
-                      margin: ViewConstants.paddingAllSmall,
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
+                      margin: ViewConstants.smallPadding,
                       decoration: BoxDecoration(
-                        color: ViewConstants.colorCardTitle,
-                        borderRadius: ViewConstants.borderRadiusSmall,
+                        color: ViewConstants.imageTextBackgroundColor,
+                        borderRadius: ViewConstants.smallBorderRadius,
                       ),
                       child: Text(
                         '$index of ${images?.length ?? 1}',
                         style: const TextStyle(
-                          fontSize: ViewConstants.fontMini,
+                          fontSize: ViewConstants.smallFont,
                           color: Colors.white,
                         ),
                       ),

@@ -27,22 +27,21 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ViewConstants.colorBackground(context),
+      backgroundColor: ViewConstants.backgroundColorFromContext(context),
       appBar: hasAppBar
           ? AppBar(
               elevation: 0,
-              backgroundColor:
-                  appBarColor ?? ViewConstants.colorBackgroundAccent(context),
+              backgroundColor: Colors.transparent,
               foregroundColor:
                   MediaQuery.of(context).platformBrightness == Brightness.dark
                       ? Colors.white
                       : Colors.black,
               title: Padding(
-                padding: ViewConstants.paddingLeftSmall,
+                padding: const EdgeInsets.only(left: 5),
                 child: Text(
                   appBarTitle,
                   style: GoogleFonts.quicksand(
-                    fontSize: ViewConstants.fontMedium,
+                    fontSize: ViewConstants.largeFont,
                   ),
                 ),
               ),

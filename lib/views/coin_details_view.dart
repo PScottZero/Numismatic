@@ -43,14 +43,13 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CoinCollectionModel>(
-      child: ImageCarousel(widget.coin.images),
       builder: (context, model, child) {
         _model = model;
         return CustomScaffold(
           appBarTitle: widget.coin.fullType,
           appBarActions: [
             Padding(
-              padding: ViewConstants.paddingAllSmall,
+              padding: ViewConstants.smallPadding,
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -70,11 +69,13 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
           ],
           body: ListView(
             children: [
-              widget.coin.images != null ? (child ?? Container()) : Container(),
+              widget.coin.images != null
+                  ? ImageCarousel(widget.coin.images)
+                  : Container(),
               Container(
                 padding: widget.coin.images == null
-                    ? ViewConstants.paddingAllLarge
-                    : ViewConstants.paddingAllLargeNoTop,
+                    ? ViewConstants.largePadding
+                    : const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -84,9 +85,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                         widget.coin.fullType,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontSize: ViewConstants.fontLarge,
+                          fontSize: 28.0,
                           fontWeight: FontWeight.bold,
-                          height: ViewConstants.spacing1_5,
+                          height: 1.5,
                         ),
                       ),
                     ),
@@ -113,13 +114,13 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                           'Move to ${widget.coin.inCollection ? 'Wantlist' : 'Collection'}',
                       onPressed: () => model.toggleInCollection(widget.coin),
                       color: Colors.cyan[600],
-                      textColor: ViewConstants.colorMoveToAccent,
+                      textColor: Colors.cyan[100]!,
                     ),
                     RoundedButton(
                       label: 'Delete',
                       onPressed: _showDeleteCoinDialog,
-                      color: ViewConstants.colorWarning,
-                      textColor: ViewConstants.colorWarningAccent,
+                      color: ViewConstants.warningColor,
+                      textColor: ViewConstants.warningAccentColor,
                     ),
                   ],
                 ),
