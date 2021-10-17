@@ -21,3 +21,4 @@ doc/api/
 *.js.map
 coin_classifier/images/
 */.DS_Store
+coin_classifier/coin_classifier_model/
