@@ -19,6 +19,8 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
-coin_classifier/images/
 */.DS_Store
+coin_classifier/images/
+coin_classifier/images_grades/
 coin_classifier/coin_classifier_model/
+coin_classifier/coin_grader_model/
