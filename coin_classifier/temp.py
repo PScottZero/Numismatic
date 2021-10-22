@@ -5,8 +5,8 @@ d = listdir('images/')
 if '.DS_Store' in d:
     d.remove('.DS_Store')
 
-mkdir('obv_imgs/')
-mkdir('rev_imgs/')
+mkdir('images_grade/')
+
 
 def number_to_grade(number):
     if number >= 60:
@@ -35,11 +35,20 @@ def number_to_grade(number):
 for coin_type in d:
     for img_name in listdir('images/%s/' % coin_type):
         img = Image.open('images/%s/%s' % (coin_type, img_name))
-        if img_name.replace('.jpg', '')[-1] == 'o':
-            if not path.isdir('obv_imgs/%s' % coin_type):
-                mkdir('obv_imgs/%s' % coin_type)
-            img.save('obv_imgs/%s/%s' % (coin_type, img_name))
-        else:
-            if not path.isdir('rev_imgs/%s' % coin_type):
-                mkdir('rev_imgs/%s' % coin_type)
-            img.save('rev_imgs/%s/%s' % (coin_type, img_name))
+        grade_text = number_to_grade(int(img_name.split('-')[-1].replace('o',
+                                                                         '').replace('r', '').replace('.jpg', '')))
+        if not path.isdir('images_grade/%s' % grade_text):
+            mkdir('images_grade/%s' % grade_text)
+        img.save('images_grade/%s/%s' % (grade_text, img_name))
+
+# for coin_type in d:
+#     for img_name in listdir('images/%s/' % coin_type):
+#         img = Image.open('images/%s/%s' % (coin_type, img_name))
+#         if img_name.replace('.jpg', '')[-1] == 'o':
+#             if not path.isdir('obv_imgs/%s' % coin_type):
+#                 mkdir('obv_imgs/%s' % coin_type)
+#             img.save('obv_imgs/%s/%s' % (coin_type, img_name))
+#         else:
+#             if not path.isdir('rev_imgs/%s' % coin_type):
+#                 mkdir('rev_imgs/%s' % coin_type)
+#             img.save('rev_imgs/%s/%s' % (coin_type, img_name))
