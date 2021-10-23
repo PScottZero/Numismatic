@@ -1,6 +1,11 @@
 import 'package:camera/camera.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image/image.dart';
+import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
+import 'package:numismatic/model/classifier_quant.dart';
+import 'package:numismatic/views/coin_classifier_view.dart';
 
 class CameraView extends StatefulWidget {
   final CameraDescription camera;
@@ -14,6 +19,7 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
+  var classifier = ClassifierQuant();
 
   @override
   void initState() {
@@ -28,6 +34,27 @@ class _CameraViewState extends State<CameraView> {
     super.dispose();
   }
 
+  void _takePhoto() async {
+    try {
+      await _initializeControllerFuture;
+      final image = await _controller.takePicture();
+      final decodedImage = decodeImage(await image.readAsBytes());
+      if (decodedImage != null) {
+        final croppedImage = copyResizeCropSquare(decodedImage, 128);
+        final category = classifier.predict(croppedImage);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                CoinClassifierView(croppedImage, category.label),
+          ),
+        );
+      }
+    } catch (e) {
+      // ignore failure
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -35,45 +62,63 @@ class _CameraViewState extends State<CameraView> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Center(
-            child: Transform.scale(
-              scale: 1,
-              child: Padding(
-                padding: ViewConstants.largePadding,
-                child: ClipRRect(
-                  borderRadius: ViewConstants.largeBorderRadius,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: OverflowBox(
-                      alignment: Alignment.center,
-                      child: FittedBox(
-                        fit: BoxFit.fitWidth,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width - 40,
-                          child: Stack(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Transform.scale(
+                    scale: 1,
+                    child: Padding(
+                      padding: ViewConstants.largePadding,
+                      child: ClipRRect(
+                        borderRadius: ViewConstants.largeBorderRadius,
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: OverflowBox(
                             alignment: Alignment.center,
-                            children: [
-                              CameraPreview(_controller),
-                              Container(
-                                width: MediaQuery.of(context).size.width - 100,
-                                height: MediaQuery.of(context).size.width - 100,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    MediaQuery.of(context).size.width - 100,
-                                  ),
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 8.0,
-                                  ),
+                            child: FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width - 40,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    CameraPreview(_controller),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          80,
+                                      height:
+                                          MediaQuery.of(context).size.width -
+                                              80,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                          MediaQuery.of(context).size.width -
+                                              80,
+                                        ),
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 4.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                  child: RoundedButton(
+                    label: 'Identify',
+                    onPressed: _takePhoto,
+                  ),
+                ),
+              ],
             ),
           );
         } else {

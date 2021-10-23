@@ -49,9 +49,7 @@ class _MainViewState extends State<MainView> {
     });
   }
 
-  bool _onLastPage() =>
-      (_options.length == 3 && _selectedIndex != 2) ||
-      (_options.length == 4 && _selectedIndex != 3);
+  bool _showFloatingActionButton() => _selectedIndex < 2;
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +101,9 @@ class _MainViewState extends State<MainView> {
             onTap: _onTap,
             cameraIsInitialized: widget._camera != null,
           ),
-          floatingActionButton:
-              _onLastPage() ? CustomFloatingActionButton(_selectedIndex) : null,
+          floatingActionButton: _showFloatingActionButton()
+              ? CustomFloatingActionButton(_selectedIndex)
+              : null,
         );
       },
     );
