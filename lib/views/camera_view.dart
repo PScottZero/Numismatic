@@ -1,10 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image/image.dart';
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/classifier_quant.dart';
+import 'package:numismatic/model/coin_classifier.dart';
 import 'package:numismatic/views/coin_classifier_view.dart';
 
 class CameraView extends StatefulWidget {
@@ -19,7 +20,7 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
-  var classifier = ClassifierQuant();
+  var classifier = CoinClassifier();
 
   @override
   void initState() {
@@ -36,20 +37,37 @@ class _CameraViewState extends State<CameraView> {
 
   void _takePhoto() async {
     try {
-      await _initializeControllerFuture;
-      final image = await _controller.takePicture();
-      final decodedImage = decodeImage(await image.readAsBytes());
-      if (decodedImage != null) {
-        final croppedImage = copyResizeCropSquare(decodedImage, 128);
-        final category = classifier.predict(croppedImage);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                CoinClassifierView(croppedImage, category.label),
-          ),
-        );
-      }
+      // await _initializeControllerFuture;
+      // final image = await _controller.takePicture();
+      // final decodedImage = decodeImage(await image.readAsBytes());
+      // if (decodedImage != null) {
+      //   final jpg = encodeJpg(decodedImage);
+      //   final croppedImage = copyResizeCropSquare(decodeJpg(jpg), 128);
+
+      //   final res = await rootBundle.load('assets/images/Morgan_o.jpg');
+      //   final img = decodeImage(res.buffer.asUint8List());
+      //   if (img != null) {
+      //     final label = await classifier.predict(img);
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => CoinClassifierView(croppedImage, label),
+      //       ),
+      //     );
+      //   }
+      // }
+      final res = await rootBundle.load('assets/images/Morgan_o.jpg');
+      var img = decodeImage(res.buffer.asUint8List());
+      print(img!.getPixel(185, 125));
+      img = copyResize(img, width: 128, height: 128);
+      print(img.getPixel(50, 50));
+      final label = await classifier.predict(img);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CoinClassifierView(img!, label),
+        ),
+      );
     } catch (e) {
       // ignore failure
     }
