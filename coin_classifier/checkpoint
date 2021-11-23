@@ -1,2 +1,0 @@
-model_checkpoint_path: "coin_classifier_weights"
-all_model_checkpoint_paths: "coin_classifier_weights"

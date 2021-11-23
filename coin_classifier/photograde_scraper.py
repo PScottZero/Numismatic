@@ -22,7 +22,7 @@ for coin_type in types_json:
         types.add(coin_type['name'].replace(' ', ''))
 
 types = sorted(list(types))
-types = ['LibertyandSecurity', 'NorthAmericaToken', 'WashingtonPresident']
+types = ['DrapedDolSE']
 
 for photograde_type in types:
     for grade in grades:
