@@ -92,7 +92,9 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       ),
                     ),
                     Detail(
-                        name: 'Grade', value: widget.coin.grade.valueNullable,),
+                      name: 'Grade',
+                      value: widget.coin.grade.valueNullable,
+                    ),
                     Detail(
                       name: 'Mintage',
                       value: widget.coin.mintageSource != DataSource.none
@@ -113,8 +115,8 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       label:
                           'Move to ${widget.coin.inCollection ? 'Wantlist' : 'Collection'}',
                       onPressed: () => model.toggleInCollection(widget.coin),
-                      color: Colors.cyan[600],
-                      textColor: Colors.cyan[100]!,
+                      color: Colors.blue[600],
+                      textColor: Colors.blue[100]!,
                     ),
                     RoundedButton(
                       label: 'Delete',

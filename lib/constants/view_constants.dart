@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 class ViewConstants {
   // colors
-  static final accentColor = Colors.lightBlue[200]!;
+  static final accentColor = Colors.cyan[100]!;
   static const backgroundAccentColor = Color(0xff262d33);
   static Color backgroundAccentColorFromContext(BuildContext context) =>
       MediaQuery.of(context).platformBrightness == Brightness.dark
           ? backgroundAccentColor
-          : Colors.teal[100]!;
+          : Colors.cyan[100]!;
   static Color backgroundColorFromContext(BuildContext context) =>
       MediaQuery.of(context).platformBrightness == Brightness.dark
           ? const Color(0xff1a1f24)
           : const Color(0xffffffff);
   static const imageTextBackgroundColor = Color(0x77000000);
-  static final primaryColor = Colors.lightBlue[900]!;
+  static final primaryColor = Colors.cyan[600]!;
   static final warningAccentColor = Colors.red[100]!;
   static final warningColor = Colors.red[500]!;
 
