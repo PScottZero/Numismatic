@@ -37,7 +37,7 @@ class ConfirmCancelDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text(
+          child: Text(
             'Cancel',
             style: TextStyle(
               fontSize: ViewConstants.mediumFont,

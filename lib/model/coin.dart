@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/model/coin_type.dart';
-import 'package:numismatic/model/reference.dart';
+import 'package:numismatic/model/string_reference.dart';
 import 'package:uuid/uuid.dart';
 
 import 'data_source.dart';
@@ -98,7 +98,7 @@ class Coin {
     }
   }
 
-  String get fullType {
+  String get description {
     if (hasYear()) {
       final year = variation.value.split(' ')[0];
       String? noYearVariation = variation.value.replaceAll(year, '').trim();

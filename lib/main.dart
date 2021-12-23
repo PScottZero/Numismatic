@@ -1,9 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/views/main_view.dart';
+import 'package:numismatic/views/main_view/main_view.dart';
 import 'package:provider/provider.dart';
 
 import 'model/coin_collection_model.dart';
@@ -19,26 +18,20 @@ void main() async {
   );
 }
 
+MaterialColor generatePrimarySwatch() {
+  var colorMap = {50: Colors.lightBlue[200]!};
+  for (var i = 100; i <= 900; i += 100) {
+    colorMap[i] = Colors.lightBlue[200]!;
+  }
+  return MaterialColor(0xff62f0e2, colorMap);
+}
+
 class NumismaticApp extends StatelessWidget {
   final CameraDescription? _camera;
 
   ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: const MaterialColor(
-            0xff62f0e2,
-            {
-              50: Color(0xff62f0e2),
-              100: Color(0xff62f0e2),
-              200: Color(0xff62f0e2),
-              300: Color(0xff62f0e2),
-              400: Color(0xff62f0e2),
-              500: Color(0xff62f0e2),
-              600: Color(0xff62f0e2),
-              700: Color(0xff62f0e2),
-              800: Color(0xff62f0e2),
-              900: Color(0xff62f0e2),
-            },
-          ),
+          primarySwatch: generatePrimarySwatch(),
         ).copyWith(
           secondary: ViewConstants.primaryColor,
           brightness: brightness,

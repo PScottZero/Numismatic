@@ -15,12 +15,50 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/coin_classifier.tflite" beforeDir="false" afterPath="$PROJECT_DIR$/assets/coin_classifier.tflite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/coin_classifier_labels.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/coin_classifier_labels.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coin_classifier/coin_classifier.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/coin_classifier/coin_classifier.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/classifier.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/classifier_quant.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/views/camera_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/camera_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/coin_grader.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/coin_classifier/coin_grader.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/coin_pca.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/coin_classifier/coin_pca.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/labels/coin_classifier_labels.txt" beforeDir="false" afterPath="$PROJECT_DIR$/coin_classifier/labels/coin_classifier_labels.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/labels/coin_classifier_labels_obv.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/labels/coin_classifier_labels_obv_biased.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/labels/coin_classifier_labels_rev.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/photograde_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/coin_classifier/photograde_scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coin_classifier/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/coin_classifier/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/autocomplete_input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/autocomplete_input.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/coin_card.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/coin_data_text_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view/components/coin_data_text_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/confirm_cancel_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/components/confirm_cancel_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/count_and_value.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/custom_floating_action_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/deletable_image.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view/components/deletable_image.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view/components/detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/image_carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view/components/image_carousel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/image_selector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view/components/image_selector.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/loading_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/settings_view/components/loading_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/multi_source_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view/components/multi_source_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/navigation_bar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/search_bar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/sort_menu.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/source_option.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view/components/source_option.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/components/you_nav_bar_item.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/constants/view_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/view_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin_classifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_classifier.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/coin_collection_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/add_coin_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/add_coin_view/add_coin_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/camera_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_classifier_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_details_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/views/coin_details_view/coin_details_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/coin_grid_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/main_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/views/settings_view.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +66,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R5CR92502VZ]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/paulscott/.android/avd/Pixel_5_API_31.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -78,7 +116,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="ReaderModeSettings">
@@ -89,9 +127,11 @@
       <recent name="$PROJECT_DIR$/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/services" />
-      <recent name="$PROJECT_DIR$/lib/model" />
-      <recent name="C:\Users\8psco\Documents\GitHub\numismatic\assets\images" />
+      <recent name="$PROJECT_DIR$/lib/views/settings_view/components" />
+      <recent name="$PROJECT_DIR$/lib/views/coin_details_view/components" />
+      <recent name="$PROJECT_DIR$/lib/views/add_coin_view/components" />
+      <recent name="$PROJECT_DIR$/lib/views/coin_details_view" />
+      <recent name="$PROJECT_DIR$/lib/views/add_coin_view" />
     </key>
   </component>
   <component name="RunManager">
@@ -133,16 +173,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/views/camera_view.dart</url>
-          <line>39</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/reference.dart';
+import 'package:numismatic/model/string_reference.dart';
 
 class AutocompleteInput extends StatelessWidget {
   final String? label;
@@ -105,10 +105,8 @@ class AutocompleteInput extends StatelessWidget {
             },
             onChanged: (value) {
               reference.value = value;
-              if (value == '') {
-                if (refresh != null) {
-                  refresh!();
-                }
+              if (value == '' && refresh != null) {
+                refresh!();
               }
             },
           ),
