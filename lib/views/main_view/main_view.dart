@@ -7,7 +7,7 @@ import 'package:numismatic/views/main_view/components/you_navigation_bar.dart';
 import 'package:numismatic/views/main_view/components/search_bar.dart';
 import 'package:numismatic/views/main_view/components/sort_menu.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:numismatic/services/coin_comparator.dart';
 import 'package:numismatic/views/settings_view/settings_view.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +71,7 @@ class _MainViewState extends State<MainView> {
                 : Brightness.dark,
       ),
     );
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         return CustomScaffold(
           hasAppBar: _selectedIndex < 2,

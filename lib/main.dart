@@ -5,25 +5,25 @@ import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/views/main_view/main_view.dart';
 import 'package:provider/provider.dart';
 
-import 'model/coin_collection_model.dart';
+import 'model/app_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => CoinCollectionModel(context),
+      create: (context) => AppModel(context),
       child: NumismaticApp(cameras.isNotEmpty ? cameras.first : null),
     ),
   );
 }
 
 MaterialColor generatePrimarySwatch() {
-  var colorMap = {50: Colors.lightBlue[200]!};
+  var colorMap = {50: ViewConstants.accentColor};
   for (var i = 100; i <= 900; i += 100) {
-    colorMap[i] = Colors.lightBlue[200]!;
+    colorMap[i] = ViewConstants.accentColor;
   }
-  return MaterialColor(0xff62f0e2, colorMap);
+  return MaterialColor(ViewConstants.accentColor.value, colorMap);
 }
 
 class NumismaticApp extends StatelessWidget {

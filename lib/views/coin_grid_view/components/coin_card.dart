@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:numismatic/views/coin_details_view/coin_details_view.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class CoinCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) => GestureDetector(
         onTap: () => {
           Navigator.push(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 import 'components/coin_card.dart';
@@ -17,7 +17,7 @@ class CoinGridView extends StatefulWidget {
 }
 
 class _CoinGridViewState extends State<CoinGridView> {
-  CoinCollectionModel? _model;
+  AppModel? _model;
 
   String get title => widget.isWantlist ? 'Wantlist' : 'Collection';
 
@@ -36,7 +36,7 @@ class _CoinGridViewState extends State<CoinGridView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
         return coins.isNotEmpty || searchStringNonEmpty

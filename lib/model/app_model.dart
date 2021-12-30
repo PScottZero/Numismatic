@@ -14,7 +14,7 @@ import '../services/coin_comparator.dart';
 import 'coin.dart';
 import 'coin_type.dart';
 
-class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
+class AppModel extends ChangeNotifier with WidgetsBindingObserver {
   List<Coin> coins = [];
   List<Coin> get collection =>
       coins.where((element) => element.inCollection).toList();
@@ -32,7 +32,7 @@ class CoinCollectionModel extends ChangeNotifier with WidgetsBindingObserver {
     super.dispose();
   }
 
-  CoinCollectionModel(this.snackBarContext) {
+  AppModel(this.snackBarContext) {
     WidgetsBinding.instance?.addObserver(this);
     CoinComparator.setSortMethod(SortMethod.denomination);
     loadTypes();

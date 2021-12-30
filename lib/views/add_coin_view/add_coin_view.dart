@@ -11,7 +11,7 @@ import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/helper_functions.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:numismatic/model/coin_type.dart';
 import 'package:numismatic/model/data_source.dart';
 import 'package:numismatic/model/grades.dart';
@@ -38,7 +38,7 @@ class _AddCoinViewState extends State<AddCoinView> {
   Coin _coin = Coin.empty();
   List<String> get _variations =>
       _model?.greysheetStaticData?[_coin.typeId]?.keys.toList() ?? [];
-  CoinCollectionModel? _model;
+  AppModel? _model;
 
   String get title => widget.addToWantlist ? 'Wantlist' : 'Collection';
 
@@ -110,7 +110,7 @@ class _AddCoinViewState extends State<AddCoinView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
         return CustomScaffold(

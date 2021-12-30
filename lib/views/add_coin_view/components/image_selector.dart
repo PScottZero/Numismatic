@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 import 'deletable_image.dart';
@@ -24,7 +24,7 @@ class ImageSelector extends StatefulWidget {
 }
 
 class _ImageSelectorState extends State<ImageSelector> {
-  CoinCollectionModel? modelRef;
+  AppModel? modelRef;
   List<String> _images = [];
 
   @override
@@ -46,7 +46,7 @@ class _ImageSelectorState extends State<ImageSelector> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         modelRef = model;
         return Column(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../components/autocomplete_input.dart';
@@ -15,14 +15,14 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  CoinCollectionModel? _model;
+  AppModel? _model;
   List<String> get _searchOptions => widget.viewingWantlist
       ? _model?.wantlist.map((e) => e.description).toList() ?? []
       : _model?.collection.map((e) => e.description).toList() ?? [];
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
         return Padding(

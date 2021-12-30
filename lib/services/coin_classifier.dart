@@ -19,7 +19,7 @@ class CoinClassifier {
       modelLoaded = true;
     }
     var recognitions = await Tflite.runModelOnBinary(
-      binary: imageToByteListFloat32(image, 256, 0, 255.0),
+      binary: imageToByteListFloat32(image, 224, 0, 255.0),
     );
     return recognitions?[0]['label'] ?? '';
   }

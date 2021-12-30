@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:numismatic/model/coin_type.dart';
 import 'package:numismatic/model/data_source.dart';
 
 import 'greysheet_scraper.dart';
 
 class CoinDataRetriever {
-  static setMintage(Coin coin, CoinCollectionModel? model) async {
+  static setMintage(Coin coin, AppModel? model) async {
     await _handleDataSource(
       coin.mintageSource,
       () async => coin.mintage = model
@@ -22,7 +22,7 @@ class CoinDataRetriever {
     );
   }
 
-  static setRetailPrice(Coin coin, CoinCollectionModel? model) async {
+  static setRetailPrice(Coin coin, AppModel? model) async {
     await _handleDataSource(
       coin.retailPriceSource,
       () async {
@@ -35,7 +35,7 @@ class CoinDataRetriever {
     );
   }
 
-  static setImages(Coin coin, CoinCollectionModel? model) async {
+  static setImages(Coin coin, AppModel? model) async {
     await _handleDataSource(
       coin.imagesSource,
       () async => coin.images = await _getImagesFromPCGS(coin),

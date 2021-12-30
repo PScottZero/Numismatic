@@ -7,7 +7,6 @@ import 'package:image/image.dart' as img;
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/services/coin_classifier.dart';
-import 'package:numismatic/views/camera_view/components/circle_guide.dart';
 
 class CameraView extends StatefulWidget {
   final CameraDescription camera;
@@ -42,7 +41,7 @@ class _CameraViewState extends State<CameraView> {
       var image = img.decodeImage(await File(result.path).readAsBytes())!;
       final y = (image.height - image.width) ~/ 2;
       image = img.copyCrop(image, 0, y, image.width, image.width);
-      image = img.copyResize(image, width: 256, height: 256);
+      image = img.copyResize(image, width: 224, height: 224);
       var prediction = await CoinClassifier.predict(image);
 
       setState(() {
@@ -78,13 +77,7 @@ class _CameraViewState extends State<CameraView> {
                               fit: BoxFit.fitWidth,
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width - 40,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    CameraPreview(_controller),
-                                    const CircleGuide(),
-                                  ],
-                                ),
+                                child: CameraPreview(_controller),
                               ),
                             ),
                           ),

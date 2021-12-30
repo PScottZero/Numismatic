@@ -6,7 +6,7 @@ import 'package:numismatic/views/coin_details_view/components/image_carousel.dar
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:numismatic/model/data_source.dart';
 import 'package:numismatic/views/add_coin_view/add_coin_view.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +21,7 @@ class CoinDetailsView extends StatefulWidget {
 }
 
 class _CoinDetailsViewState extends State<CoinDetailsView> {
-  CoinCollectionModel? _model;
+  AppModel? _model;
 
   _showDeleteCoinDialog() {
     showDialog(
@@ -42,7 +42,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
         return CustomScaffold(

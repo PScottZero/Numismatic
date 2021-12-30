@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:numismatic/components/confirm_cancel_dialog.dart';
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin_collection_model.dart';
+import 'package:numismatic/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 class SettingsView extends StatefulWidget {
@@ -13,7 +13,7 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
-  CoinCollectionModel? _model;
+  AppModel? _model;
 
   _showBackupDialog() {
     showDialog(
@@ -69,7 +69,7 @@ class _SettingsViewState extends State<SettingsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CoinCollectionModel>(
+    return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
         return Container(
