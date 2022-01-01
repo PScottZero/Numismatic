@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:image/image.dart' as img;
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:image/image.dart' as img;
 import 'package:numismatic/components/rounded_button.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/services/coin_classifier.dart';
+import 'package:numismatic/views/camera_view/components/prediction_view.dart';
 
 class CameraView extends StatefulWidget {
   final CameraDescription camera;
@@ -20,7 +21,6 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
-  String _currentPrediction = 'N/A';
 
   @override
   void initState() {
@@ -43,10 +43,17 @@ class _CameraViewState extends State<CameraView> {
       image = img.copyCrop(image, 0, y, image.width, image.width);
       image = img.copyResize(image, width: 224, height: 224);
       var prediction = await CoinClassifier.predict(image);
-
-      setState(() {
-        _currentPrediction = prediction;
-      });
+      showModalBottomSheet(
+        context: context,
+        builder: (context) => PredictionView(prediction),
+        backgroundColor: ViewConstants.backgroundColorFromContext(context),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+      );
     } catch (e) {
       return;
     }
@@ -66,7 +73,7 @@ class _CameraViewState extends State<CameraView> {
                   child: Transform.scale(
                     scale: 1,
                     child: Padding(
-                      padding: ViewConstants.largePadding,
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                       child: ClipRRect(
                         borderRadius: ViewConstants.largeBorderRadius,
                         child: AspectRatio(
@@ -86,7 +93,6 @@ class _CameraViewState extends State<CameraView> {
                     ),
                   ),
                 ),
-                Text(_currentPrediction),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                   child: RoundedButton(

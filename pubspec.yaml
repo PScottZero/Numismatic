@@ -46,8 +46,8 @@ flutter_icons:
 
 flutter:
   assets:
-    - assets/coin_classifier.tflite
-    - assets/coin_classifier_labels.txt
+    - assets/classifier/coin_classifier.tflite
+    - assets/classifier/labels.txt
     - assets/images/
     - assets/json/
 

@@ -8,8 +8,8 @@ class CoinClassifier {
 
   static Future<void> loadModel() async {
     await Tflite.loadModel(
-      model: 'assets/coin_classifier.tflite',
-      labels: 'assets/coin_classifier_labels.txt',
+      model: 'assets/classifier/coin_classifier.tflite',
+      labels: 'assets/classifier/labels.txt',
     );
   }
 

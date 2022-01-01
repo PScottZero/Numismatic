@@ -10,6 +10,7 @@ class CoinType {
   String name;
   String? greysheetName;
   String? photogradeName;
+  String? classifierLabel;
   double? denomination;
 
   static List<CoinType> coinTypes = [];
@@ -18,6 +19,7 @@ class CoinType {
     required this.name,
     this.greysheetName,
     required this.photogradeName,
+    required this.classifierLabel,
     required this.denomination,
   });
 

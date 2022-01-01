@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:numismatic/constants/view_constants.dart';
 import 'package:numismatic/views/main_view/main_view.dart';
@@ -50,6 +51,10 @@ class NumismaticApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       title: 'Numismatic',
       debugShowCheckedModeBanner: false,

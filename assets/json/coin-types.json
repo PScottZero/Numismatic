@@ -159,343 +159,406 @@
   {
     "name": "Liberty Cap Half Cent (Left)",
     "photogradeName": "1793HalfCent",
+    "classifierLabel": "liberty_cap",
     "denomination": 0.005
   },
   {
     "name": "Liberty Cap Half Cent (Large Head)",
     "photogradeName": "LibertyCapHalfCentL",
+    "classifierLabel": "liberty_cap",
     "denomination": 0.005
   },
   {
     "name": "Liberty Cap Half Cent (Small Head)",
     "photogradeName": "LibertyCapHalfCentS",
+    "classifierLabel": "liberty_cap",
     "denomination": 0.005
   },
   {
     "name": "Draped Bust Half Cent",
     "photogradeName": "DrapedHalfCent",
+    "classifierLabel": "draped_copper",
     "denomination": 0.005
   },
   {
     "name": "Classic Head Half Cent",
     "photogradeName": "ClassicHalfCent",
+    "classifierLabel": "classic_copper",
     "denomination": 0.005
   },
   {
     "name": "Braided Hair Half Cent",
     "photogradeName": "BraidedHalfCent",
+    "classifierLabel": "braided",
     "denomination": 0.005
   },
   {
     "name": "Chain Cent",
     "greysheetName": "Flowing Hair Large Cents",
     "photogradeName": "ChainCent",
+    "classifierLabel": "chain+wreath",
     "denomination": 0.01
   },
   {
     "name": "Wreath Cent",
     "greysheetName": "Flowing Hair Large Cents",
     "photogradeName": "WreathCent",
+    "classifierLabel": "chain+wreath",
     "denomination": 0.01
   },
   {
     "name": "Liberty Cap Large Cent",
     "greysheetName": "Flowing Hair Large Cents",
     "photogradeName": "LibertyCapCent",
+    "classifierLabel": "liberty_cap",
     "denomination": 0.01
   },
   {
     "name": "Draped Bust Large Cent",
     "photogradeName": "DrapedBustCent",
+    "classifierLabel": "draped_copper",
     "denomination": 0.01
   },
   {
     "name": "Classic Head Large Cent",
     "photogradeName": "ClassicCent",
+    "classifierLabel": "classic_copper",
     "denomination": 0.01
   },
   {
     "name": "Coronet Head Large Cent",
     "photogradeName": "CoronetCent",
+    "classifierLabel": "coronet",
     "denomination": 0.01
   },
   {
     "name": "Braided Hair Large Cent",
     "photogradeName": "BraidedCent",
+    "classifierLabel": "braided",
     "denomination": 0.01
   },
   {
     "name": "Flying Eagle Cent",
     "photogradeName": "Flying",
+    "classifierLabel": "flying",
     "denomination": 0.01
   },
   {
     "name": "Indian Cent",
     "photogradeName": "Indian",
+    "classifierLabel": "indian_cent",
     "denomination": 0.01
   },
   {
     "name": "Lincoln Cent (Wheat)",
     "greysheetName": "Lincoln Cents - Wheat Reverse",
     "photogradeName": "Lincoln",
+    "classifierLabel": "lincoln",
     "denomination": 0.01
   },
   {
     "name": "Lincoln Cent (Memorial)",
     "greysheetName": "Lincoln Cents - Memorial Reverse",
     "photogradeName": "Lincoln",
+    "classifierLabel": "lincoln",
     "denomination": 0.01
   },
   { 
     "name": "Two Cent Piece",
     "greysheetName": "2-Cent Pieces",
     "photogradeName": "TwoCent",
+    "classifierLabel": "two_cent",
     "denomination": 0.02
   },
   {
     "name": "Three Cent Silver",
     "greysheetName": "3-Cent Silver",
     "photogradeName": "3CentSil",
+    "classifierLabel": "three_cent_silver",
     "denomination": 0.03
   },
   {
     "name": "Three Cent Nickel",
     "greysheetName": "3-Cent Nickels",
     "photogradeName": "3CentNic",
+    "classifierLabel": "three_cent_nickel",
     "denomination": 0.03
   },
   {
     "name": "Shield Nickel",
     "photogradeName": "ShieldNic",
+    "classifierLabel": "shield",
     "denomination": 0.05
   },
   {
     "name": "Liberty Nickel",
     "greysheetName": "V-Nickels",
     "photogradeName": "LibNic",
+    "classifierLabel": "liberty_nickel",
     "denomination": 0.05
   },
   {
     "name": "Buffalo Nickel",
     "photogradeName": "Buffalo",
+    "classifierLabel": "buffalo",
     "denomination": 0.05
   },
   {
     "name": "Jefferson Nickel",
     "photogradeName": "Jefferson",
+    "classifierLabel": "jefferson",
     "denomination": 0.05
   },
   {
     "name": "Flowing Hair Half Dime",
     "photogradeName": "FlowingHalfDime",
+    "classifierLabel": "flowing",
     "denomination": 0.05
   },
   {
     "name": "Draped Bust Half Dime (Small Eagle)",
     "greysheetName": "Draped Bust Half Dimes",
     "photogradeName": "DrapedHalfDime",
+    "classifierLabel": "draped_silver",
     "denomination": 0.05
   },
   {
     "name": "Draped Bust Half Dime (Large Eagle)",
     "greysheetName": "Draped Bust Half Dimes",
     "photogradeName": "DrapedHalfDimeLE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.05
   },
   {
     "name": "Capped Bust Half Dime",
     "photogradeName": "CappedHalfDime",
+    "classifierLabel": "capped",
     "denomination": 0.05
   },
   {
     "name": "Liberty Seated Half Dime",
     "photogradeName": "Seated-Half-Dime",
+    "classifierLabel": "seated",
     "denomination": 0.05
   },
   {
     "name": "Draped Bust Dime (Small Eagle)",
     "greysheetName": "Draped Bust Dimes",
     "photogradeName": "Draped10SE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.10
   },
   {
     "name": "Draped Bust Dime (Large Eagle)",
     "greysheetName": "Draped Bust Dimes",
     "photogradeName": "Draped10LE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.10
   },
   {
     "name": "Capped Bust Dime",
     "photogradeName": "Capped10Lg",
+    "classifierLabel": "capped",
     "denomination": 0.10
   },
   {
     "name": "Liberty Seated Dime",
     "photogradeName": "Seated10",
+    "classifierLabel": "seated",
     "denomination": 0.10
   },
   {
     "name": "Barber Dime",
     "photogradeName": "Barber10",
+    "classifierLabel": "barber",
     "denomination": 0.10
   },
   {
     "name": "Mercury Dime",
     "photogradeName": "Mercury",
+    "classifierLabel": "mercury",
     "denomination": 0.10
   },
   {
     "name": "Roosevelt Dime",
     "photogradeName": "Roosevelt",
+    "classifierLabel": "roosevelt",
     "denomination": 0.10
   },
   {
     "name": "Twenty Cent Piece",
     "greysheetName": "20-Cent Pieces",
     "photogradeName": "Twenty",
+    "classifierLabel": "seated",
     "denomination": 0.20
   },
   {
     "name": "Draped Bust Quarter (Small Eagle)",
     "greysheetName": "Draped Bust Quarters",
     "photogradeName": "Draped25SE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.25
   },
   {
     "name": "Draped Bust Quarter (Large Eagle)",
     "greysheetName": "Draped Bust Quarters",
     "photogradeName": "Draped25LE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.25
   },
   {
     "name": "Capped Bust Quarter",
     "photogradeName": "Capped25Lg",
+    "classifierLabel": "capped",
     "denomination": 0.25
   },
   {
     "name": "Liberty Seated Quarter",
     "photogradeName": "Seated25",
+    "classifierLabel": "seated",
     "denomination": 0.25
   },
   {
     "name": "Barber Quarter",
     "photogradeName": "Barber25",
+    "classifierLabel": "barber",
     "denomination": 0.25
   },
   {
     "name": "Standing Liberty Quarter",
     "photogradeName": "SLQT1",
+    "classifierLabel": "standing",
     "denomination": 0.25
   },
   {
     "name": "Washington Quarter",
     "greysheetName": "Washington Quarters (1932-98)",
     "photogradeName": "Washington",
+    "classifierLabel": "washington",
     "denomination": 0.25
   },
   {
     "name": "Flowing Hair Half Dollar",
     "photogradeName": "FlowingHalf",
+    "classifierLabel": "flowing",
     "denomination": 0.50
   },
   {
     "name": "Draped Bust Half Dollar (Small Eagle)",
     "greysheetName": "Draped Bust Half Dollars",
     "photogradeName": "Draped50SE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.50
   },
   {
     "name": "Draped Bust Half Dollar (Large Eagle)",
     "greysheetName": "Draped Bust Half Dollars",
     "photogradeName": "Draped50LE",
+    "classifierLabel": "draped_silver",
     "denomination": 0.50
   },
   {
     "name": "Capped Bust Half Dollar",
     "photogradeName": "Capped50",
+    "classifierLabel": "capped",
     "denomination": 0.50
   },
   {
     "name": "Liberty Seated Half Dollar",
     "photogradeName": "Seated50",
+    "classifierLabel": "seated",
     "denomination": 0.50
   },
   {
     "name": "Barber Half Dollar",
     "greysheetName": "Barber Halves",
     "photogradeName": "Barber50",
+    "classifierLabel": "barber",
     "denomination": 0.50
   },
   {
     "name": "Walking Liberty Half Dollar",
     "greysheetName": "Walking Liberty Halves",
     "photogradeName": "Walker",
+    "classifierLabel": "walking",
     "denomination": 0.50
   },
   {
     "name": "Franklin Half Dollar",
     "greysheetName": "Franklin Halves",
     "photogradeName": "Franklin",
+    "classifierLabel": "franklin",
     "denomination": 0.50
   },
   {
     "name": "Kennedy Half Dollar",
     "greysheetName": "Kennedy Halves",
     "photogradeName": "Kennedy",
+    "classifierLabel": "kennedy",
     "denomination": 0.50
   },
   {
     "name": "Flowing Hair Dollar",
     "photogradeName": "FlowingDol",
+    "classifierLabel": "flowing",
     "denomination": 1.00
   },
   {
     "name": "Draped Bust Dollar (Small Eagle)",
     "greysheetName": "Draped Bust Dollars",
     "photogradeName": "DrapedDolLE",
+    "classifierLabel": "draped_silver",
     "denomination": 1.00
   },
   {
     "name": "Draped Bust Dollar (Large Eagle)",
     "greysheetName": "Draped Bust Dollars",
     "photogradeName": "DrapedDolLE",
+    "classifierLabel": "draped_silver",
     "denomination": 1.00
   },
   {
     "name": "Liberty Seated Dollar",
     "greysheetName": "Seated Dollars",
     "photogradeName": "SeatedDol",
+    "classifierLabel": "seated",
     "denomination": 1.00
   },
   {
     "name": "Trade Dollar",
     "photogradeName": "Trade",
+    "classifierLabel": "trade",
     "denomination": 1.00
   },
   {
     "name": "Morgan Dollar",
     "photogradeName": "Morgan",
+    "classifierLabel": "morgan",
     "denomination": 1.00
   },
   {
     "name": "Peace Dollar",
     "photogradeName": "Peace",
+    "classifierLabel": "peace",
     "denomination": 1.00
   },
   {
     "name": "Eisenhower Dollar",
     "photogradeName": "Ike",
+    "classifierLabel": "eisenhower",
     "denomination": 1.00
   },
   {
     "name": "Susan B. Anthony Dollar",
     "photogradeName": "SBA",
+    "classifierLabel": "susan_b_anthony",
     "denomination": 1.00
   },
   {
     "name": "Sacagawea Dollar",
     "greysheetName": "Sacagawea & Native American Dollars (2000-Present)",
     "photogradeName": "SAC",
+    "classifierLabel": "sacagawea",
     "denomination": 1.00
   },
   {
@@ -508,18 +571,28 @@
     "name": "One Dollar Gold (Type 2)",
     "greysheetName": "$1 Gold - Type 2",
     "photogradeName": "GoldDollar2",
+    "classifierLabel": "indian_princess",
     "denomination": 1.00
   },
   {
     "name": "One Dollar Gold (Type 3)",
     "greysheetName": "$1 Gold - Type 3",
     "photogradeName": "GoldDollar3",
+    "classifierLabel": "indian_princess",
     "denomination": 1.00
   },
   {
-    "name": "Draped Bust Quarter Eagle",
+    "name": "Draped Bust Quarter Eagle (Small Eagle)",
+    "greysheetName": "$2.50 Draped Bust Gold",
+    "photogradeName": "DrapedBustR2.5SE",
+    "classifierLabel": "draped_gold",
+    "denomination": 2.50
+  },
+  {
+    "name": "Draped Bust Quarter Eagle (Large Eagle)",
     "greysheetName": "$2.50 Draped Bust Gold",
     "photogradeName": "DrapedBustR2.5LE",
+    "classifierLabel": "draped_gold",
     "denomination": 2.50
   },
   {
@@ -532,36 +605,42 @@
     "name": "Classic Head Quarter Eagle",
     "greysheetName": "$2.50 Classic Head Gold",
     "photogradeName": "Classic2.5",
+    "classifierLabel": "classic_gold",
     "denomination": 2.50
   },
   {
     "name": "Liberty Head Quarter Eagle",
     "greysheetName": "$2.50 Liberty Gold",
     "photogradeName": "2.5Lib",
+    "classifierLabel": "liberty_gold",
     "denomination": 2.50
   },
   {
     "name": "Indian Head Quarter Eagle",
     "greysheetName": "$2.50 Indian Gold",
     "photogradeName": "2.5Ind",
+    "classifierLabel": "indian_gold",
     "denomination": 2.50
   },
   {
     "name": "Princess Head Three Dollars",
     "greysheetName": "$3 Princess Head Gold",
     "photogradeName": "3Gold",
+    "classifierLabel": "indian_princess",
     "denomination": 3.00
   },
   {
     "name": "Draped Bust Half Eagle (Small Eagle)",
     "greysheetName": "$5 Draped Bust Gold",
     "photogradeName": "DrapedBust5SE",
+    "classifierLabel": "draped_gold",
     "denomination": 5.00
   },
   {
     "name": "Draped Bust Half Eagle (Large Eagle)",
     "greysheetName": "$5 Draped Bust Gold",
     "photogradeName": "DrapedBust5LE",
+    "classifierLabel": "draped_gold",
     "denomination": 5.00
   },
   {
@@ -580,66 +659,77 @@
     "name": "Classic Head Half Eagle",
     "greysheetName": "$5 Classic Head Gold",
     "photogradeName": "Classic5",
+    "classifierLabel": "classic_gold",
     "denomination": 5.00
   },
   {
     "name": "Liberty Head Half Eagle",
     "greysheetName": "$5 Liberty Gold",
     "photogradeName": "5Lib",
+    "classifierLabel": "liberty_gold",
     "denomination": 5.00
   },
   {
     "name": "Indian Head Half Eagle",
     "greysheetName": "$5 Indian Gold",
     "photogradeName": "5Ind",
+    "classifierLabel": "indian_gold",
     "denomination": 5.00
   },
   {
     "name": "Draped Bust Eagle (Small Eagle)",
     "greysheetName": "$10 Draped Bust Gold",
     "photogradeName": "DrapedBust10SE",
+    "classifierLabel": "draped_gold",
     "denomination": 10.00
   },
   {
     "name": "Draped Bust Eagle (Large Eagle)",
     "greysheetName": "$10 Draped Bust Gold",
     "photogradeName": "DrapedBust10LE",
+    "classifierLabel": "draped_gold",
     "denomination": 10.00
   },
   {
     "name": "Liberty Head Eagle",
     "greysheetName": "$10 Liberty Gold",
     "photogradeName": "10Lib",
+    "classifierLabel": "liberty_gold",
     "denomination": 10.00
   },
   {
     "name": "Indian Eagle",
     "greysheetName": "$10 Indian Gold",
     "photogradeName": "10Ind",
+    "classifierLabel": "indian_eagle",
     "denomination": 10.00
   },
   {
     "name": "Liberty Head Double Eagle (Type 1)",
     "greysheetName": "$20 Liberty Gold - Type 1",
     "photogradeName": "20Lib",
+    "classifierLabel": "liberty_double_eagle",
     "denomination": 20.00
   },
   {
     "name": "Liberty Head Double Eagle (Type 2)",
     "greysheetName": "$20 Liberty Gold - Type 2",
     "photogradeName": "20Lib",
+    "classifierLabel": "liberty_double_eagle",
     "denomination": 20.00
   },
   {
     "name": "Liberty Head Double Eagle (Type 3)",
     "greysheetName": "$20 Liberty Gold - Type 3",
     "photogradeName": "20Lib",
+    "classifierLabel": "liberty_double_eagle",
     "denomination": 20.00
   },
   {
     "name": "Saint Gaudens Double Eagle",
     "greysheetName": "$20 Saint Gaudens Gold",
     "photogradeName": "20Saint",
+    "classifierLabel": "saint_gaudens",
     "denomination": 20.00
   },
   {
