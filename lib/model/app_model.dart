@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:numismatic/model/greysheet_static_data.dart';
@@ -13,6 +14,23 @@ import 'package:permission_handler/permission_handler.dart';
 import '../services/coin_comparator.dart';
 import 'coin.dart';
 import 'coin_type.dart';
+
+List<Coin> loadCoinsCompute(String appDirectory) {
+  List<Coin> coins = [];
+  final coinsDirectory = Directory('$appDirectory/coins/');
+  if (coinsDirectory.existsSync()) {
+    var coinFiles = coinsDirectory.listSync();
+    if (coinFiles.isNotEmpty) {
+      for (var coinFile in coinFiles) {
+        final coin = File(coinFile.path);
+        coins.add(Coin.fromJson(jsonDecode(coin.readAsStringSync())));
+      }
+    }
+  } else {
+    coinsDirectory.createSync();
+  }
+  return coins;
+}
 
 class AppModel extends ChangeNotifier with WidgetsBindingObserver {
   List<Coin> coins = [];
@@ -64,19 +82,8 @@ class AppModel extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   loadCoins() async {
-    final appDirectory = (await getApplicationDocumentsDirectory()).path;
-    final coinsDirectory = Directory('$appDirectory/coins/');
-    if (coinsDirectory.existsSync()) {
-      var coinFiles = coinsDirectory.listSync();
-      if (coinFiles.isNotEmpty) {
-        for (var coinFile in coinFiles) {
-          final coin = File(coinFile.path);
-          coins.add(Coin.fromJson(jsonDecode(coin.readAsStringSync())));
-        }
-      }
-    } else {
-      coinsDirectory.createSync();
-    }
+    coins = await compute(
+        loadCoinsCompute, (await getApplicationDocumentsDirectory()).path);
     isLoading = false;
     _sortCoins();
     notifyListeners();

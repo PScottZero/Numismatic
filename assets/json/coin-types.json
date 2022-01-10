@@ -196,14 +196,14 @@
     "name": "Chain Cent",
     "greysheetName": "Flowing Hair Large Cents",
     "photogradeName": "ChainCent",
-    "classifierLabel": "chain+wreath",
+    "classifierLabel": "wreath+chain",
     "denomination": 0.01
   },
   {
     "name": "Wreath Cent",
     "greysheetName": "Flowing Hair Large Cents",
     "photogradeName": "WreathCent",
-    "classifierLabel": "chain+wreath",
+    "classifierLabel": "wreath+chain",
     "denomination": 0.01
   },
   {
@@ -318,7 +318,7 @@
   {
     "name": "Draped Bust Half Dime (Small Eagle)",
     "greysheetName": "Draped Bust Half Dimes",
-    "photogradeName": "DrapedHalfDime",
+    "photogradeName": "DrapedHalfDimeSE",
     "classifierLabel": "draped_silver",
     "denomination": 0.05
   },
@@ -506,7 +506,7 @@
   {
     "name": "Draped Bust Dollar (Small Eagle)",
     "greysheetName": "Draped Bust Dollars",
-    "photogradeName": "DrapedDolLE",
+    "photogradeName": "DrapedDolSE",
     "classifierLabel": "draped_silver",
     "denomination": 1.00
   },
