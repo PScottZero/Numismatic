@@ -2,9 +2,9 @@ barber
 braided
 buffalo
 capped
-classic_gold
 classic_copper
 coronet
+classic_gold
 draped_gold
 draped_copper
 draped_silver
