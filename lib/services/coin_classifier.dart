@@ -1,47 +1,46 @@
-import 'dart:typed_data';
-
 import 'package:image/image.dart' as img;
-import 'package:tflite/tflite.dart';
+import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
+// code adapted from https://github.com/am15h/tflite_flutter_helper/blob/master/example/image_classification/lib/classifier.dart
 class CoinClassifier {
-  static bool modelLoaded = false;
+  late Interpreter _interpreter;
+  late List<String> _labels;
+  bool _modelLoaded = false;
+  bool _labelsLoaded = false;
 
-  static Future<void> loadModel() async {
-    await Tflite.loadModel(
-      model: 'assets/classifier/coin_classifier.tflite',
-      labels: 'assets/classifier/labels.txt',
-    );
+  CoinClassifier() {
+    _loadModel();
+    _loadLabels();
   }
 
-  static Future<String> predict(img.Image image) async {
-    if (!modelLoaded) {
-      await loadModel();
-      modelLoaded = true;
-    }
-    var recognitions = await Tflite.runModelOnBinary(
-      binary: imageToByteListFloat32(image, 224, 0, 255.0),
-    );
-    return recognitions?[0]['label'] ?? '';
+  Future<void> _loadModel() async {
+    _interpreter =
+        await Interpreter.fromAsset('classifier/coin_classifier.tflite');
+    _modelLoaded = true;
   }
 
-  // code from https://pub.dev/packages/tflite
-  static Uint8List imageToByteListFloat32(
-    img.Image image,
-    int inputSize,
-    double mean,
-    double std,
-  ) {
-    var convertedBytes = Float32List(1 * inputSize * inputSize * 3);
-    var buffer = Float32List.view(convertedBytes.buffer);
-    int pixelIndex = 0;
-    for (var i = 0; i < inputSize; i++) {
-      for (var j = 0; j < inputSize; j++) {
-        var pixel = image.getPixel(j, i);
-        buffer[pixelIndex++] = (img.getRed(pixel) - mean) / std;
-        buffer[pixelIndex++] = (img.getGreen(pixel) - mean) / std;
-        buffer[pixelIndex++] = (img.getBlue(pixel) - mean) / std;
-      }
+  Future<void> _loadLabels() async {
+    _labels = await FileUtil.loadLabels('assets/classifier/labels.txt');
+    _labelsLoaded = true;
+  }
+
+  void predict(img.Image image) {
+    if (_modelLoaded && _labelsLoaded) {
+      var inputImage = TensorImage();
+      inputImage.loadImage(image);
+      inputImage = ImageProcessorBuilder()
+          .add(ResizeOp(224, 224, ResizeMethod.NEAREST_NEIGHBOUR))
+          .add(NormalizeOp(0, 255))
+          .build()
+          .process(inputImage);
+      var outputBuffer = TensorBuffer.createFixedSize(
+          _interpreter.getOutputTensor(0).shape,
+          _interpreter.getOutputTensor(0).type);
+      _interpreter.run(inputImage.buffer, outputBuffer.getBuffer());
+      Map<String, double> labeledProb =
+          TensorLabel.fromList(_labels, outputBuffer).getMapWithFloatValue();
+      print(labeledProb);
     }
-    return convertedBytes.buffer.asUint8List();
   }
 }

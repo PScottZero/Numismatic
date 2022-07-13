@@ -20,12 +20,14 @@ class CameraView extends StatefulWidget {
 
 class _CameraViewState extends State<CameraView> {
   late CameraController _controller;
+  late CoinClassifier _classifier;
   late Future<void> _initializeControllerFuture;
 
   @override
   void initState() {
     super.initState();
     _controller = CameraController(widget.camera, ResolutionPreset.high);
+    _classifier = CoinClassifier();
     _initializeControllerFuture = _controller.initialize();
   }
 
@@ -42,10 +44,10 @@ class _CameraViewState extends State<CameraView> {
       final y = (image.height - image.width) ~/ 2;
       image = img.copyCrop(image, 0, y, image.width, image.width);
       image = img.copyResize(image, width: 224, height: 224);
-      var prediction = await CoinClassifier.predict(image);
+      _classifier.predict(image);
       showModalBottomSheet(
         context: context,
-        builder: (context) => PredictionView(prediction),
+        builder: (context) => const PredictionView('morgan'),
         backgroundColor: ViewConstants.backgroundColorFromContext(context),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

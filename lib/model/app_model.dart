@@ -46,12 +46,12 @@ class AppModel extends ChangeNotifier with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.dispose();
   }
 
   AppModel(this.snackBarContext) {
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     CoinComparator.setSortMethod(SortMethod.denomination);
     loadTypes();
     loadGreysheetStaticData();
