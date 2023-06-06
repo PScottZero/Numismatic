@@ -1,9 +1,9 @@
-import 'package:numismatic/model/sort_method.dart';
+import 'package:numislog/model/sort_method.dart';
 
 import '../model/coin.dart';
 
 class CoinComparator {
-  static SortMethod sortMethod = SortMethod.denomination;
+  static SortMethod sortMethod = SortMethod.dateAdded;
   static bool ascending = false;
   static List<int Function(Coin, Coin, int)> _compareFuncs = [];
 

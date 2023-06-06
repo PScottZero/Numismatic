@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:numismatic/constants/helper_functions.dart';
-import 'package:numismatic/model/coin_type.dart';
-import 'package:numismatic/model/string_reference.dart';
+import 'package:numislog/constants/helper_functions.dart';
+import 'package:numislog/model/coin_type.dart';
+import 'package:numislog/model/string_reference.dart';
 import 'package:uuid/uuid.dart';
 
 import 'data_source.dart';

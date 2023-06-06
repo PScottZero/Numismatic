@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:numismatic/components/rounded_button.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/app_model.dart';
+import 'package:numislog/components/my_elevated_button.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 import 'deletable_image.dart';
@@ -90,7 +90,7 @@ class _ImageSelectorState extends State<ImageSelector> {
                     ),
                   )
                 : const Text('No Images'),
-            RoundedButton(
+            MyElevatedButton(
               label: 'Upload Images',
               onPressed: _addImage,
             ),

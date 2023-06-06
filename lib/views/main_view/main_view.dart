@@ -1,81 +1,53 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:numismatic/components/custom_scaffold.dart';
-import 'package:numismatic/views/main_view/components/custom_floating_action_button.dart';
-import 'package:numismatic/views/main_view/components/you_navigation_bar.dart';
-import 'package:numismatic/views/main_view/components/search_bar.dart';
-import 'package:numismatic/views/main_view/components/sort_menu.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/app_model.dart';
-import 'package:numismatic/services/coin_comparator.dart';
-import 'package:numismatic/views/settings_view/settings_view.dart';
 import 'package:provider/provider.dart';
 
-import '../camera_view/camera_view.dart';
+import '../../components/my_scaffold.dart';
+import '../../model/app_model.dart';
+import '../../services/coin_comparator.dart';
 import '../coin_grid_view/coin_grid_view.dart';
+import '../settings_view/settings_view.dart';
+import 'components/my_floating_action_button.dart';
+import 'components/my_search_bar.dart';
+import 'components/sort_menu.dart';
 
 class MainView extends StatefulWidget {
-  final CameraDescription? _camera;
-
-  const MainView(this._camera, {Key? key}) : super(key: key);
+  const MainView({Key? key}) : super(key: key);
 
   @override
-  _MainViewState createState() => _MainViewState();
+  State<MainView> createState() => _MainViewState();
 }
 
 class _MainViewState extends State<MainView> {
+  final List<Widget> _views = [
+    const CoinGridView(),
+    const CoinGridView(isWantlist: true),
+    const SettingsView(),
+  ];
+
+  final List<Widget> _destinations = [
+    const NavigationDestination(
+      icon: Icon(Icons.grid_view_rounded),
+      label: 'Collection',
+    ),
+    const NavigationDestination(
+      icon: Icon(Icons.favorite),
+      label: 'Wantlist',
+    ),
+    const NavigationDestination(
+      icon: Icon(Icons.settings),
+      label: 'Settings',
+    ),
+  ];
+
   var _selectedIndex = 0;
-
-  List<Widget> get _options {
-    var options = <Widget>[
-      const CoinGridView(),
-      const CoinGridView(isWantlist: true),
-    ];
-    if (widget._camera != null) {
-      options.add(CameraView(camera: widget._camera!));
-    }
-    options.add(const SettingsView());
-    return options;
-  }
-
-  bool get viewingCollection => _selectedIndex == 0;
-  bool get viewingWantlist => _selectedIndex == 1;
-  bool get viewingCamera => _selectedIndex == 2;
-
-  void _onTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  bool _showFloatingActionButton() => _selectedIndex < 2;
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        systemNavigationBarColor:
-            ViewConstants.backgroundAccentColorFromContext(context),
-        systemNavigationBarIconBrightness:
-            MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? Brightness.light
-                : Brightness.dark,
-        statusBarColor:
-            MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? ViewConstants.backgroundColorFromContext(context)
-                : Colors.white,
-        statusBarIconBrightness:
-            MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? Brightness.light
-                : Brightness.dark,
-      ),
-    );
     return Consumer<AppModel>(
       builder: (context, model, child) {
-        return CustomScaffold(
+        return MyScaffold(
           hasAppBar: _selectedIndex < 2,
-          appBarTitle: 'Numismatic',
+          appBarTitle: 'NumisLog',
           appBarActions: [
             IconButton(
               onPressed: model.toggleSortDirection,
@@ -92,18 +64,19 @@ class _MainViewState extends State<MainView> {
           ],
           appBarBottom: PreferredSize(
             preferredSize: const Size(double.infinity, 70),
-            child: SearchBar(viewingWantlist),
+            child: MySearchBar(_selectedIndex == 1),
           ),
-          appBarColor: Colors.transparent,
-          body: _options[_selectedIndex],
-          bottomNavigationBar: YouNavigationBar(
-            selectedIndex: _selectedIndex,
-            onTap: _onTap,
-            cameraIsInitialized: widget._camera != null,
-          ),
-          floatingActionButton: _showFloatingActionButton()
-              ? CustomFloatingActionButton(_selectedIndex)
+          body: _views[_selectedIndex],
+          floatingActionButton: _selectedIndex != 2
+              ? MyFloatingActionButton(_selectedIndex == 1)
               : null,
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: _selectedIndex,
+            onDestinationSelected: (index) => setState(() {
+              _selectedIndex = index;
+            }),
+            destinations: _destinations,
+          ),
         );
       },
     );

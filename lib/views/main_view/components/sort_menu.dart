@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/sort_method.dart';
-import 'package:numismatic/services/coin_comparator.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/sort_method.dart';
 
 class SortMenu extends StatelessWidget {
   final Function(SortMethod) setSortMethod;
@@ -11,33 +10,32 @@ class SortMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<SortMethod>(
-      icon: const Icon(Icons.sort),
       onSelected: setSortMethod,
       shape: RoundedRectangleBorder(
         borderRadius: ViewConstants.mediumBorderRadius,
       ),
-      color: MediaQuery.of(context).platformBrightness == Brightness.light
-          ? Colors.white
-          : ViewConstants.backgroundAccentColorFromContext(context),
       itemBuilder: (context) {
         return <PopupMenuItem<SortMethod>>[
               const PopupMenuItem(
-                child: Text('Sort by...'),
                 enabled: false,
+                child: Text(
+                  'Sort by...',
+                  style: TextStyle(
+                    fontSize: ViewConstants.mediumFont,
+                  ),
+                ),
               ),
             ] +
             SortMethod.values
                 .map(
-                  (e) => PopupMenuItem(
+                  (method) => PopupMenuItem(
+                    value: method,
                     child: Text(
-                      e.string(),
-                      style: TextStyle(
-                        color: CoinComparator.sortMethod == e
-                            ? ViewConstants.accentColor
-                            : null,
+                      method.string(),
+                      style: const TextStyle(
+                        fontSize: ViewConstants.mediumFont,
                       ),
                     ),
-                    value: e,
                   ),
                 )
                 .toList();

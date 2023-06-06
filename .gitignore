@@ -20,5 +20,3 @@ doc/api/
 *.js.deps
 *.js.map
 */.DS_Store
-coin_classifier/images/
-coin_classifier/saved_models/

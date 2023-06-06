@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/app_model.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/coin.dart';
+import 'package:numislog/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 import 'components/coin_card.dart';
@@ -13,7 +13,7 @@ class CoinGridView extends StatefulWidget {
   const CoinGridView({this.isWantlist = false, Key? key}) : super(key: key);
 
   @override
-  _CoinGridViewState createState() => _CoinGridViewState();
+  State<CoinGridView> createState() => _CoinGridViewState();
 }
 
 class _CoinGridViewState extends State<CoinGridView> {
@@ -42,9 +42,9 @@ class _CoinGridViewState extends State<CoinGridView> {
         return coins.isNotEmpty || searchStringNonEmpty
             ? GridView.count(
                 crossAxisCount: 2,
-                mainAxisSpacing: ViewConstants.gapLarge,
-                crossAxisSpacing: ViewConstants.gapLarge,
-                padding: ViewConstants.largePadding,
+                mainAxisSpacing: ViewConstants.gapSmall,
+                crossAxisSpacing: ViewConstants.gapSmall,
+                padding: ViewConstants.smallPadding,
                 childAspectRatio: 1,
                 children: (searchStringNonEmpty
                         ? <Widget>[]
@@ -59,6 +59,7 @@ class _CoinGridViewState extends State<CoinGridView> {
                         ? 'Loading ${widget.isWantlist ? 'wantlist' : 'collection'}...'
                         : 'No coins in ${widget.isWantlist ? 'wantlist' : 'collection'}',
                     textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: ViewConstants.largeFont),
                   ),
                 ),
               );

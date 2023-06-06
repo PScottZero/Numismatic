@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:numismatic/model/greysheet_static_data.dart';
-import 'package:numismatic/model/string_reference.dart';
-import 'package:numismatic/model/sort_method.dart';
-import 'package:numismatic/services/greysheet_scraper.dart';
+import 'package:numislog/model/greysheet_static_data.dart';
+import 'package:numislog/model/string_reference.dart';
+import 'package:numislog/model/sort_method.dart';
+import 'package:numislog/services/greysheet_scraper.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -148,15 +148,14 @@ class AppModel extends ChangeNotifier with WidgetsBindingObserver {
 
   Future<String> backupCoins() async {
     if (await Permission.manageExternalStorage.request().isGranted) {
-      final directory =
-          Directory('/storage/emulated/0/Documents/NumismaticBU/');
+      final directory = Directory('/storage/emulated/0/Documents/NumisLogBU/');
       if (directory.existsSync()) {
         directory.deleteSync(recursive: true);
       }
       directory.createSync();
       for (var coin in coins) {
         final file =
-            File('/storage/emulated/0/Documents/NumismaticBU/${coin.id}.json');
+            File('/storage/emulated/0/Documents/NumisLogBU/${coin.id}.json');
         file.createSync();
         file.writeAsStringSync(jsonEncode(coin));
       }
@@ -168,7 +167,7 @@ class AppModel extends ChangeNotifier with WidgetsBindingObserver {
   Future<String> restoreCoins() async {
     if (await Permission.manageExternalStorage.request().isGranted) {
       final backupDirectory =
-          Directory('/storage/emulated/0/Documents/NumismaticBU/');
+          Directory('/storage/emulated/0/Documents/NumisLogBU/');
       if (!backupDirectory.existsSync()) {
         return 'No backup found';
       }

@@ -1,53 +1,23 @@
-import 'package:camera/camera.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/views/main_view/main_view.dart';
 import 'package:provider/provider.dart';
 
 import 'model/app_model.dart';
+import 'views/main_view/main_view.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final cameras = await availableCameras();
+void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppModel(context),
-      child: NumismaticApp(cameras.isNotEmpty ? cameras.first : null),
+      child: const NumisLogApp(),
     ),
   );
 }
 
-MaterialColor generatePrimarySwatch() {
-  var colorMap = {50: ViewConstants.accentColor};
-  for (var i = 100; i <= 900; i += 100) {
-    colorMap[i] = ViewConstants.accentColor;
-  }
-  return MaterialColor(ViewConstants.accentColor.value, colorMap);
-}
-
-class NumismaticApp extends StatelessWidget {
-  final CameraDescription? _camera;
-
-  ThemeData themeOfBrightness(Brightness brightness) => ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: generatePrimarySwatch(),
-        ).copyWith(
-          secondary: ViewConstants.primaryColor,
-          brightness: brightness,
-        ),
-        textTheme: GoogleFonts.quicksandTextTheme(
-          const TextTheme(
-            bodyText2: TextStyle(
-              fontSize: ViewConstants.largeFont,
-              height: 1.5,
-            ),
-          ),
-        ),
-      );
-
-  const NumismaticApp(this._camera, {Key? key}) : super(key: key);
+class NumisLogApp extends StatelessWidget {
+  const NumisLogApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +25,42 @@ class NumismaticApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Numismatic',
-      debugShowCheckedModeBanner: false,
-      theme: themeOfBrightness(Brightness.light),
-      darkTheme: themeOfBrightness(Brightness.dark),
-      home: MainView(_camera),
-    );
+
+    return DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
+      ColorScheme lightColorScheme;
+      ColorScheme darkColorScheme;
+
+      // set dynamic light and dark schemes
+      if (lightDynamic != null && darkDynamic != null) {
+        lightColorScheme = lightDynamic.harmonized();
+        darkColorScheme = darkDynamic.harmonized();
+      } else {
+        lightColorScheme = ColorScheme.fromSeed(seedColor: Colors.blue);
+        darkColorScheme = ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark,
+        );
+      }
+
+      return MaterialApp(
+        title: 'NumisLog',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: lightColorScheme,
+          textTheme: GoogleFonts.quicksandTextTheme().apply(
+            bodyColor: Colors.black,
+          ),
+        ),
+        darkTheme: ThemeData(
+          useMaterial3: true,
+          colorScheme: darkColorScheme,
+          textTheme: GoogleFonts.quicksandTextTheme().apply(
+            bodyColor: Colors.white,
+          ),
+        ),
+        home: const MainView(),
+      );
+    });
   }
 }

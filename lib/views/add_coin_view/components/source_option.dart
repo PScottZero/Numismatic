@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/helper_functions.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/data_source.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/data_source.dart';
 
 class SourceOption extends StatelessWidget {
   final String label;
@@ -25,7 +24,6 @@ class SourceOption extends StatelessWidget {
           width: 18,
           height: 18,
           child: Radio<DataSource>(
-            fillColor: HelperFunctions.msp(ViewConstants.accentColor),
             value: value,
             groupValue: groupValue,
             onChanged: onChanged,

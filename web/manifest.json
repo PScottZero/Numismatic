@@ -1,6 +1,6 @@
 {
-  "name": "numismatic",
-  "short_name": "numismatic",
+  "name": "numislog",
+  "short_name": "numislog",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",

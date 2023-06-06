@@ -1,21 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:numismatic/components/autocomplete_input.dart';
-import 'package:numismatic/components/custom_scaffold.dart';
-import 'package:numismatic/views/add_coin_view/components/coin_data_text_field.dart';
-import 'package:numismatic/views/add_coin_view/components/image_selector.dart';
-import 'package:numismatic/views/settings_view/components/loading_dialog.dart';
-import 'package:numismatic/views/add_coin_view/components/multi_source_field.dart';
-import 'package:numismatic/components/rounded_button.dart';
-import 'package:numismatic/constants/helper_functions.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/app_model.dart';
-import 'package:numismatic/model/coin_type.dart';
-import 'package:numismatic/model/data_source.dart';
-import 'package:numismatic/model/grades.dart';
-import 'package:numismatic/services/coin_data_retriever.dart';
+import 'package:numislog/components/autocomplete_input.dart';
+import 'package:numislog/components/my_scaffold.dart';
+import 'package:numislog/views/add_coin_view/components/coin_data_text_field.dart';
+import 'package:numislog/views/add_coin_view/components/image_selector.dart';
+import 'package:numislog/views/settings_view/components/loading_dialog.dart';
+import 'package:numislog/views/add_coin_view/components/multi_source_field.dart';
+import 'package:numislog/components/my_elevated_button.dart';
+import 'package:numislog/constants/helper_functions.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/coin.dart';
+import 'package:numislog/model/app_model.dart';
+import 'package:numislog/model/coin_type.dart';
+import 'package:numislog/model/data_source.dart';
+import 'package:numislog/model/grades.dart';
+import 'package:numislog/services/coin_data_retriever.dart';
 import 'package:provider/provider.dart';
 
 class AddCoinView extends StatefulWidget {
@@ -98,7 +98,6 @@ class _AddCoinViewState extends State<AddCoinView> {
             'Must specify type and variation',
             style: TextStyle(
               fontSize: ViewConstants.mediumFont,
-              color: Colors.white,
             ),
           ),
         ),
@@ -113,7 +112,7 @@ class _AddCoinViewState extends State<AddCoinView> {
     return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
-        return CustomScaffold(
+        return MyScaffold(
           appBarTitle: '${widget.edit ? 'Edit' : 'Add'} Coin',
           body: ListView(
             padding: ViewConstants.largePadding,
@@ -196,7 +195,7 @@ class _AddCoinViewState extends State<AddCoinView> {
                   ),
                 ],
               ),
-              RoundedButton(
+              MyElevatedButton(
                 label: widget.edit ? 'Save Changes' : 'Add To $title',
                 onPressed: () => addCoin(),
               ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/string_reference.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/string_reference.dart';
 
 class AutocompleteInput extends StatelessWidget {
   final String? label;
@@ -67,14 +67,16 @@ class AutocompleteInput extends StatelessWidget {
           },
           suggestionsBoxDecoration: SuggestionsBoxDecoration(
             borderRadius: ViewConstants.mediumBorderRadius,
-            color: MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? ViewConstants.backgroundAccentColorFromContext(context)
-                : Colors.white,
           ),
           itemBuilder: (context, suggestion) {
             return Container(
               padding: ViewConstants.mediumPadding,
-              child: Text(suggestion.toString()),
+              child: Text(
+                suggestion.toString(),
+                style: const TextStyle(
+                  fontSize: ViewConstants.mediumFont,
+                ),
+              ),
             );
           },
           noItemsFoundBuilder: (context) => const Padding(

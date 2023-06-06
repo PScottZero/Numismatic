@@ -1,6 +1,6 @@
-import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/coin_type.dart';
-import 'package:numismatic/model/greysheet_static_data.dart';
+import 'package:numislog/model/coin.dart';
+import 'package:numislog/model/coin_type.dart';
+import 'package:numislog/model/greysheet_static_data.dart';
 import 'package:web_scraper/web_scraper.dart';
 
 class GreysheetScraper {

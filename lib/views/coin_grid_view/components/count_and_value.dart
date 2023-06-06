@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/coin.dart';
 
 class CountAndValue extends StatelessWidget {
   final List<Coin> coins;
@@ -24,13 +24,7 @@ class CountAndValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: ViewConstants.primaryColor,
-        borderRadius: ViewConstants.largeBorderRadius,
-        boxShadow: ViewConstants.boxShadow,
-      ),
-      padding: ViewConstants.smallPadding,
+    return Card(
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,20 +32,16 @@ class CountAndValue extends StatelessWidget {
             Text(
               'Count: ${coins.length.toString()}',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: ViewConstants.mediumFont,
-                fontWeight: FontWeight.bold,
-                color: ViewConstants.accentColor,
               ),
             ),
             const SizedBox(height: ViewConstants.gapSmall),
             Text(
               'Total Value:\n$totalValue',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: ViewConstants.mediumFont,
-                fontWeight: FontWeight.bold,
-                color: ViewConstants.accentColor,
               ),
             ),
           ],

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
+import 'package:numislog/constants/view_constants.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
 class ImageCarousel extends StatelessWidget {

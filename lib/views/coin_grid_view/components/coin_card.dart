@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/app_model.dart';
-import 'package:numismatic/views/coin_details_view/coin_details_view.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/coin.dart';
+import 'package:numislog/model/app_model.dart';
+import 'package:numislog/views/coin_details_view/coin_details_view.dart';
 import 'package:provider/provider.dart';
 
 class CoinCard extends StatelessWidget {
@@ -24,11 +24,7 @@ class CoinCard extends StatelessWidget {
             ),
           ),
         },
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: ViewConstants.largeBorderRadius,
-            boxShadow: ViewConstants.boxShadow,
-          ),
+        child: Card(
           clipBehavior: Clip.antiAlias,
           child: Stack(
             alignment: Alignment.bottomLeft,
@@ -46,13 +42,12 @@ class CoinCard extends StatelessWidget {
                   minHeight: 0,
                 ),
                 child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: ViewConstants.smallBorderRadius,
+                  decoration: const BoxDecoration(
                     color: ViewConstants.imageTextBackgroundColor,
                   ),
                   width: double.infinity,
                   padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                  margin: const EdgeInsets.all(10),
+                  // margin: const EdgeInsets.all(10),
                   child: Text(
                     coin.description,
                     textAlign: TextAlign.center,

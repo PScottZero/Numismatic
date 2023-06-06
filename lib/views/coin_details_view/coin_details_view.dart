@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/components/confirm_cancel_dialog.dart';
-import 'package:numismatic/components/custom_scaffold.dart';
-import 'package:numismatic/views/coin_details_view/components/detail.dart';
-import 'package:numismatic/views/coin_details_view/components/image_carousel.dart';
-import 'package:numismatic/components/rounded_button.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/app_model.dart';
-import 'package:numismatic/model/data_source.dart';
-import 'package:numismatic/views/add_coin_view/add_coin_view.dart';
+import 'package:numislog/components/confirm_cancel_dialog.dart';
+import 'package:numislog/components/my_scaffold.dart';
+import 'package:numislog/views/coin_details_view/components/detail.dart';
+import 'package:numislog/views/coin_details_view/components/image_carousel.dart';
+import 'package:numislog/components/my_elevated_button.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/coin.dart';
+import 'package:numislog/model/app_model.dart';
+import 'package:numislog/model/data_source.dart';
+import 'package:numislog/views/add_coin_view/add_coin_view.dart';
 import 'package:provider/provider.dart';
 
 class CoinDetailsView extends StatefulWidget {
@@ -45,7 +45,7 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
     return Consumer<AppModel>(
       builder: (context, model, child) {
         _model = model;
-        return CustomScaffold(
+        return MyScaffold(
           appBarTitle: widget.coin.description,
           appBarActions: [
             Padding(
@@ -63,7 +63,10 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                     ),
                   );
                 },
-                child: const Icon(Icons.edit),
+                child: const Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: Icon(Icons.edit),
+                ),
               ),
             ),
           ],
@@ -111,18 +114,15 @@ class _CoinDetailsViewState extends State<CoinDetailsView> {
                       name: 'Notes',
                       value: widget.coin.notes,
                     ),
-                    RoundedButton(
+                    MyElevatedButton(
                       label:
                           'Move to ${widget.coin.inCollection ? 'Wantlist' : 'Collection'}',
                       onPressed: () => model.toggleInCollection(widget.coin),
-                      color: Colors.blue[600],
-                      textColor: Colors.blue[100]!,
                     ),
-                    RoundedButton(
+                    MyElevatedButton(
                       label: 'Delete',
                       onPressed: _showDeleteCoinDialog,
-                      color: ViewConstants.warningColor,
-                      textColor: ViewConstants.warningAccentColor,
+                      warning: true,
                     ),
                   ],
                 ),

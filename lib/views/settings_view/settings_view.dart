@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/components/confirm_cancel_dialog.dart';
-import 'package:numismatic/components/rounded_button.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/app_model.dart';
+import 'package:numislog/components/confirm_cancel_dialog.dart';
+import 'package:numislog/components/my_elevated_button.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/app_model.dart';
 import 'package:provider/provider.dart';
 
 class SettingsView extends StatefulWidget {
@@ -59,7 +59,6 @@ class _SettingsViewState extends State<SettingsView> {
         content: Text(
           message,
           style: const TextStyle(
-            color: Colors.white,
             fontSize: ViewConstants.mediumFont,
           ),
         ),
@@ -77,14 +76,13 @@ class _SettingsViewState extends State<SettingsView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RoundedButton(
+              MyElevatedButton(
                 label: 'Backup Coins',
                 onPressed: _showBackupDialog,
               ),
-              RoundedButton(
+              MyElevatedButton(
                 label: 'Restore Coins',
-                color: ViewConstants.warningColor,
-                textColor: ViewConstants.warningAccentColor,
+                warning: true,
                 onPressed: _showRestoreDialog,
               ),
             ],

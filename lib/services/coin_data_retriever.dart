@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:numismatic/model/coin.dart';
-import 'package:numismatic/model/app_model.dart';
-import 'package:numismatic/model/coin_type.dart';
-import 'package:numismatic/model/data_source.dart';
+import 'package:numislog/model/coin.dart';
+import 'package:numislog/model/app_model.dart';
+import 'package:numislog/model/coin_type.dart';
+import 'package:numislog/model/data_source.dart';
 
 import 'greysheet_scraper.dart';
 

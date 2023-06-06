@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
+import 'package:numislog/constants/view_constants.dart';
 
 class LoadingDialog extends StatelessWidget {
   const LoadingDialog({Key? key}) : super(key: key);
@@ -7,10 +7,6 @@ class LoadingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor:
-          MediaQuery.of(context).platformBrightness == Brightness.dark
-              ? ViewConstants.backgroundAccentColorFromContext(context)
-              : Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: ViewConstants.mediumBorderRadius,
       ),

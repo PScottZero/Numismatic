@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
-import 'package:numismatic/model/data_source.dart';
+import 'package:numislog/constants/view_constants.dart';
+import 'package:numislog/model/data_source.dart';
 
 import 'source_option.dart';
 
@@ -19,7 +19,7 @@ class MultiSourceField<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MultiSourceFieldState createState() => _MultiSourceFieldState();
+  State<MultiSourceField> createState() => _MultiSourceFieldState();
 }
 
 class _MultiSourceFieldState extends State<MultiSourceField> {

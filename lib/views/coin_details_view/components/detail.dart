@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
+import 'package:numislog/constants/view_constants.dart';
 
 class Detail extends StatelessWidget {
   final String name;
@@ -16,24 +16,24 @@ class Detail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return value != null
-        ? Container(
+        ? Card(
             margin: EdgeInsets.only(
               top: topMargin ? ViewConstants.gapLarge : 0,
             ),
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 18),
-            decoration: BoxDecoration(
-              color: ViewConstants.primaryColor,
-              borderRadius: ViewConstants.largeBorderRadius,
-            ),
-            child: Center(
-              child: Text(
-                '$name: $value',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: ViewConstants.largeFont,
-                  fontWeight: FontWeight.bold,
-                  color: ViewConstants.accentColor,
+            // width: double.infinity,
+            // padding:
+            // decoration: BoxDecoration(
+            //   borderRadius: ViewConstants.largeBorderRadius,
+            // ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(15, 15, 15, 18),
+              child: Center(
+                child: Text(
+                  '$name: $value',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: ViewConstants.largeFont,
+                  ),
                 ),
               ),
             ),

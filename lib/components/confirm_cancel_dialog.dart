@@ -1,5 +1,6 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
+import 'package:numislog/constants/view_constants.dart';
 
 class ConfirmCancelDialog extends StatelessWidget {
   final String title;
@@ -17,35 +18,40 @@ class ConfirmCancelDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: ViewConstants.backgroundAccentColorFromContext(context),
-      title: Text(title),
-      content: Text(
-        message,
-        style: const TextStyle(height: 2),
-      ),
-      actions: [
-        TextButton(
-          onPressed: onConfirmed,
-          child: Text(
-            confirmAction,
-            style: TextStyle(
+    return DynamicColorBuilder(
+      builder: (lightDynamic, darkDynamic) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(
+            message,
+            style: const TextStyle(
+              height: 1.5,
               fontSize: ViewConstants.mediumFont,
-              color: ViewConstants.warningColor,
             ),
           ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: Text(
-            'Cancel',
-            style: TextStyle(
-              fontSize: ViewConstants.mediumFont,
-              color: ViewConstants.accentColor,
+          actions: [
+            TextButton(
+              onPressed: onConfirmed,
+              child: Text(
+                confirmAction,
+                style: TextStyle(
+                  fontSize: ViewConstants.mediumFont,
+                  color: ViewConstants.warningColor,
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(
+                  fontSize: ViewConstants.mediumFont,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

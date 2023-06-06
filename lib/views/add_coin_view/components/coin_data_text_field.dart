@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:numismatic/constants/view_constants.dart';
+import 'package:numislog/constants/view_constants.dart';
 
 class CoinDataTextField extends StatefulWidget {
   final String? label;
@@ -14,7 +14,7 @@ class CoinDataTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CoinDataTextFieldState createState() => _CoinDataTextFieldState();
+  State<CoinDataTextField> createState() => _CoinDataTextFieldState();
 }
 
 class _CoinDataTextFieldState extends State<CoinDataTextField> {
